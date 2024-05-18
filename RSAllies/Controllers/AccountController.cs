@@ -1,6 +1,7 @@
 ﻿using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using RSAllies.Contracts.Requests;
+using RSAllies.Models;
 using RSAllies.Models.English;
 using RSAllies.Services;
 
@@ -86,5 +87,16 @@ namespace RSAllies.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CreateAccount(AccountModel model)
+        {
+           if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Create");
+            }
+
+            return RedirectToAction("Create");
+        }
     }
 }

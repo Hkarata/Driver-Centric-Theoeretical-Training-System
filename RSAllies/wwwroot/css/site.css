@@ -14,6 +14,12 @@ body {
     background-color: #f5f9fd;
 }
 
+.text-danger{
+    color: red;
+    font-family: 'Fira Code Light';
+    font-weight: 600;
+    font-size: 12px;
+}
 
 @font-face{
     font-family: 'Fira Code Light';
