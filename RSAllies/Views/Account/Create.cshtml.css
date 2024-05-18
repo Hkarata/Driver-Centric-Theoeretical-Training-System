@@ -1,0 +1,24 @@
+﻿#Container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+#Inner{
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    width: 500px;
+}
+
+form{
+    font-family: 'Fira Code VF';
+}
+
+input {
+    font-family: 'Fira Code VF';
+    font-weight: 450;
+}

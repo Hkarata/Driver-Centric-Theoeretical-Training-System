@@ -10,7 +10,7 @@ namespace RSAllies.Controllers
     {
         public IActionResult Index()
         {
-            return View("");
+            return View();
         }
 
         public IActionResult Login()
@@ -23,7 +23,7 @@ namespace RSAllies.Controllers
             return View();
         }
 
-        public IActionResult CreateAccount()
+        public IActionResult Create()
         {
             return View("Create");
         }
@@ -57,7 +57,7 @@ namespace RSAllies.Controllers
             if (result.IsSuccess)
             {
                 ViewBag.UserId = result.Value;
-                return RedirectToAction("CreateAccount");
+                return RedirectToAction("Create");
             }
             
             return View();
