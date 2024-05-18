@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace RSAllies.Models.English
+﻿namespace RSAllies.Models.English
 {
     public class UserModel
     {

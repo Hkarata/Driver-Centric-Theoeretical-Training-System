@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace RSAllies.Models.Swahili
+﻿namespace RSAllies.Models.Swahili
 {
     public class SUserModel
     {
