@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using RSAllies.Services
+@inject  SessionChecker SessionChecker
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -17,7 +19,10 @@
     <div id="body">
         <header>
 
-            <i id="Menu" class="bi bi-justify-left" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation"></i>
+            @if (SessionChecker.Check())
+            {
+                <i id="Menu" class="bi bi-justify-left" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation"></i>
+            }
 
             <section id="AppName">
                 <span class="english">Driver-Centric Theoretical Training System</span>

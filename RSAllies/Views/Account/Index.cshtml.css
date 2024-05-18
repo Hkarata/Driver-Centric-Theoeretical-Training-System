@@ -1,0 +1,161 @@
+﻿#Container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    padding: 5px;
+}
+
+#Header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    #Header section{
+        display: flex;
+        flex-direction:column;
+        text-align:center;
+        font-family: 'Fira Code VF';
+        text-transform: uppercase;
+    }
+
+
+#SecondSection {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 10px;
+}
+
+
+.someDiv {
+    background-color: #f2c94c;
+    height: 3px;
+    border-radius: 5px;
+}
+
+.myContainer {
+    position: relative;
+    height: 465px;
+    display: flex;
+    align-items:center;
+    width: 700px;
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Adjust as needed */
+    z-index: 1;
+    border-radius: 5px;
+    filter: brightness(60%);
+}
+
+#myContent {
+    position: relative;
+    z-index: 1;
+    color: white;
+    margin-left: 100px;
+    font-family: 'Fira Code VF';
+}
+
+#Kit{
+    font-weight:800;
+    font-size: 20px;
+    border-bottom: 3px solid #f2c94c;
+    width: fit-content;
+}
+
+#explanation {
+    font-weight: 600;
+}
+
+#myLink{
+    background-color: white;
+    padding: 8px;
+    border-radius: 5px;
+    text-decoration:none;
+    color: black;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    width: fit-content;
+    gap: 10px;
+}
+
+#myLink2 {
+    background-color: white;
+    padding: 8px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    width: fit-content;
+    gap: 10px;
+}
+
+#OtherContainer{
+
+}
+
+#News{
+    display: none;
+}
+
+@media (max-width: 768px) {
+    #Header{
+        display: none;
+    }
+
+    #firstLine{
+        display: none;
+    }
+
+    #SecondSection {
+        display: flex;
+        width: 100%;
+    }
+
+    .myContainer {
+        position: relative;
+        display: flex;
+        align-items: center;
+        background-color: black;
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    .background-image {
+        width: 100%;
+        z-index: 1;
+        border-radius: 5px;
+        filter: brightness(60%);
+        overflow: hidden;
+    }
+
+    #myContent {
+        width: 95%;
+        position: relative;
+        z-index: 1;
+        color: white;
+        margin-left: 10px;
+        font-family: 'Fira Code VF';
+    }
+
+    #OtherContainer {
+        display: none;
+    }
+
+    #News{
+        display: block;
+    }
+}

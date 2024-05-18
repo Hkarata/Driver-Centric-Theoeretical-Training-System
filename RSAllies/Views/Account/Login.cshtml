@@ -1,3 +1,62 @@
 ﻿@{
     ViewData["Title"] = "Login";
 }
+
+@model LoginModel
+
+<div id="Container">
+
+    <div id="Inner">
+        
+        <div class="mb-2" style="display:flex;justify-content:center;align-items:center">
+            <img src="/Images/safety.svg"  width="100"/>
+        </div>
+
+        <p style="text-align:center;text-transform: uppercase;font-family: 'Fira Code Light';font-weight:980;">
+            <span class="english">Login into your account.</span>
+            <span class="swahili">Ingia kwenye akaunti yako.</span>
+        </p>
+
+        <form>
+
+            <div class="mb-3">
+
+                <div class="input-group">
+                    <span class="input-group-text bi bi-telephone" id="basic-addon1"></span>
+                    <input type="text" asp-for="Phone" class="form-control" placeholder="0679844679" aria-describedby="basic-addon1">
+                </div>
+                <span asp-validation-for="Phone" class="text-danger"></span>
+
+            </div>
+
+            <div class="mb-3">
+
+                <div class="input-group">
+                    <span class="input-group-text bi bi-key" id="basic-addon1"></span>
+                    <input type="password" asp-for="Password" class="form-control" placeholder="**********" aria-describedby="basic-addon1">
+                </div>
+                <span asp-validation-for="Password" class="text-danger"></span>
+
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100" style="font-family: 'Fira Code VF';font-weight:550;">
+                <span class="english">Login</span>
+                <span class="swahili">Ingia</span>
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<style>
+    input {
+        font-family: 'Fira Code VF';
+        font-weight: 450;
+    }
+</style>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

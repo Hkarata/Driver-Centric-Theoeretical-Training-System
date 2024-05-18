@@ -1,3 +1,95 @@
 ﻿@{
     ViewData["Title"] = "Welcome";
 }
+
+<div id="Container">
+
+    <div id="Header">
+
+        <img src="~/Images/coatofarms.png" id="firstImage"/>
+
+        <section>
+            <span style="font-size: 20px" class="english">The United Republic of Tanzania</span>
+            <span style="font-size: 18px; word-spacing: 20px" class="swahili">Jamhuri ya Muungano wa Tanzania</span>
+            <span style="font-size: 18px" class="english">Ministry of Home Affairs</span>
+            <span style="font-size: 17px" class="swahili">Wizara ya Mambo ya Ndani ya Nchi</span>
+            <span style="font-size: 16px" class="english">Police Force</span>
+            <span style="font-size: 16px" class="swahili">Jeshi la Polisi</span>
+        </section>
+
+        <img src="/Images/polisi.png" id="secondImage"/>
+    </div>
+
+    <div id="firstLine" class="someDiv"></div>
+
+    <div id="SecondSection">
+
+        <div class="myContainer">
+            <img src="/Images/roads.jpg" alt="Background Image" class="background-image">
+            
+            <div id="myContent">
+                
+                <p id="Kit">
+                    <span class="swahili">Kitengo Cha Usalama Barabarani</span>
+                    <span class="english">Road Safety Unit</span>
+                </p>
+
+                <p id="explanation">
+                    <span class="english">We aim to test the theoretical ability of drivers, to prevent and control road accidents within the United Republic of Tanzania.</span>
+                    <span class="swahili">Tuna lengo la kupima uwezo kinadharia kwa madereva, ili kuzuia na kudhibiti ajali za barabarani ndani ya Jamhuri ya Muungano wa Tanzania.</span>
+                </p>
+
+                <div style="display:flex;gap:10px">
+
+                    <a href="#" id="myLink">
+                        <div>
+                            <span class="swahili">Jisajili</span>
+                            <span class="english">Register</span>
+                        </div>
+                        <i class="bi bi-person-plus"></i>
+                    </a>
+
+                    <a href="#" id="myLink2">
+                        <div>
+                            <span class="swahili">Ingia</span>
+                            <span class="english">Login</span>
+                        </div>
+                        <i class="bi bi-box-arrow-in-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="OtherContainer">
+
+            <p style="font-family: 'Fira Code Regular';font-weight:850;font-size:18px">Newsletter</p>
+
+        </div>
+
+    </div>
+
+    <div class="someDiv"></div>
+
+    <div id="News">
+
+        <p style="font-family: 'Fira Code Regular';font-size:18px;font-weight:850;">Newsletter</p>
+
+    </div>
+
+</div>
+
+<style>
+    #firstImage {
+        width: 80px;
+        height: 60px;
+    }
+
+    #secondImage {
+        width: 65px;
+        height: 65px;
+        margin-right: 4px;
+    }
+</style>

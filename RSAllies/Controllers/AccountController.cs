@@ -45,7 +45,7 @@ namespace RSAllies.Controllers
 
             var result1 = result1Task.Result;
             var result2 = result2Task.Result;
-            
+
             if (result1.Value || result2.Value)
             {
                 return HandleNameAndNIDAResults(result1.Value, result2.Value);
@@ -60,7 +60,7 @@ namespace RSAllies.Controllers
                 ViewBag.UserId = result.Value;
                 return RedirectToAction("Create");
             }
-            
+
             return View();
         }
 
@@ -89,11 +89,37 @@ namespace RSAllies.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateAccount(AccountModel model)
+        public async Task<IActionResult> CreateAccount(AccountModel model)
         {
-           if (!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return RedirectToAction("Create");
+            }
+
+            var result = await apiClient.CheckAccount(model.PhoneNumber, model.Email);
+
+            if (result.Value.EmailExists || result.Value.PhoneNumberExists)
+            {
+                return HandleAccountCheckResults(result.Value.PhoneNumberExists, result.Value.EmailExists);
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult HandleAccountCheckResults(bool phoneExists, bool emailExists)
+        {
+            if (phoneExists && emailExists)
+            {
+                ModelState.AddModelError("PhoneNumber", "Phone Number already exists");
+                ModelState.AddModelError("Email", "Email already exists");
+            }
+            else if (phoneExists)
+            {
+                ModelState.AddModelError("PhoneNumber", "Phone Number already exists");
+            }
+            else if (emailExists)
+            {
+                ModelState.AddModelError("Email", "Email already exists");
             }
 
             return RedirectToAction("Create");
