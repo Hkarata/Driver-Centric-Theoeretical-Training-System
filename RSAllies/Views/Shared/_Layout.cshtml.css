@@ -1,9 +1,9 @@
-﻿#body{
-    background-color: white;
+﻿#body {
+    background-color: #f5f9fd;
     height: 100vh;
     width: 100vw;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     padding: 5px;
     gap: 4px;
 }
@@ -15,16 +15,74 @@ header {
     padding: 5px;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+    header img{
+        height: 24px;
+        width: 24px;
+        cursor: pointer;
+    }
+
+#AppName {
+    font-family: 'Fira Code VF';
+    font-weight: 600;
+}
+
+#Menu {
+    font-size: 22px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    border: 1.8px solid white;
+    padding: 0 6px;
+    border-radius: 5px;
+}
+    #Menu:hover {
+        border-color: #f4e75b;
+    }
+
+#LD{
+    font-family: 'Fira Code Regular';
 }
 
 main {
-    background-color: white;
     flex-grow: 1;
     padding: 5px;
     border-radius: 5px;
 }
 
-#AppName{
-    font-family: 'Fira Code VF';
-    font-weight: 600;
+.myNav {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    border-radius: 5px;
+    width: 250px;
+}
+
+@media (max-width: 768px) {
+    #Menu {
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: color 0.3s ease-in-out;
+        border: 1.8px solid white;
+        padding: 0 4px;
+        border-radius: 5px;
+    }
+
+    #AppName {
+        height: 40px;
+        overflow: hidden;
+    }
+
+    #AppName .english{
+        font-size: 12px;
+    }
+
+    #DT{
+        padding: 2px;
+    }
+    
 }

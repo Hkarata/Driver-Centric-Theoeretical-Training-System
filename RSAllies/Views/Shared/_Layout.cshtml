@@ -8,25 +8,50 @@
     <link rel="stylesheet" href="/bootstrap/css/bootstrap-grid.min.css"/>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap-reboot.min.css" />
     <link rel="stylesheet" href="/bootstrap/css/bootstrap-utilities.min.css" />
+    <link rel="stylesheet" href="/bootstrap-icons/font/bootstrap-icons.min.css"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/RSAllies.styles.css" asp-append-version="true" />
 </head>
 <body>
     <div id="body">
         <header>
-            
+
+            <i id="Menu" class="bi bi-justify-left" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation"></i>
+
             <section id="AppName">
                 <span class="english">Driver-Centric Theoretical Training System</span>
                 <span class="swahili">Mfumo wa Mafunzo ya Nadharia kwa Madereva</span>
             </section>
 
+            <div id="LD" class="dropdown" style="margin-left: auto;padding:0;">
+                <a id="DT" class="btn btn-danger dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="english">Language</span>
+                    <span class="swahili">Lugha</span>
+                </a>
+
+                <ul class="dropdown-menu">
+                    <li style="cursor: pointer"><span class="dropdown-item language">English</span></li>
+                    <li style="cursor: pointer"><span class="dropdown-item language">Swahili</span></li>
+                </ul>
+            </div>
         </header>
         <main>
             @RenderBody()
         </main>
+
+        <div class="myNav offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+            </div>
+        </div>
+
     </div>
     <script src="/jquery/jquery.min.js"></script>
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/language.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
