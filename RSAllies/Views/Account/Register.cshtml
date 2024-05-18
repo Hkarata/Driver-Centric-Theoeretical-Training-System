@@ -2,21 +2,158 @@
     ViewData["Title"] = "Registration";
 }
 
-@model
+@model UserModel
 
 <div id="Container">
     
     <div id="Inner">
         
-        <form>
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div style="display:flex;justify-content:center;align-items:center">
+            <img src="/Images/safety.svg" id="logo" />
+        </div>
 
-            <div class="tab">
+        <form method="post">
+
+            <div class="form-container">
+
+                <div>
+                    <label asp-for="FirstName">
+                        <span class="english">First Name</span>
+                        <span class="swahili">Jina la Kwanza</span>
+                    </label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+
+                <div>
+                    <label asp-for="MiddleName">
+                        <span class="english">Middle Name</span>
+                        <span class="swahili">Jina la Kati</span>
+                    </label>
+                    <input asp-for="MiddleName" class="form-control" />
+                    <span asp-validation-for="MiddleName" class="text-danger"></span>
+                </div>
+
+                <div>
+                    <label asp-for="LastName">
+                        <span class="english">Last Name</span>
+                        <span class="swahili">Jina la Mwisho</span>
+                    </label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
 
             </div>
 
-        </form>
+            <div class="form-container">
 
-    </div>
+                <div>
+                    <label asp-for="GenderId">
+                        <span class="english">Gender</span>
+                        <span class="swahili">Jinsia</span>
+                    </label>
+                    <select class="form-control myInput" asp-for="GenderId" >
+                        <option value="1">Male</option>
+                        <option value="2">Female</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label asp-for="DateOfBirth">
+                        <span class="english">Date of Birth</span>
+                        <span class="swahili">Tarehe ya Kuzaliwa</span>
+                    </label>
+                    <input type="date" asp-for="DateOfBirth" class="form-control myInput" />
+                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Address">
+                        <span class="english">Address</span>
+                        <span class="swahili">Makazi</span>
+                    </label>
+                    <input asp-for="Address" class="form-control myInput"/>
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <div class="form-container">
+
+                <div>
+                    <label asp-for="IsForeigner">
+                        <span class="english">Are you a Tanzanian?</span>
+                        <span class="swahili">Je, Wewe ni raia wa Tanzania?</span
+                    </label>
+                    <select class="form-control myInput2" asp-for="IsForeigner">
+                        <option value=""></option>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label asp-for="Identification">
+                        <span class="english">Identification</span>
+                        <span class="swahili">Kitambulisho</span>
+                    </label>
+                    <input asp-for="Identification" class="form-control myInput2" />
+                    <span asp-validation-for="Identification" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <div class="form-container">
+
+                <div>
+                    <label asp-for="EducationLevelId">
+                        <span class="english">Education Level</span>
+                        <span class="swahili">Ngazi ya Elimu</span>
+                    </label>
+                    <select class="form-control myInput2" asp-for="EducationLevelId">
+                        <option value=""></option>
+                        <option value="1">Primary</option>
+                        <option value="2">Secondary</option>
+                        <option value="3">Tertiary</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label asp-for="LicenseClassId">
+                        <span class="english">License Class</span>
+                        <span class="swahili">Daraja la Leseni</span>
+                    </label>
+                    <select class="form-control myInput2" asp-for="LicenseClassId">
+                        <option value=""></option>
+                        <option value="1">A</option>
+                        <option value="2">B</option>
+                        <option value="3">C</option>
+                        <option value="4">D</option>
+                        <option value="5">E</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;font-family: 'Fira Code VF'; font-weight:600">
+                <span class="english">Register</span>
+                <span class="swahili">Jisajili</span>
+            </button>
+
+        </form>
+        
+
+   </div>
 
 </div>
+
+
+<style>
+    @@media (min-width: 768px) {
+        .myInput{
+        width: 263px;
+        }
+        .myInput2{
+            width: 398px;
+        }
+    }
+</style>
