@@ -67,17 +67,31 @@
 
             <p style="font-family: 'Fira Code Regular';font-weight:850;font-size:18px">Newsletter</p>
 
+            <div id="Blog">
+
+                <div id="BlogContent">
+
+                    <p id="Title">
+                        <span id="NewsTitle" class="english"></span>
+                        <span id="SNewsTitle" class="swahili"></span>
+                    </p>
+
+                    <p id="TheContent">
+                        <span id="NewsContent" class="english"></span>
+                        <span id="SNewsContent" class="swahili"></span>
+                    </p>
+
+                    <p id="NewsDate"></p>
+
+                </div>
+
+            </div>
+
         </div>
 
     </div>
 
     <div class="someDiv"></div>
-
-    <div id="News">
-
-        <p style="font-family: 'Fira Code Regular';font-size:18px;font-weight:850;">Newsletter</p>
-
-    </div>
 
 </div>
 
@@ -93,3 +107,7 @@
         margin-right: 4px;
     }
 </style>
+
+@section Scripts {
+    <script src="/js/newsletter.js"></script>
+}

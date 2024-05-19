@@ -7,6 +7,7 @@
     border-radius: 5px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     padding: 5px;
+    overflow-y: auto;
 }
 
 #Header {
@@ -28,7 +29,10 @@
     display: flex;
     flex-direction: row;
     width: 100%;
+    height: max-content;
     gap: 10px;
+    overflow-y: auto;
+    scrollbar-width: none;
 }
 
 
@@ -122,7 +126,11 @@
 
     #SecondSection {
         display: flex;
+        flex-wrap: wrap;
         width: 100%;
+        height: max-content;
+        overflow-y: auto;
+        scrollbar-width: none;
     }
 
     .myContainer {
@@ -152,10 +160,64 @@
     }
 
     #OtherContainer {
-        display: none;
     }
 
     #News{
         display: block;
+    }
+}
+
+
+#Blog {
+    width: 600px;
+    display: flex;
+    border-radius: 5px;
+}
+
+#BlogContent {
+    display: flex;
+    flex-direction: column;
+}
+
+#Title {
+    font-family: 'Fira Code Regular';
+    font-size: 18px;
+    text-align: justify;
+    font-weight: 550;
+    border-bottom: 3px solid #f2c94c;
+}
+
+#TheContent {
+    font-family: 'Fira Code Light';
+    font-size: 16px;
+    text-align: justify;
+    font-weight: 500;
+}
+
+#NewsDate {
+    font-size: 15px;
+    font-weight: 600;
+    margin-left: auto;
+    font-family: 'Fira Code VF';
+}
+
+@media (max-width: 768px) {
+    #Blog {
+        width: 100%;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        padding: 3px;
+        border-radius: 5px;
+        height: 300px;
+    }
+
+    #Title{
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    #TheContent{
+        font-size: 14px;
     }
 }

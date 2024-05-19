@@ -6,6 +6,8 @@
     flex-direction: column;
     padding: 5px;
     gap: 4px;
+    overflow-y: auto;
+    scrollbar-width: none;
 }
 
 header {
@@ -61,6 +63,9 @@ main {
 }
 
 @media (max-width: 768px) {
+    header {
+        justify-content:space-between;
+    }
     #Menu {
         font-size: 18px;
         font-weight: 600;
@@ -73,6 +78,9 @@ main {
 
     #AppName {
         height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         overflow: hidden;
     }
 
