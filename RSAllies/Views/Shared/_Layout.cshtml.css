@@ -62,10 +62,12 @@ main {
     width: 250px;
 }
 
+
 @media (max-width: 768px) {
     header {
-        justify-content:space-between;
+        justify-content: space-between;
     }
+
     #Menu {
         font-size: 18px;
         font-weight: 600;
@@ -84,12 +86,11 @@ main {
         overflow: hidden;
     }
 
-    #AppName .english{
-        font-size: 12px;
-    }
+        #AppName .english {
+            font-size: 12px;
+        }
 
-    #DT{
+    #DT {
         padding: 2px;
     }
-    
 }
