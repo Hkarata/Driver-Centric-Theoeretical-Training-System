@@ -41,7 +41,7 @@
 
                 <div style="display:flex;gap:10px">
 
-                    <a href="#" id="myLink">
+                    <a asp-controller="Account" asp-action="Register" id="myLink">
                         <div>
                             <span class="swahili">Jisajili</span>
                             <span class="english">Register</span>
@@ -49,7 +49,7 @@
                         <i class="bi bi-person-plus"></i>
                     </a>
 
-                    <a href="#" id="myLink2">
+                    <a asp-controller="Account" asp-action="Login" id="myLink2">
                         <div>
                             <span class="swahili">Ingia</span>
                             <span class="english">Login</span>
@@ -81,7 +81,10 @@
                         <span id="SNewsContent" class="swahili"></span>
                     </p>
 
-                    <p id="NewsDate"></p>
+                    <p id="NewsDate">
+                        <span id="ENewsDate" class="english"></span>
+                        <span id="SNewsDate" class="swahili"></span>
+                    </p>
 
                 </div>
 
@@ -91,7 +94,73 @@
 
     </div>
 
-    <div class="someDiv"></div>
+    <div id="customDiv">
+
+        <div id="Comms">
+
+            <p class="titles">
+                <span class="swahili">Wasiliana nasi</span>
+                <span class="english">Contact Us</span>
+            </p>
+
+            <div style="display:flex;flex-direction:column;gap:5px;font-family:'Fira Code Light'">
+
+                <span class="swahili">Namba ya dharura 111/112</span>
+                <span class="english">Emergency number 111/112</span>
+                <span class="swahili">S.L.P 961, 4 Mtaa wa Posta, DODOMA</span>
+                <span class="english">P.O. Box 961, 4<sup>th</sup> Post Street, DODOMA</span>
+                <span class="swahili">Simu: 0262323585 / +255 787 668 306</span>
+                <span class="english">Phone: 0262323585 / +255 787 668 306</span>
+                <span>Fax: 0262323586</span>
+
+            </div>
+
+        </div>
+
+        <div id="Links">
+
+            <p class="titles">
+                <span class="swahili">Viungo vya haraka</span>
+                <span class="english">Quick Actions</span>
+            </p>
+
+            <div style="display:flex;flex-direction:column;gap:5px;font-family:'Fira Code Light'">
+
+                <span class="swahili">Mafunzo ya Usalama Barabarani</span>
+                <span class="english">Road Safety Training</span>
+                <span class="swahili">Mafunzo ya Usalama wa Mtandao</span>
+                <span class="english">Cyber Security Training</span>
+                <span class="swahili">Mafunzo ya Ulinzi wa Taifa</span>
+                <span class="english">National Defence Training</span>
+                <span class="swahili">Mafunzo ya Uokoaji</span>
+                <span class="english">Rescue Training</span>
+            </div>
+
+        </div>
+
+        <div id="others">
+
+            <p class="titles">
+                <span class="swahili">Taasisi nyengine</span>
+                <span class="english">Other Institutions</span>
+            </p>
+
+            <div style="display:flex;flex-direction:column;gap:5px;font-family:'Fira Code Light'">
+
+                <span class="swahili">TAMISEMI</span>
+                <span class="english">TAMISEMI</span>
+                <span class="swahili">Zima moto na uokoaji</span>
+                <span class="english">Fire and Rescue</span>
+                <span class="swahili">Mamlaka ya Vitambulisho vya Taifa</span>
+                <span class="english">National Identification Authority</span>
+                <span class="swahili">Uhamiaji Tanzania</span>
+                <span class="english">Migration Offices</span>
+
+            </div
+
+        </div>
+
+    </div>
 
 </div>
 
@@ -106,6 +175,32 @@
         height: 65px;
         margin-right: 4px;
     }
+    #myLink{
+    background-color: white;
+    padding: 8px;
+    border-radius: 5px;
+    text-decoration:none;
+    color: black;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    width: fit-content;
+    gap: 10px;
+}
+
+#myLink2 {
+    background-color: white;
+    padding: 8px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    width: fit-content;
+    gap: 10px;
+}
+
 </style>
 
 @section Scripts {

@@ -16,8 +16,8 @@ const newsList = [];
 newsList.push(new NewsArticle(
     "Pedestrian Safety Campaign Launched in Dar es Salaam.",
     "Kampeni ya Usalama kwa Watembea kwa miguu Yazinduliwa Jijini Dar es Salaam.",
-    "A new campaign aimed at raising awareness of pedestrian safety has been launched in [City Name]. The campaign, titled 'Look Out, Stay Safe,' will focus on educating both pedestrians and drivers on how to share the road safely. Initiatives include public service announcements, educational workshops, and increased enforcement of crosswalk laws. The goal of the campaign is to reduce the number of pedestrian accidents in Dar es Salaam.",
-    "Kampeni mpya yenye lengo la kuongeza uelewa wa usalama wa watembea kwa miguu imezinduliwa katika [Jina la Jiji]. Kampeni hiyo iliyopewa jina la 'Look Out, Stay Safe' italenga kutoa elimu kwa watembea kwa miguu na madereva jinsi ya kushiriki barabara kwa usalama. Mipango ni pamoja na kuwaelimisha watembea kwa miguu na madereva. matangazo ya utumishi wa umma, warsha za elimu, na kuongezeka kwa utekelezaji wa sheria za njia panda Lengo la kampeni ni kupunguza idadi ya ajali za watembea kwa miguu jijini Dar es Salaam.",
+    "A new campaign aimed at raising awareness of pedestrian safety has been launched in Dar es Salaam. The campaign, titled 'Look Out, Stay Safe,' will focus on educating both pedestrians and drivers on how to share the road safely. Initiatives include public service announcements, educational workshops, and increased enforcement of crosswalk laws. The goal of the campaign is to reduce the number of pedestrian accidents in Dar es Salaam.",
+    "Kampeni mpya yenye lengo la kuongeza uelewa wa usalama wa watembea kwa miguu imezinduliwa katika jiji la Dar es Salaam. Kampeni hiyo iliyopewa jina la 'Look Out, Stay Safe' italenga kutoa elimu kwa watembea kwa miguu na madereva jinsi ya kushiriki barabara kwa usalama. Mipango ni pamoja na kuwaelimisha watembea kwa miguu na madereva. matangazo ya utumishi wa umma, warsha za elimu, na kuongezeka kwa utekelezaji wa sheria za njia panda Lengo la kampeni ni kupunguza idadi ya ajali za watembea kwa miguu jijini Dar es Salaam.",
     "19 May 2024",
     "19 Mei 2024"
     ));
@@ -36,8 +36,8 @@ newsList.push(new NewsArticle(
 newsList.push(new NewsArticle(
     "Distracted Driving Dangers Highlighted in New Report by Road Safety Allies.",
     "Hatari za Uendeshaji zilizokengeushwa Zilizoangaziwa katika Ripoti Mpya ya Washirika wa Usalama Barabarani.",
-    "A new report released by [Organization Name] highlights the dangers of distracted driving. The report found that distracted driving is a major factor in a significant number of road accidents. Common distractions include using cell phones, texting, eating, or adjusting in-car entertainment systems. The report urges drivers to put away distractions and focus solely on the road while driving.",
-    "Ripoti mpya iliyotolewa na [Jina la Shirika] inaangazia hatari za kuendesha gari ovyo. Ripoti hiyo iligundua kuwa kuendesha gari kwa ovyo ovyo ni sababu kuu ya idadi kubwa ya ajali za barabarani. Vikengeusha-kevu vya kawaida ni pamoja na kutumia simu za mkononi, kutuma ujumbe mfupi, kula, au kurekebisha- mifumo ya burudani ya gari.",
+    "A new report released by Road Safety Allies highlights the dangers of distracted driving. The report found that distracted driving is a major factor in a significant number of road accidents. Common distractions include using cell phones, texting, eating, or adjusting in-car entertainment systems. The report urges drivers to put away distractions and focus solely on the road while driving.",
+    "Ripoti mpya iliyotolewa inaangazia hatari za kuendesha gari ovyo. Ripoti hiyo iligundua kuwa kuendesha gari kwa ovyo ovyo ni sababu kuu ya idadi kubwa ya ajali za barabarani. Vikengeusha-kevu vya kawaida ni pamoja na kutumia simu za mkononi, kutuma ujumbe mfupi, kula, au kurekebisha- mifumo ya burudani ya gari.",
     "17 May 2024",
     "17 Mei 2024"
 ));
@@ -63,7 +63,8 @@ newsList.push(new NewsArticle(
 ));
 
 
-const TheDate = document.getElementById("NewsDate");
+const EDate = document.getElementById("ENewsDate");
+const SDate = document.getElementById("SNewsDate");
 const Title = document.getElementById("NewsTitle");
 const STitle = document.getElementById("SNewsTitle");
 const Content = document.getElementById("NewsContent");
@@ -74,11 +75,18 @@ let currentIndex = 0;
 function updateHeadline() {
     var firstArticle = newsList[currentIndex];
     currentIndex = (currentIndex + 1) % newsList.length;
-    TheDate.textContent = firstArticle.date;
+    EDate.textContent = firstArticle.date;
     Title.textContent = firstArticle.title;
     STitle.textContent = firstArticle.stitle;
     Content.textContent = firstArticle.content;
     SContent.textContent = firstArticle.scontent;
+    SDate.textContent = firstArticle.sdate;
 }
 
-setInterval(updateHeadline, 5000);
+document.addEventListener("DOMContentLoaded", function () {
+    // Call the function initially
+    updateHeadline();
+
+    // Set an interval to call the function every 15 seconds
+    setInterval(updateHeadline, 10000);
+});
