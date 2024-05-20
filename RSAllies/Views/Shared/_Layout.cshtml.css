@@ -30,6 +30,7 @@ header {
 #AppName {
     font-family: 'Fira Code VF';
     font-weight: 600;
+    text-decoration: none;
 }
 
 #Menu {

@@ -24,10 +24,10 @@
                 <i id="Menu" class="bi bi-justify-left" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation"></i>
             }
 
-            <section id="AppName">
+            <a asp-controller="Account" asp-action="Index" id="AppName">
                 <span class="english">Driver-Centric Theoretical Training System</span>
                 <span class="swahili">Mfumo wa Kupima Nadharia ya Udereva</span>
-            </section>
+            </a>
 
             <div id="LD" class="dropdown" style="margin-left: auto;padding:0;">
                 <a id="DT" class="btn btn-danger dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -60,5 +60,14 @@
     <script src="/js/language.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    <style>
+        #AppName {
+            font-family: 'Fira Code VF';
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+        }
+    </style>
 </body>
 </html>
