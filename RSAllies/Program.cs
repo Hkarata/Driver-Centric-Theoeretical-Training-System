@@ -5,7 +5,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddSession();
+builder.Services.AddSession(options =>
+{
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.Domain = "dctts.go.tz";
+    options.Cookie.Name = "Road Safety Allies";
+});
 
 builder.Services.AddHttpContextAccessor();
 
