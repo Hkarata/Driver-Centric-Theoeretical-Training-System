@@ -29,6 +29,17 @@ namespace RSAllies.Controllers
             return View("Create");
         }
 
+        public IActionResult Admin(string accessKey)
+        {
+            // TODO: encrypt the accessKey
+            if (accessKey != "admin")
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Post(UserModel model)
