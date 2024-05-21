@@ -2,15 +2,42 @@
     ViewData["Title"] = "Admin";
 }
 
+@model AdminModel
+
 <div id="Container">
 
     <div id="Inner">
 
-        <div style="display:flex;justify-content:center;align-items:center;">
+        <div class="mb-3" style="display:flex;justify-content:center;align-items:center;">
             <img src="/Images/safety.svg" width="100"/>
         </div>
+
+        <form style="font-family: 'Fira Code VF'" method="post">
+
+            <div class="mb-3">
+                <div class="input-group mb-3">
+                    <span class="input-group-text bi bi-person-bounding-box" id="basic-addon1"></span>
+                    <input type="text" asp-for="Username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <div class="input-group mb-3">
+                    <span class="input-group-text bi bi-key" id="basic-addon1"></span>
+                    <input type="password" asp-for="Password" class="form-control" placeholder="***********" aria-label="Password" aria-describedby="basic-addon1">
+                </div>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <button type="submit" style="font-weight: 450;" class="btn btn-primary w-100">Login</button>
+
+        </form>
 
     </div>
 
 </div>
 
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using RSAllies.Contracts.Requests;
+using RSAllies.Contracts.Responses;
 using RSAllies.HelperTypes;
 using RSAllies.Requests;
 using RSAllies.Responses;
@@ -40,6 +41,14 @@ namespace RSAllies.Services
             var response = await httpClient.PostAsJsonAsync<AccountDto>("/api/checks/check-account", request);
             var content = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<Result<AccountCheckResult>>(content)!;
+            return result;
+        }
+
+        public async Task<Result<AdminDto>> AdminLogin(AdminLogin request)
+        {
+            var response = await httpClient.PostAsJsonAsync<AdminLogin>("/api/admin", request);
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<AdminDto>>(content)!;
             return result;
         }
     }
