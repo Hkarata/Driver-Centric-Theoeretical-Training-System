@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "Create venue";
+}
+
+@model Venue
+
+<div id="Container">
+
+    <div id="Inner">
+
+        <div style="font-family: 'Fira Code VF';display:flex;flex-direction:row;justify-content:center;align-items:center">
+            <span class="english">Let's create a venue.</span>
+            <span class="swahili">Ongeza kituo</span>
+        </div>
+
+        <form method="post">
+            <div class="form-group mb-3">
+                <label asp-for="Name" class="english">Venue name</label>
+                <label asp-for="Name" class="swahili">Jina la Kituo</label>
+                <input type="text" asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Address" class="english">Address</label>
+                <label asp-for="Address" class="swahili">Mahali</label>
+                <input type="text" asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Capacity" class="english">Capacity</label>
+                <label asp-for="Capacity" class="swahili">Idadi ya nafasi</label>
+                <input type="text" asp-for="Capacity" class="form-control">
+                <span asp-validation-for="Capacity" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <div class="input-group">
+                    <label class="input-group-text" asp-for="RegionId">
+                        <span class="english">Region</span>
+                        <span class="swahili">Mkoa</span>
+                    </label>
+                    <select asp-for="RegionId" class="form-select">
+                        <option value="">Choose...</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <span asp-validation-for="RegionId" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <div class="input-group mb-3">
+                    <label class="input-group-text" asp-for="DistrictId">
+                        <span class="english">District</span>
+                        <span class="swahili">Wilaya</span>
+                    </label>
+                    <select asp-for="DistrictId" class="form-select">
+                        <option value="">Choose...</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <span asp-validation-for="DistrictId" class="text-danger"></span>
+            </div>
+            <div class="input-group mb-3">
+                <input asp-for="ImageUrl" type="file" class="form-control">
+                <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Upload</button>
+            </div>
+            <button type="submit" style="font-weight:450" class="btn btn-primary w-100">Submit</button>
+        </form>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

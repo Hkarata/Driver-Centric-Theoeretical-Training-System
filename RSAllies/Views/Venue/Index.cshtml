@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div id="Container">
+
+    <div id="First">
+
+        <img src="/images/venue.jpg" alt="Image description">
+        <div>
+            <span class="english" style="font-family: 'Fira Code Light'">Find your perfect place to stay.</span>
+            <p class="english" style="font-family: 'Fira Code Light'">Reserve your spot, show up for the exam, and then follow the remaining steps to obtain your license.</p>
+            <p class="swahili" style="display: none">Hifadhi nafasi yako, tokea kujibu mtihani kisha endelea na taratibu nyengine za kupata leseni.</p>
+        
+            <section id="Actions">
+
+                <a asp-controller="Venue" asp-action="Add" class="btn btn-primary" id="btn-english">English</a>
+
+            </section>
+        
+        </div>
+
+    </div>
+
+    <div id="Second">
+        
+        @foreach (var i in Enumerable.Range(0, 10))
+        {
+            <div class="Card">
+                <img class="img-shuffle" />
+            </div>
+        }
+
+    </div>
+
+</div>
+@section Scripts {
+
+    <script>
+        $(document).ready(function () {
+            // Define image URLs with clear descriptions (same as before)
+            const venueImages = [
+                { url: "/Images/first-image.jpg", title: "First Image" },
+                { url: "/Images/second-image.jpg", title: "Second Image" },
+                { url: "/Images/fourth-image.jpg", title: "Fourth Image" }
+            ];
+
+            // Shuffle image URLs using Math.random()
+            venueImages.sort(() => Math.random() - 0.5);
+
+            // Apply shuffled images to cards on document load
+            $('.img-shuffle').each(function (index) {
+                // Ensure image index stays within bounds
+                const imageIndex = index % venueImages.length; // Wrap around if needed
+                $(this).attr('src', venueImages[imageIndex].url);
+                $(this).attr('alt', venueImages[imageIndex].title);
+            });
+        });
+
+
+    </script>
+}

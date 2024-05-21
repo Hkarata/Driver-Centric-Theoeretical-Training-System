@@ -1,6 +1,9 @@
 ﻿#Container{
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 #firstContainer{
@@ -11,6 +14,7 @@
 
 #first, #second, #third{
     background-color: white;
+    font-family: 'Fira Code VF';
     padding: 10px;
     border-radius: 5px;
     box-shadow:0 0 10px 0 rgba(0,0,0,0.1);
@@ -18,6 +22,82 @@
 
 @media (max-width: 768px){
     #firstContainer{
+        grid-template-columns: 1fr;
+    }
+}
+
+.highcharts-figure,
+.highcharts-data-table table {
+    width: 100%;
+}
+
+#container, #Age{
+    height: 250px;
+    font-family: 'Fira Code';
+}
+
+.highcharts-data-table table {
+    border-collapse: collapse;
+    border: 1px solid #ebebeb;
+    text-align: center;
+    width: 50%;
+}
+
+.highcharts-data-table th {
+    font-weight: 600;
+}
+
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+
+}
+
+.highcharts-data-table thead tr,
+.highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+
+.highcharts-data-table tr:hover {
+    background: #f1f7ff;
+}
+
+
+#secondContainer {
+    background-color: white;
+    font-family: 'Fira Code VF';
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+}
+
+#thirdContainer{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 5px;
+    width: 100%;
+}
+
+#other {
+    background-color: white;
+    font-family: 'Fira Code VF';
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+}
+
+#feedback {
+    background-color: white;
+    font-family: 'Fira Code VF';
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 768px) {
+    #thirdContainer {
         grid-template-columns: 1fr;
     }
 }
