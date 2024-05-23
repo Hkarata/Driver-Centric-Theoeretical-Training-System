@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div id="Container">
+
+    <div id="First">
+
+        <img src="/images/venue.jpg" alt="Image description">
+        <div>
+            <span class="english" style="font-family: Georgia;font-size: 30px">Get Ready for your exam.</span>
+            <span class="swahili"></span>
+            <br />
+            <p class="english">Please choose a convenient location from the options below. You can browse through available venues, view their details, and select the one that best suits your needs</p>
+            <br />
+            <p class="english" style="font-family: 'Fira Code Regular'">Reserve your spot, show up for the exam, and then follow the remaining steps to obtain your license.</p>
+            <p class="swahili" style="font-family: 'Fira Code Regular'">Hifadhi nafasi yako, tokea kujibu mtihani kisha endelea na taratibu nyengine za kupata leseni.</p>
+        
+            <section id="Actions">
+
+                <a asp-controller="Venue" asp-action="Add" asp-route-id="kksk" class="btn btn-primary" id="btn-english">
+                    <span class="english">Create venue</span>
+                    <span class="swahili">Tengeneza kituo</span>
+                </a>
+
+            </section>
+        
+        </div>
+
+    </div>
+
+    <div id="Second">
+        
+        @foreach (var i in Enumerable.Range(0, 10))
+        {
+            <a class="Card" asp-controller="Venues" asp-action="Venue" asp-route-id="123" asp-route-venueName="JNICC" asp-route-capacity="100" asp-route-district="ubungo" asp-route-region="dar es salaam">
+                
+                <img class="img-shuffle" class="w-100"/>
+
+                <div style="font-family: 'Fira Code Regular';font-weight:650">
+                    <span>Julius Nyerere International Conference Centre</span>
+                </div>
+
+                <div class="d-flex flex-row justify-content-between align-items-center" style="font-size:14px;font-family:'Fira Code VF';font-weight:500;">
+                    <span class="english">Capacity</span>
+                    <span class="swahili">Nafasi</span>
+                    <span style="font-size:14px;" class="badge bg-success">100</span>
+                </div>
+
+                <div class="d-flex flex-row justify-content-between align-items-center" style="font-size:14px;font-family:'Fira Code VF';font-weight:500;">
+                    <i style="color:#f2c94c" class="bi bi-geo-alt-fill"></i>
+                    <span>Posta, Dar es Salaam</span>
+                </div>
+
+
+                <div class="d-flex flex-row justify-content-between align-items-center" style="font-size:14px;font-family:'Fira Code VF';font-weight:500;">
+                    <i style="color:#f2c94c;" class="bi bi-telephone-fill"></i>
+                    0679844679
+                </div>
+
+
+            </a>
+        }
+
+    </div>
+
+</div>
+
+@section Scripts {
+
+    <script>
+        $(document).ready(function () {
+            // Define image URLs with clear descriptions (same as before)
+            const venueImages = [
+                { url: "/Images/first-image.jpg", title: "First Image" },
+                { url: "/Images/second-image.jpg", title: "Second Image" },
+                { url: "/Images/fourth-image.jpg", title: "Fourth Image" }
+            ];
+
+            // Shuffle image URLs using Math.random()
+            venueImages.sort(() => Math.random() - 0.5);
+
+            // Apply shuffled images to cards on document load
+            $('.img-shuffle').each(function (index) {
+                // Ensure image index stays within bounds
+                const imageIndex = index % venueImages.length; // Wrap around if needed
+                $(this).attr('src', venueImages[imageIndex].url);
+                $(this).attr('alt', venueImages[imageIndex].title);
+            });
+        });
+
+
+    </script>
+}
+
+<style>
+    .Card {
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        width: 324.3px;
+        gap: 10px;
+        cursor: pointer;
+        text-decoration: none;
+        color: black;
+    }
+
+        .Card:hover {
+            color: blue;
+        }
+</style>
