@@ -1,0 +1,203 @@
+﻿@model QuestionModel
+
+@{
+    ViewData["Title"] = "CreateQuestion";
+}
+
+<div id="Container">
+
+    <div id="Inner">
+        
+        <form id="Form" method="post">
+
+            <div class="mb-3">
+
+                <label asp-for="Scenario">
+                    <span class="english">Question Scenario</span>
+                    <span class="swahili">Scenario ya swali</span>
+                </label>
+                <textarea asp-for="Scenario" id="scenario" class="form-control" rows="4"></textarea>
+
+            </div>
+
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Question Image</label>
+                <input class="form-control" type="file" id="questionImage" accept="image/*">
+            </div>
+
+            <div class="mb-3">
+
+                <label asp-for="Question">Question</label>
+                <textarea asp-for="Question" id="question" class="form-control" rows="3"></textarea>
+
+            </div>
+
+            <div class="input-group">
+                <div class="input-group-text">
+                    <input class="form-check-input mt-0" type="radio" value="">
+                </div>
+                <input type="text" class="form-control" id="choiceA">
+            </div>
+
+            <div class="input-group">
+                <div class="input-group-text">
+                    <input class="form-check-input mt-0" type="radio" value="">
+                </div>
+                <input type="text" class="form-control" id="choiceB">
+            </div>
+
+            <div class="input-group">
+                <div class="input-group-text">
+                    <input class="form-check-input mt-0" type="radio" value="">
+                </div>
+                <input type="text" class="form-control" id="choiceC">
+            </div>
+
+            <div class="input-group">
+                <div class="input-group-text">
+                    <input class="form-check-input mt-0" type="radio" value="">
+                </div>
+                <input type="text" class="form-control" id="choiceD">
+            </div>
+
+            <button class="btn" id="SB">
+                <span class="english">Create</span>
+                <span class="swahili">Tengeneza</span>
+            </button>
+
+        </form>
+
+    </div>
+
+    <div id="Outer">
+        
+        <p id="scenarioText"></p>
+        <div class="d-flex flex-row justify-content-center align-items-center">
+            <img id="imagePreview" class="w-75 mb-3 img-fluid rounded d-none" alt="Selected Image Preview" />
+        </div>
+        <p id="questionText"></p>
+        <div class="input-group mb-3 " id="mydiv1" >
+            <div class="input-group-text">
+                <input class="form-check-input mt-0" type="radio" value="">
+            </div>
+            <input type="text" class="form-control" readonly id="choiceAText">
+        </div>
+
+        <div class="input-group mb-3" id="mydiv2" >
+            <div class="input-group-text">
+                <input class="form-check-input mt-0" type="radio" value="">
+            </div>
+            <input type="text" class="form-control" id="choiceBText">
+        </div>
+
+        <div class="input-group mb-3" id="mydiv3" >
+            <div class="input-group-text">
+                <input class="form-check-input mt-0" type="radio" value="">
+            </div>
+            <input type="text" class="form-control" id="choiceCText">
+        </div>
+         
+        <div class="input-group mb-3" id="mydiv4" >
+            <div class="input-group-text">
+                <input class="form-check-input mt-0" type="radio" value="">
+            </div>
+            <input type="text" class="form-control" id="choiceDText">
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        // The form fields
+        const scenario = document.getElementById("scenario");
+        const question = document.getElementById("question");
+        const choiceA = document.getElementById("choiceA");
+        const choiceB = document.getElementById("choiceB");
+        const choiceC = document.getElementById("choiceC");
+        const choiceD = document.getElementById("choiceD");
+
+        // The preview fields
+        const scenarioText = document.getElementById("scenarioText");
+        const questionText = document.getElementById("questionText");
+        const choiceAText = document.getElementById("choiceAText");
+        const choiceBText = document.getElementById("choiceBText");
+        const choiceCText = document.getElementById("choiceCText");
+        const choiceDText = document.getElementById("choiceDText");
+
+        // The Divs
+        const myDiv1 = document.getElementById("myDiv1");
+        const myDiv2 = document.getElementById("myDiv2");
+        const myDiv3 = document.getElementById("myDiv3");
+        const myDiv4 = document.getElementById("myDiv4");
+
+        // previewing logic
+        scenario.addEventListener("input", () => {
+            scenarioText.innerText = scenario.value;
+        });
+
+        question.addEventListener("input", () => {
+            questionText.innerText = question.value;
+        });
+
+        choiceA.addEventListener("input", () => {
+            myDiv1.style.display = "block";
+            choiceAText.value = choiceA.value;
+        });
+
+        choiceB.addEventListener("input", () => {
+            myDiv2.style.display = "block";
+            choiceBText.value = choiceB.value;
+        });
+
+        choiceC.addEventListener("input", () => {
+            myDiv3.style.display = "block";
+            choiceCText.value = choiceC.value;
+        });
+
+        choiceD.addEventListener("input", () => {
+            myDiv4.style.display = "block";
+            choiceDText.value = choiceD.value;
+        });
+
+        const questionImage = document.getElementById("questionImage"); // Assuming unique ID
+        const imagePreview = document.getElementById("imagePreview"); // Assuming unique ID
+
+        questionImage.addEventListener("change", function () {
+            const file = this.files[0];
+
+            // Check if a file is selected
+            if (file) {
+                // Validate file type (accept only images)
+                if (!file.type.match("image.*")) {
+                    alert("Please select an image file.");
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    imagePreview.classList.remove("d-none"); // Display the image preview
+                    imagePreview.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                // Clear preview if no file selected
+                imagePreview.classList.add("d-none");
+                imagePreview.src = "";
+            }
+        });
+
+
+    </script>
+}
+<style>
+    #Form {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        font-family: 'Fira Code VF';
+        height:100%;
+    }
+</style>

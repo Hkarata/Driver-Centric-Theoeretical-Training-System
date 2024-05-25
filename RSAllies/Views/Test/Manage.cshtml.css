@@ -6,12 +6,16 @@
     gap: 5px;
 }
 
-#First{
+#First {
     width: 30%;
     background-color: white;
     box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
     padding: 5px;
     border-radius: 5px;
+    transition: 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap:8px;
 }
 
 #Second {
@@ -20,4 +24,37 @@
     box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
     padding: 10px;
     border-radius: 5px;
+    transition: 0.3s ease-in-out;
+}
+
+#TA{
+    margin-top:auto;
+    background-color: #f2c444;
+    padding: 5px;
+    display: flex;
+    flex-direction:row;
+    gap: 5px;
+    font-family: 'Fira Code VF';
+    justify-content:center;
+    align-items: center;
+    border-radius: 5px;
+    font-weight:550;
+    cursor:pointer;
+    transition: 0.3s ease-in-out;
+}
+    #TA:hover{
+        box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+        transform: scale(1.01);
+    }
+
+@media (max-width: 768px) {
+    #Container {
+        flex-direction: column;
+    }
+    #First{
+        width: 100%;
+    }
+    #Second{
+        width: 100%
+    }
 }

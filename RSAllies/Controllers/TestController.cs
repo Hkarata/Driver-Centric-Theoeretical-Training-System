@@ -9,9 +9,16 @@ namespace RSAllies.Controllers
             return View();
         }
 
-        public IActionResult Manage()
+        [ActionName("Create-Question")]
+        public IActionResult CreateQuestion()
         {
-            return View();
+            return View("CreateQuestion");
+        }
+
+        [ActionName("English-Questions")]
+        public IActionResult EnglishQuestion()
+        {
+            return View("EnglishQuestion");
         }
     }
 }
