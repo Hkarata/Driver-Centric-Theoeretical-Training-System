@@ -1,0 +1,195 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<div id="Container">
+
+    <div id="First">
+        
+        <img id="myImage" src="/Images/timed-test.jpg"/>
+
+        <div id="first-div">
+            <h4 class="english" style="font-family:'Fira Code VF'">Driving Theoretical Test.</h4>
+            <h4 class="swahili" style="font-family:'Fira Code VF'">Mtihani wa Nadharia wa Udereva.</h4>
+            <br />
+            <p class="english">Important Information before the exam:</p>
+            <p class="swahili" style="display: none">Taafia muhimu kabla ya mtihani:</p>
+
+
+            <ul style="font-weight:550">
+                <li>
+                    <p class="english text-primary">The test has 25 questions.</p>
+                    <p class="swahili text-primary" style="display: none">Mtihani una maswali 30.</p>
+                </li>
+                <li>
+                    <p class="english text-warning">You have 30 minutes to complete the test.</p>
+                    <p class="swahili text-warning" style="display: none">Una dakika 30 kumaliza mtihani.</p>
+                </li>
+                <li>
+                    <p class="english text-success">You must score at least 80% to pass the test.</p>
+                    <p class="swahili text-success" style="display: none">Lazima upate angalau 80% kufaulu mtihani.</p>
+                </li>
+                <li>
+                    <p class="english text-primary">Choose the language of your test.</p>
+                    <p class="swahili text-primary" style="display: none">Chagua lugha ya mtihani wako</p>
+                </li>
+                <li>
+                    <p class="english text-warning">You can only take the test if you are logged in.</p>
+                    <p class="swahili text-warning" style="display: none">Unaweza kufanya mtihani ikiwa tu umeingia kwenye mfumo.</p>
+                </li>
+            </ul>
+
+
+        </div>
+
+    </div>
+
+    <div id="Second">
+        
+
+            <div id="uno">
+                <h1 class="english text-warning">Warning!</h1>
+                <h1 class="swahili text-warning">Angalizo!</h1>
+                <p class="english text-danger" >You will not be able to change the language once you start the exam</p>
+                <p class="swahili text-danger" >Hutoweza kubadilisha lugha mara baada ya kuanza mtihani</p>
+            </div>
+            <div id="deux">
+                <h2 class="english">Ready to Start?</h2>
+                <h2 class="swahili">Uko tayari kuanza?</h2>
+                <p class="english">Please choose the language of the exam you are comfortable with!</p>
+                <p class="swahili">Tafadhali chagua lugha ya mtihani ambayo unajisikia huru nayo!</p>
+                
+                <div id="Links">
+                <a href="/Test/English" class="btn btn-primary exam-link w-100">
+                    Exam in English
+                </a>
+                <a href="/Test/Swahili" class="btn btn-primary swahili-link w-100">
+                    Mtihani kwa Kiswahili
+                </a>
+                </div>
+
+            </div>
+
+    </div>
+
+</div>
+
+<div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header" style="font-family:'Fira Code VF'">
+                <span class="modal-title" id="passwordModalLabel">Enter Test Access Key</span>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="passwordForm" style="font-family:'Fira Code VF'">
+                    <div class="mb-3">
+                        <label for="passwordInput" class="form-label">Access Key</label>
+                        <input type="password" class="form-control" id="passwordInput" required>
+                        <div class="invalid-feedback">
+                            Password is incorrect. Please try again.
+                        </div>
+                    </div>
+                    <button type="submit" class="btn" style="font-weight:600;font-family:'Fira Code VF';background-color: #f2c94c;color:white">
+                        <i class="bi bi-send"></i>
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="pdModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header" style="font-family:'Fira Code VF'">
+                <span class="modal-title" id="passwordModalLabel">Ingiza Neno la Siri la Mtihani</span>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="pdForm" style="font-family: 'Fira Code VF'">
+                    <div class="mb-3">
+                        <label for="passwordInput" class="form-label">Neno la Siri</label>
+                        <input type="password" class="form-control" id="pdInput" required>
+                        <div class="invalid-feedback">
+                            Neno la siri sio sahihi. Tafadhali jaribu tena.
+                        </div>
+                    </div>
+                    <button type="submit" style="font-weight:600;font-family:'Fira Code VF';background-color: #f2c94c;color:white" class="btn">
+                        <i class="bi bi-send"></i>
+                        Tuma
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script>
+        $(document).ready(function() {
+          const passwordModal = $('#passwordModal');
+          const examLink = $('.exam-link');
+          const passwordForm = $('#passwordForm');
+          const passwordInput = $('#passwordInput');
+
+          examLink.click(function(event) {
+            event.preventDefault(); // Prevent default link behavior
+            passwordModal.modal('show');
+          });
+
+          passwordForm.submit(function(event) {
+            event.preventDefault(); // Prevent form submission
+            const enteredPassword = passwordInput.val();
+
+            // Replace with your secure password validation logic here
+            // (e.g., fetch password from server and compare)
+            if (enteredPassword === 'password') { // Replace with actual password
+              window.location.href = '/Test/English'; // Redirect to exam page
+              passwordModal.modal('hide');
+            } else {
+              passwordInput.addClass('is-invalid');
+            }
+          });
+
+          passwordInput.on('input', function() {
+            passwordInput.removeClass('is-invalid');
+          });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+          const passwordModal = $('#pdModal');
+          const examLink = $('.swahili-link');
+          const passwordForm = $('#pdForm');
+          const passwordInput = $('#pdInput');
+
+          examLink.click(function(event) {
+            event.preventDefault(); // Prevent default link behavior
+            passwordModal.modal('show');
+          });
+
+          passwordForm.submit(function(event) {
+            event.preventDefault(); // Prevent form submission
+            const enteredPassword = passwordInput.val();
+
+            // Replace with your secure password validation logic here
+            // (e.g., fetch password from server and compare)
+            if (enteredPassword === 'password') { // Replace with actual password
+              window.location.href = '/Test/Swahili'; // Redirect to exam page
+              passwordModal.modal('hide');
+            } else {
+              passwordInput.addClass('is-invalid');
+            }
+          });
+
+          passwordInput.on('input', function() {
+            passwordInput.removeClass('is-invalid');
+          });
+        });
+    </script>
+
+}

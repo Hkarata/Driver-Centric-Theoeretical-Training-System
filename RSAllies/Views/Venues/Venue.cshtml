@@ -30,13 +30,150 @@
             0679844679
         </div>
 
+        <div class="d-flex flex-row justify-content-between align-items-center" style="font-family:'Fira Code VF';">
+            <span style="font-size:14px" class="badge bg-success">Available</span>
+            No. of Sessions: {12}
+        </div>
+
+
+
 
 
     </div>
 
     <div id="Second">
-        ss
+        
+        @foreach(var i in Enumerable.Range(0, 60))
+        {
+            <div class="Card">
+                
+                <div class="d-flex flex-row justify-content-between align-items-center w-100" style="font-family:'Fira Code'">
+                    <span>11:00 - 11:30</span>
+                    <i style="color:green;font-size:16px;" class="bi bi-patch-check"></i>
+                </div>
+
+                <div class="d-flex flex-row justify-content-between align-items-center w-100" style="font-family:'Fira Code'">
+                    <i style="color:green;font-size:16px;" style="color:#f2c94c" class="bi bi-calendar2-date"></i>
+                    <span>17/08/2002</span>
+                </div>
+
+                <div class="d-flex flex-row justify-content-between align-items-center w-100" style="font-family:'Fira Code'">
+                    <i style="color:green;font-size:16px;" class="bi bi-people"></i>
+                    <span>2/60</span>
+                </div>
+
+                <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="60" style="height: 3px">
+                    <div class="progress-bar" style="width:@i%"></div>
+                </div>
+
+                <button data-bs-toggle="modal" data-bs-target="#staticBackdrop">Book</button>
+                <button data-bs-toggle="modal" data-bs-target="#Attendees">
+                    <i class="bi bi-eye"></i>
+                    View
+                </button>
+
+            </div>
+        }
+
     </div>
 
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div style="font-family:'Fira Code VF'" class="modal-title" id="staticBackdropLabel">
+                    <span class="english">Book a session</span>
+                    <span class="swahili">Hifadhi nafasi</span>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer" style="font-family:'Fira Code VF';font-size:15px;">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Book</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div style="font-family:'Fira Code VF'" class="modal-title" id="staticBackdropLabel">
+                    <span class="english">Book a session</span>
+                    <span class="swahili">Hifadhi nafasi</span>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer" style="font-family:'Fira Code VF';font-size:15px;">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Book</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="Attendees" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen modal-dialog-centered">
+        <div class="modal-content" id="TheList">
+            <div class="modal-header">
+                <div style="font-family:'Fira Code VF'" class="modal-title" id="staticBackdropLabel">
+                    <div  class="d-flex flex-row justify-content-between align-items-center g-5">
+                        <span class="english">Session Attendees</span>
+                        <span class="swahili">Hifadhi nafasi</span>
+                        <form class="d-flex align-self-center">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-primary" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="height:500px;overflow-y:auto;scrollbar-width:none;">
+                
+                <table class="table table-hover" style="font-family:'Fira Code VF'">
+                    <thead>
+                        <tr style="background-color:red;">
+                            <th style="font-weight:500" scope="col">First name</th>
+                            <th style="font-weight:500" scope="col">Middle name</th>
+                            <th style="font-weight:500" scope="col">Last name</th>
+                            <th style="font-weight:500" scope="col">Booked Date</th>
+                            <th style="font-weight:500" scope="col">Status</th>
+                            <th style="font-weight:500" scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var i in Enumerable.Range(0, 100))
+                        {
+                            <tr>
+                                <td>Heri</td>
+                                <td>Mussa</td>
+                                <td>Karata</td>
+                                <td>2024-05-27</td>
+                                <td>Booked</td>
+                                <td>
+                                    <a href="#" class="btn btn-warning btn-sm">Cancel</a>
+                                    <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+
+            </div>
+            <div class="modal-footer" style="font-family:'Fira Code VF';font-size:15px;">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

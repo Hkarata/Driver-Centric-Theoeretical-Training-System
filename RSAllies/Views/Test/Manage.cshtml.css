@@ -1,0 +1,23 @@
+﻿#Container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction:row;
+    gap: 5px;
+}
+
+#First{
+    width: 30%;
+    background-color: white;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#Second {
+    width: 70%;
+    background-color: white;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+    padding: 10px;
+    border-radius: 5px;
+}
