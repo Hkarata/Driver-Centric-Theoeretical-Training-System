@@ -4,11 +4,9 @@ namespace RSAllies.Models
 {
     public class QuestionModel
     {
-        [Required]
         public string Scenario { get; set; } = string.Empty;
 
-        [Required]
-        public string? ImageUrl { get; set; } = string.Empty;
+        public string ImageUrl { get; set; } = string.Empty;
 
         [Required]
         public string Question { get; set; } = string.Empty;
@@ -16,7 +14,14 @@ namespace RSAllies.Models
         [Required]
         public bool IsEnglish { get; set; }
 
-        [Required]
-        public List<String>? Choices { get; set; }
+        public String ChoiceA { get; set; } = string.Empty;
+
+        public String ChoiceB { get; set; } = string.Empty;
+
+        public String ChoiceC { get; set; } = string.Empty;
+
+        public String ChoiceD { get; set; } = string.Empty;
+
+        public String Answer { get; set; } = string.Empty;
     }
 }
