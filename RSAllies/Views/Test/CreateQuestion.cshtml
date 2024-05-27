@@ -1,5 +1,116 @@
 ﻿@model QuestionModel
 
 @{
-    ViewData["Title"] = "CreateQuestion";
+    ViewData["Title"] = "Create Question";
+}
+
+<div id="Container">
+
+    <div id="First">
+        
+        <form style="height:100%;" class="d-flex flex-column">
+
+            <div class="mb-3">
+
+                <label asp-for="Scenario">Scenario</label>
+                <textarea id="Scenario" asp-for="Scenario" rows="4" style="outline:none;scrollbar-width:none;" class="form-control"></textarea>
+                <span asp-validation-for="Scenario" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+
+                <label asp-for="ImageUrl">Image</label>
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" id="Image" accept="image/*" onchange="previewImage(event)" />
+                </div>
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Question">Question</label>
+                <input type="text" asp-for="Question" class="form-control" id="Question"/>
+                <span asp-validation-for="Question"></span>
+            </div>
+
+            <div class="mb-3">The Choices</div>
+
+            <div class="mb-3">
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <input class="form-check-input mt-0" type="radio" value="">
+                    </div>
+                    <input type="text" class="form-control" id="ChoiceA">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <input class="form-check-input mt-0" type="radio" value="">
+                    </div>
+                    <input type="text" class="form-control" id="ChoiceB">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <input class="form-check-input mt-0" type="radio" value="">
+                    </div>
+                    <input type="text" class="form-control" id="ChoiceC">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <input class="form-check-input mt-0" type="radio" value="" >
+                    </div>
+                    <input type="text" class="form-control" id="ChoiceD">
+                </div>
+            </div>
+
+            <button class="btn" style="margin-top:auto;">
+                <span class="english">Create Question</span>
+                <span class="swahili">Tengeneza swali</span>
+            </button>
+        </form>
+
+    </div>
+
+    <div id="Second">
+        <div style="margin-left:auto;border-bottom:1px solid #f2c94c">Question Preview</div>
+        <p style="font-size:13px;text-align:justify;" id="ScenarioText"></p>
+        <div id="theDivImage">
+            <img id="ImgPreview" style="object-fit:contain;"/>
+        </div>
+        <p style="font-size:13px;text-align:justify;" id="QuestionText"></p>
+        
+        <div style="font-size:13px;" class="the-inputs mb-3 first">
+            <input type="radio" class="the-radio" name="answer" />
+            <label id="ChoiceAText" class="the-label"></label>
+        </div>
+
+        <div style="font-size:13px;" class="the-inputs mb-3 second">
+            <input type="radio" class="the-radio" name="answer" />
+            <label id="ChoiceBText" class="the-label"></label>
+        </div>
+
+        <div style="font-size:13px;" class="the-inputs mb-3 third">
+            <input type="radio" class="the-radio" name="answer" />
+            <label id="ChoiceCText" class="the-label"></label>
+        </div>
+        <div style="font-size:13px;" class="the-inputs mb-3 fourth">
+            <input type="radio" class="the-radio" name="answer"/>
+            <label id="ChoiceDText" class="the-label"></label>
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+    <script src="/js/question-preview.js"></script>
 }

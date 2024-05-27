@@ -4,6 +4,7 @@ namespace RSAllies.Models
 {
     public class QuestionModel
     {
+        [Required(ErrorMessage = "Please provide the question scenario")]
         public string Scenario { get; set; } = string.Empty;
 
         public string ImageUrl { get; set; } = string.Empty;

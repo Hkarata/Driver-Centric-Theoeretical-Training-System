@@ -1,1 +1,64 @@
-﻿
+﻿#Container{
+    display:flex;
+    flex-direction: row;
+    gap:5px;
+    width:100%;
+    height:100%;
+}
+
+#First{
+    padding: 5px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+    width: 60%;
+    font-family: 'Fira Code VF';
+}
+
+#Second {
+    padding: 5px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+    width: 40%;
+    font-family: 'Fira Code VF';
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+button {
+    background-color: #f2c94c;
+    transition: 0.3s ease-in-out;
+}
+
+    button:hover {
+        transform: scale(1.009);
+        background-color: #f2c94c;
+    }
+
+.the-inputs{
+    display:flex;
+    flex-direction:row;
+    gap:5px;
+}
+
+.the-radio{
+}
+
+.the-label{
+    width: 90%;
+    word-break:break-word;
+}
+
+.first, .second, .third, .fourth{
+    display:none;
+}
+
+#theDivImage{
+    max-height:300px;
+    width: 100%;
+    background-color:red;
+    display:flex;
+    justify-content:center;
+}
