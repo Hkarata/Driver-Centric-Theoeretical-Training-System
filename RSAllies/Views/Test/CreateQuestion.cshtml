@@ -8,7 +8,7 @@
 
     <div id="First">
         
-        <form style="height:100%;" class="d-flex flex-column">
+        <form enctype="multipart/form-data" asp-action="AddQuestion" method="post" style="height:100%;" class="d-flex flex-column">
 
             <div class="mb-3">
 
@@ -19,27 +19,27 @@
 
             <div class="mb-3">
 
-                <label asp-for="ImageUrl">Image</label>
+                <label asp-for="Image">Image</label>
                 <div class="input-group mb-3">
-                    <input type="file" class="form-control" id="Image" accept="image/*" onchange="previewImage(event)" />
+                    <input asp-for="Image" type="file" class="form-control" id="Image" accept="image/*" onchange="previewImage(event)" />
                 </div>
-                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                <span asp-validation-for="Image" class="text-danger"></span>
             </div>
 
             <div class="mb-3">
                 <label asp-for="Question">Question</label>
                 <input type="text" asp-for="Question" class="form-control" id="Question"/>
-                <span asp-validation-for="Question"></span>
+                <span asp-validation-for="Question" class="text-danger"></span>
             </div>
 
-            <div class="mb-3">The Choices</div>
+            <div class="w-100 d-flex flex-row justify-content-between mb-3">
 
-            <div class="mb-3">
-                <div class="input-group">
-                    <div class="input-group-text">
-                        <input class="form-check-input mt-0" type="radio" value="">
+                <div class="form-check">
+                    <div class="custom-control custom-checkbox">
+                        <input asp-for="IsEnglish" class="form-check-input" />
+                        <label class="custom-control-label" asp-for="IsEnglish"></label>
                     </div>
-                    <input type="text" class="form-control" id="ChoiceA">
+                    <span asp-validation-for="IsEnglish" class="text-danger"></span>
                 </div>
             </div>
 
@@ -48,8 +48,9 @@
                     <div class="input-group-text">
                         <input class="form-check-input mt-0" type="radio" value="">
                     </div>
-                    <input type="text" class="form-control" id="ChoiceB">
+                    <input type="text" asp-for="ChoiceA" class="form-control" id="ChoiceA">
                 </div>
+                <span asp-validation-for="ChoiceA" class="text-danger"></span>
             </div>
 
             <div class="mb-3">
@@ -57,8 +58,19 @@
                     <div class="input-group-text">
                         <input class="form-check-input mt-0" type="radio" value="">
                     </div>
-                    <input type="text" class="form-control" id="ChoiceC">
+                    <input type="text" asp-for="ChoiceB" class="form-control" id="ChoiceB">
                 </div>
+                <span asp-validation-for="ChoiceB" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <input class="form-check-input mt-0" type="radio" value="">
+                    </div>
+                    <input type="text" asp-for="ChoiceC" class="form-control" id="ChoiceC">
+                </div>
+                <span asp-validation-for="ChoiceC" class="text-danger"></span>
             </div>
 
             <div class="mb-3">
@@ -66,8 +78,9 @@
                     <div class="input-group-text">
                         <input class="form-check-input mt-0" type="radio" value="" >
                     </div>
-                    <input type="text" class="form-control" id="ChoiceD">
+                    <input type="text" asp-for="ChoiceD" class="form-control" id="ChoiceD">
                 </div>
+                <span asp-validation-for="ChoiceD" class="text-danger"></span>
             </div>
 
             <button class="btn" style="margin-top:auto;">

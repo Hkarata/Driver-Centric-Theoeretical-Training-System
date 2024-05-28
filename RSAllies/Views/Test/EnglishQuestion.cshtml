@@ -1,3 +1,148 @@
 ﻿@{
-    ViewData["Title"] = "EnglishQuestion";
+	ViewData["Title"] = "EnglishQuestion";
+}
+
+<div id="Container">
+
+	<div id="Timer">
+		
+		<div>
+			<span class="english">Time</span>
+			<span class="swahili">Muda</span>
+		</div>
+
+		<div id="countdown">
+
+		</div>
+
+	</div>
+
+	<div id="First">
+		
+		<form id="EA">
+
+			<div id="myThing" class="mb-3">
+				<img src="/Images/expired.gif" width="100" class="mb-3"/>
+				<p>You are out of Time, Please click the <span class="text-primary">button</span> below to submit your answers</p>
+			</div>
+
+			@foreach (var i in Enumerable.Range(1, 25))
+			{
+				<div id="@i" class="QCard mb-3">
+
+					<p style="text-align:justify-all;font-size:15px;">
+						You are driving on a single-lane road with a speed limit of 55 mph. It's a clear day with good visibility.  Ahead, you see a slow-moving farm tractor partially on the shoulder. There is a solid yellow line painted in the center of the lane separating you from oncoming traffic
+					</p>
+
+					<div class="theImage mb-3">
+						<img src="/Images/building.png" style="object-fit:contain" />
+					</div>
+
+					<p style="font-size:15px;">
+						What is the safest course of action in this situation?
+					</p>
+
+					<div class="theOptions mb-3">
+						<input class="form-check-input mt-0" type="radio" name="Q1" id="uno">
+						<label for="uno" style="text-overflow:ellipsis;font-size:14px;cursor:pointer;">
+							Increase your following distance behind the tractor and wait for a passing lane to become available.
+						</label>
+					</div>
+
+					<div class="theOptions mb-3">
+						<input class="form-check-input mt-0" type="radio" name="Q1">
+						<label style="text-overflow:ellipsis;font-size:14px;">
+							Slow down slightly and pass the tractor cautiously when it's safe.
+						</label>
+					</div>
+
+					<div class="theOptions mb-3">
+						<input class="form-check-input mt-0" type="radio" name="Q1">
+						<label style="text-overflow:ellipsis;font-size:14px;">
+							Flash your headlights at the tractor to signal your intent to pass.
+						</label>
+					</div>
+
+					<div class="theOptions mb-3">
+						<input class="form-check-input mt-0" type="radio" name="Q1">
+						<label style="text-overflow:ellipsis;font-size:14px;">
+							Honk your horn and attempt to pass the tractor as soon as possible.
+						</label>
+					</div>
+
+				</div>
+			}
+
+			<div class="d-flex justify-content-center">
+				<button type="submit">Submit</button>
+			</div>
+
+		</form>
+
+	</div>
+
+	<div id="Second">
+		
+		<div id="Tracer">
+			
+			@foreach(var i in Enumerable.Range(1, 25))
+			{
+				<a href="#@i" id="@i" class="TCard">
+					@i
+				</a>
+			}
+
+		</div>
+
+	</div>
+
+	<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body text-center">
+					<img src="~/images/message.gif" width="75" height="75" />
+					<p style="font-family:'Fira Code VF'">
+						<span class="english">Please wait while we submit your answers...</span>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+@section Scripts{
+
+
+
+	<script>
+		$(document).ready(function () {
+			// Submit button click event handler
+			$("#EA").submit(function (event) {
+				event.preventDefault();
+				
+				// Show the loading modal
+				$("#loadingModal").modal("show");
+
+				$('body').css('pointer-events', 'none')
+			});
+		});
+	</script>
+
+	<script>
+		const questions = document.querySelectorAll('input[type="radio"]');
+		questions.forEach((question) => {
+			let index = question.id;
+			question.addEventListener('change', () => {
+				// Get the parent div of the radio button (the question card)
+				const questionCard = question.closest('.QCard');
+				// Get the id of the question card
+				const questionId = questionCard.id;
+				// Find the corresponding shortlink
+				const shortlink = document.querySelector(`#Tracer a[id='${questionId}']`);
+				// Change the color of the shortlink
+				shortlink.style.backgroundColor = '#d0e33e';
+			});
+		});
+	</script>
 }

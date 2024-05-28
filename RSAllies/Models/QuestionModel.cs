@@ -7,22 +7,25 @@ namespace RSAllies.Models
         [Required(ErrorMessage = "Please provide the question scenario")]
         public string Scenario { get; set; } = string.Empty;
 
-        public string ImageUrl { get; set; } = string.Empty;
+        [Required(ErrorMessage = "Please provide an image")]
+        public IFormFile Image { get; set; } = default!;
 
-        [Required]
+        [Required(ErrorMessage = "Please provide a question")]
         public string Question { get; set; } = string.Empty;
 
-        [Required]
+        [Required(ErrorMessage = "Please specify the language")]
         public bool IsEnglish { get; set; }
 
+        [Required(ErrorMessage = "Please provide a choice")]
         public String ChoiceA { get; set; } = string.Empty;
 
+        [Required(ErrorMessage = "Please provide a choice")]
         public String ChoiceB { get; set; } = string.Empty;
 
+        [Required(ErrorMessage = "Please provide a choice")]
         public String ChoiceC { get; set; } = string.Empty;
 
+        [Required(ErrorMessage = "Please provide a choice")]
         public String ChoiceD { get; set; } = string.Empty;
-
-        public String Answer { get; set; } = string.Empty;
     }
 }

@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\questions\" />
     <Folder Include="wwwroot\venues\" />
   </ItemGroup>
 

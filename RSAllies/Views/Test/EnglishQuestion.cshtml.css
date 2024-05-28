@@ -1,1 +1,167 @@
-﻿
+﻿#Container{
+    width:100%;
+    height:100%;
+    display :flex;
+    flex-direction: row;
+    gap: 5px;
+    transition: 0.3s ease-in-out;
+}
+
+#Timer {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 50px;
+    background-color: #f2c94c;
+    font-family: 'Fira Code VF';
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s ease-in-out;
+}
+
+#First {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    font-family: 'Fira Code VF';
+    transition: 0.3s ease-in-out;
+}
+
+.QCard {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+    padding: 5px;
+    transition: 0.3s ease-in-out;
+}
+
+#Second {
+    width: 25%;
+}
+
+.theOptions {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s ease-in-out;
+}
+
+label{
+    cursor:pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.theImage{
+    width:100%;
+    max-height: 300px;
+    display:flex;
+    justify-content:center;
+}
+
+@media (max-width: 768px) {
+    #Container {
+        flex-direction: column;
+        transition: 0.3s ease-in-out;
+    }
+
+    #Timer {
+        bottom: 0;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        font-size: 16px;
+        transition: 0.3s ease-in-out;
+    }
+
+    #First {
+        width: 100%;
+        transition: 0.3s ease-in-out;
+        height: 70%;
+    }
+
+    #Second {
+        width: 100%;
+        height: 30%;
+        transition: 0.3s ease-in-out;
+    }
+}
+
+@media (min-width: 768px) {
+    #Timer {
+        top: 0;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        transition: 0.3s ease-in-out;
+    }
+
+    #First {
+        height: 91vh;
+        transition: 0.3s ease-in-out;
+    }
+
+    #Second {
+        height: 91vh;
+        transition: 0.3s ease-in-out;
+    }
+}
+
+#Tracer {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+    transition: 0.3s ease-in-out;
+    padding:5px;
+    font-family:'Fira Code VF';
+    display:grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+}
+
+.TCard {
+    border: 1px solid #f2c94c;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    text-decoration: none;
+    color:black;
+}
+    .TCard:hover {
+        background-color: #f2c94c;
+        box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+        transform: scale(1.1);
+    }
+
+button {
+    background-color: #f2c94c;
+    width: 95%;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    transition: 0.3s ease-in-out;
+    align-self:center;
+}
+    button:hover {
+        box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+        transform: scale(1.03);
+        border-radius: 5px;
+    }
+
+#myThing {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}

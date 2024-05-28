@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RSAllies.Models;
+using RSAllies.Services;
 
 namespace RSAllies.Controllers
 {
@@ -19,6 +21,25 @@ namespace RSAllies.Controllers
         public IActionResult EnglishQuestion()
         {
             return View("EnglishQuestion");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddQuestion(QuestionModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("CreateQuestion", model);
+            }
+
+            // Upload the image
+            var fileName = ImageUploadService.UploadImage(model.Image);
+
+            // Add the question to the database
+
+
+
+            return View("CreateQuestion", model);
         }
     }
 }
