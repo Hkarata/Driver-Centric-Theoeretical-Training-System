@@ -23,6 +23,11 @@ namespace RSAllies.Controllers
             return View("EnglishQuestion");
         }
 
+        public IActionResult Results()
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult AddQuestion(QuestionModel model)

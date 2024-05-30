@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     let timeInMinutes = 30;
+    $("#myThing").hide();
 
     const storedTime = localStorage.getItem("timerRemainingTime");
 
@@ -23,6 +24,7 @@
     worker.onmessage = function (event) {
         if (event.data.expired) {
             // Handle timer expiration in the main script
+            $("#myThing").show();
             $('.QCard').hide();
             $("#First").css({
                 "background-color": "white",

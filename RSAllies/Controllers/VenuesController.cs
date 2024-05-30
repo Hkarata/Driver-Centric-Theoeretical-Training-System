@@ -11,7 +11,7 @@ namespace RSAllies.Controllers
 
         public IActionResult AddVenue()
         {
-            return View();
+            return View("Add");
         }
 
         public IActionResult Venue(string id, string venueName, string district, string region, string Capacity, string contact)
