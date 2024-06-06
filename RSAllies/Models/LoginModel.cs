@@ -10,7 +10,7 @@ namespace RSAllies.Models
         [DisplayName("Phone Number")]
         [MinLength(10, ErrorMessage = "Phone number must be 10 digits long")]
         [MaxLength(10, ErrorMessage = "Phone number must be 10 digits long")]
-        [RegularExpression(@"^[0-9]$", ErrorMessage = "Phone number must contain numbers only")]
+        [RegularExpression(@"^[0-9]+$", ErrorMessage = "Phone number must contain numbers only")]
         public string Phone { get; set; } = string.Empty;
 
 

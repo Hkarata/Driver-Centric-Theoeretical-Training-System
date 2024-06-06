@@ -1,21 +1,25 @@
 using Microsoft.AspNetCore.Mvc;
+using RSAllies.Contracts.Responses;
 using RSAllies.Models;
+using RSAllies.Services;
 using System.Diagnostics;
 
 namespace RSAllies.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController(SessionService sessionService, ApiClient apiClient) : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        public async Task<IActionResult> Index()
         {
-            _logger = logger;
-        }
+            var user = sessionService.GetUserData();
 
-        public IActionResult Index()
-        {
-            return View();
+            if (user is null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            var booking = await apiClient.GetCurrentUserBooking(user!.Id);
+
+            return booking.IsSuccess ? View(booking) : View(null) ;
         }
 
         public IActionResult Dashboard()

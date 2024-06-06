@@ -21,7 +21,7 @@ namespace RSAllies.Services
 
         public async Task<Result<bool>> CheckNIDA(string nida)
         {
-            var response = await httpClient.PostAsJsonAsync("/api/checks/check-nida", nida);
+            var response = await httpClient.GetAsync($"/api/checks/check-nida/{nida}");
             var content = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<Result<bool>>(content)!;
             return result;
@@ -49,6 +49,30 @@ namespace RSAllies.Services
             var response = await httpClient.PostAsJsonAsync<AdminLogin>("/api/admin", request);
             var content = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<Result<AdminDto>>(content)!;
+            return result;
+        }
+
+        public async Task<Result> CreateAccount(CreateAccountDto request)
+        {
+            var response = await httpClient.PostAsJsonAsync<CreateAccountDto>("/api/account", request);
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<object>>(content)!;
+            return result;
+        }
+
+        public async Task<Result<UserDto>> AuthenticateUser(AuthenticateDto request)
+        {
+            var response = await httpClient.PostAsJsonAsync<AuthenticateDto>("/api/authenticate", request);
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<UserDto>>(content)!;
+            return result;
+        }
+
+        public async Task<Result<BookingDto>> GetCurrentUserBooking(Guid userId)
+        {
+            var response = await httpClient.GetAsync($"/api/booking/{userId}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<BookingDto>>(content)!;
             return result;
         }
     }

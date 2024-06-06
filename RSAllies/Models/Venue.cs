@@ -23,7 +23,6 @@ namespace RSAllies.Models
         [Required]
         public Guid DistrictId { get; set; }
 
-        [DataType(DataType.ImageUrl)]
-        public string ImageUrl { get; set; } = string.Empty;
+        public IFormFile ImageUrl { get; set; } = default!;
     }
 }

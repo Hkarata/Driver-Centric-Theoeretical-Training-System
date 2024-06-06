@@ -2,6 +2,7 @@
 {
     public class Result
     {
+
         protected Result(bool isSuccess, Error error)
         {
             switch (isSuccess)

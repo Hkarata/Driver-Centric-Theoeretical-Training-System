@@ -18,6 +18,8 @@
 
         <form asp-action="CreateAccount" method="post">
 
+            @ViewData["UserId"]
+
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="mb-3">
@@ -56,6 +58,8 @@
                 </div>
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
+
+            <input type="hidden" asp-for="UserId" value="@ViewData["UserId"]" />
 
             <button type="submit" class="btn btn-primary w-100" style="font-family: 'Fira Code VF';font-weight:550;">
                 <span class="english">Create Account</span>

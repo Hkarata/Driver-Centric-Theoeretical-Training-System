@@ -25,5 +25,7 @@ namespace RSAllies.Models
         [Required(ErrorMessage = "Rudia tena neno la siri")]
         [Compare("Password", ErrorMessage = "Passwords do not match")]
         public string ConfirmPassword { get; set; } = string.Empty;
+
+        public Guid UserId { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿@using RSAllies.Services
-@inject  SessionChecker SessionChecker
+@inject  SessionService SessionService
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +19,7 @@
     <div id="body">
         <header>
 
-            @if (SessionChecker.Check())
+            @if (SessionService.Check())
             {
                 <i id="Menu" class="bi bi-justify-left" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation"></i>
             }
@@ -50,7 +50,11 @@
                 <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body">
+            <div class="offcanvas-body" style="font-family: 'Fira Code VF';display:flex; flex-direction:column; gap: 5px;">
+                <a asp-controller="Home" class="btn btn-primary w-100">Home</a>
+
+                <a asp-controller="Venues" class="btn btn-primary w-100">Venues</a>
+
             </div>
         </div>
 

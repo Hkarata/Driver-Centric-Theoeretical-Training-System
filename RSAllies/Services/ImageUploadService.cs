@@ -19,5 +19,23 @@
 
             return fileName;
         }
+
+        public static string UploadVenueImage(IFormFile image)
+        {
+            if (image == null)
+            {
+                return string.Empty;
+            }
+
+            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(image.FileName)}";
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "venues", fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                image.CopyTo(stream);
+            }
+
+            return fileName;
+        }
     }
 }

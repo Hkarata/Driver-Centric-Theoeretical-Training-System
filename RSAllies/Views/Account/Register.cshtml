@@ -12,7 +12,7 @@
             <img src="/Images/safety.svg" id="logo" />
         </div>
 
-        <form method="post">
+        <form method="post" asp-action="CreateUser">
 
             <div class="form-container">
 
@@ -53,9 +53,11 @@
                         <span class="swahili">Jinsia</span>
                     </label>
                     <select class="form-control myInput" asp-for="GenderId" >
-                        <option value="1">Male</option>
-                        <option value="2">Female</option>
+                        <option value=""></option>
+                        <option value="ee2ca06a-6f3c-4d91-8bff-f3f8eb4a7935">Male</option>
+                        <option value="fd1873e0-cf3e-4c82-875c-273e96d24828">Female</option>
                     </select>
+                    <span asp-validation-for="GenderId" class="text-danger"></span>
                 </div>
 
                 <div>
@@ -87,14 +89,21 @@
                     </label>
                     <select class="form-control myInput2" asp-for="IsForeigner">
                         <option value=""></option>
-                        <option value="true">Yes</option>
-                        <option value="false">No</option>
+                        <option value="true">
+                            <span class="english">Yes</span>
+                            <span class="swahili">Ndio</span>
+                        </option>
+                        <option value="false">
+                            <span class="english">No</span>
+                            <span class="swahili">Hapana</span>
+                        </option>
                     </select>
+                    <span asp-validation-for="IsForeigner" class="text-danger"></span>
                 </div>
 
                 <div>
                     <label asp-for="Identification">
-                        <span class="english">Identification</span>
+                        <span class="english">Identification Number</span>
                         <span class="swahili">Kitambulisho</span>
                     </label>
                     <input asp-for="Identification" class="form-control myInput2" />
@@ -112,10 +121,17 @@
                     </label>
                     <select class="form-control myInput2" asp-for="EducationLevelId">
                         <option value=""></option>
-                        <option value="1">Primary</option>
-                        <option value="2">Secondary</option>
-                        <option value="3">Tertiary</option>
+                        <option value="0c0f424e-89c0-4b59-ab2c-b45fa44a9c5c">Uneducated</option>
+                        <option value="a0770ebc-12e9-48f9-90d9-9b5cfc594e31">Class 7</option>
+                        <option value="5f51730c-518b-4aa2-8cd8-c61da2517585">Form 2</option>
+                        <option value="9efeba97-bb9a-48b3-af07-803e79a4f800">Form 4</option>
+                        <option value="ef3cd9db-b8cf-4faf-bfbb-ec10f0fe99b0">Form 6</option>
+                        <option value="5449d74f-30a8-4439-9568-79d9e58861c5">Diploma</option>
+                        <option value="7751497b-7924-42cf-8dca-3d44b89d7ce5">Bachelor's Degree</option>
+                        <option value="c8b60d80-54c3-4a19-bef6-58ad0ea2e9fa">Master's Degree</option>
+                        <option value="414c1743-2fd5-416b-a442-3bbc9a620aef">PhD</option>
                     </select>
+                    <span asp-validation-for="EducationLevelId" class="text-danger"></span>
                 </div>
 
                 <div>
@@ -125,12 +141,24 @@
                     </label>
                     <select class="form-control myInput2" asp-for="LicenseClassId">
                         <option value=""></option>
-                        <option value="1">A</option>
-                        <option value="2">B</option>
-                        <option value="3">C</option>
-                        <option value="4">D</option>
-                        <option value="5">E</option>
+                        <option value="0a9a6209-2f0a-4820-8bdb-d51509de26f1">A</option>
+                        <option value="c2894fe3-419d-4548-ad53-f2b11f209167">A1</option>
+                        <option value="59c5fb75-8975-4202-a47f-0cde3096e8d3">A2</option>
+                        <option value="13aef938-5b37-4bab-8dd4-c37583d9a8ff">A3</option>
+
+                        <option value="dea89baa-d4cc-4969-bf52-01e3113c2be7">B</option>
+                        <option value="ee9aa063-7b60-492c-9089-020845e92b95">C</option>
+                        <option value="ca0e9c3e-ef35-46fc-8c44-49e1a2ac7326">C1</option>
+                        <option value="c81f325d-3d31-41ac-8545-53b2f63c1aa5">C2</option>
+                        <option value="76aaf2b9-69ce-447a-a2e5-8c52ce8f15cd">C3</option>
+
+                        <option value="516cc8d3-979b-41e3-8e87-6670c4723a17">D</option>
+                        <option value="13142fca-8d24-48db-9947-f63c092e5314">E</option>
+
+                        <option value="47324fb5-3e99-4e85-aa21-6b29d5156c02">F</option>
+                        <option value="3c530344-75cd-4a0c-bf7f-3dc09fc2b9a9">G</option>
                     </select>
+                    <span asp-validation-for="LicenseClassId" class="text-danger"></span>
                 </div>
             </div>
 
@@ -157,3 +185,18 @@
         }
     }
 </style>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+
+        $('select').change(function () {
+            var optionSelected = $(this).find("option:selected");
+            var valueSelected = optionSelected.val();
+            var textSelected = optionSelected.text();
+            // Your logic here based on the selected value and text
+        });
+
+    </script>
+}

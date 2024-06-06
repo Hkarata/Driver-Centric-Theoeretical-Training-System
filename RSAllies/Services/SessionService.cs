@@ -3,7 +3,7 @@ using RSAllies.Contracts.Responses;
 
 namespace RSAllies.Services;
 
-public class SessionChecker(IHttpContextAccessor httpContextAccessor)
+public class SessionService(IHttpContextAccessor httpContextAccessor)
 {
     public bool Check()
     {
@@ -16,5 +16,12 @@ public class SessionChecker(IHttpContextAccessor httpContextAccessor)
         var session = httpContextAccessor.HttpContext?.Session.GetString("UserSession");
         var data = JsonConvert.DeserializeObject<UserDto>(session!);
         return data;
+    }
+
+    public Task SetUserData(UserDto user)
+    {
+        var data = JsonConvert.SerializeObject(user);
+        httpContextAccessor.HttpContext?.Session.SetString("UserSession", data);
+        return Task.CompletedTask;
     }
 }

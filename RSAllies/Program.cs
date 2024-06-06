@@ -7,19 +7,16 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddSession(options =>
 {
-    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
     options.IdleTimeout = TimeSpan.FromMinutes(30);
-    options.Cookie.Domain = "dctts.go.tz";
-    options.Cookie.Name = "Road Safety Allies";
 });
 
 builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddScoped<SessionChecker>();
+builder.Services.AddScoped<SessionService>();
 
 builder.Services.AddHttpClient<ApiClient>(client =>
 {
-    client.BaseAddress = new Uri("https://localhost:5001");
+    client.BaseAddress = new Uri("http://localhost:5000");
 });
 
 var app = builder.Build();

@@ -3,11 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using RSAllies.Contracts.Requests;
 using RSAllies.Models;
 using RSAllies.Models.English;
+using RSAllies.Requests;
 using RSAllies.Services;
 
 namespace RSAllies.Controllers
 {
-    public class AccountController(ApiClient apiClient) : Controller
+    public class AccountController(ApiClient apiClient, SessionService sessionService) : Controller
     {
         public IActionResult Index()
         {
@@ -42,11 +43,11 @@ namespace RSAllies.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Post(UserModel model)
+        public async Task<IActionResult> CreateUser(UserModel model)
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Register));
             }
 
             var result1Task = apiClient.CheckNames(model.FirstName, model.MiddleName, model.LastName);
@@ -59,7 +60,7 @@ namespace RSAllies.Controllers
 
             if (result1.Value || result2.Value)
             {
-                return HandleNameAndNIDAResults(result1.Value, result2.Value);
+                return HandleNameAndNIDAResults(result1.Value, result2.Value, model);
             }
 
             var request = model.Adapt<CreateUserDto>();
@@ -69,13 +70,13 @@ namespace RSAllies.Controllers
             if (result.IsSuccess)
             {
                 ViewBag.UserId = result.Value;
-                return RedirectToAction("Create");
+                return View("Create");
             }
 
-            return View();
+            return View("Register");
         }
 
-        public IActionResult HandleNameAndNIDAResults(bool nameExists, bool nidaExists)
+        public IActionResult HandleNameAndNIDAResults(bool nameExists, bool nidaExists, object model)
         {
             if (nameExists && nidaExists)
             {
@@ -95,7 +96,7 @@ namespace RSAllies.Controllers
                 ModelState.AddModelError("Identification", "NIDA already exists");
             }
 
-            return RedirectToAction("Index");
+            return View("Register", model);
         }
 
         [HttpPost]
@@ -104,36 +105,75 @@ namespace RSAllies.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("Create");
+                return RedirectToAction("CreateAccount", model);
             }
 
             var result = await apiClient.CheckAccount(model.PhoneNumber, model.Email);
 
             if (result.Value.EmailExists || result.Value.PhoneNumberExists)
             {
-                return HandleAccountCheckResults(result.Value.PhoneNumberExists, result.Value.EmailExists);
+                return HandleAccountCheckResults(result.Value.PhoneNumberExists, result.Value.EmailExists, model);
             }
 
-            return RedirectToAction("Index", "Home");
+            var request = new CreateAccountDto
+            {
+                UserId = model.UserId,
+                Phone = model.PhoneNumber,
+                Email = model.Email,
+                Password = model.Password
+            };
+
+            var response = await apiClient.CreateAccount(request);
+
+            return response.IsSuccess ? RedirectToAction("Login") : View("CreateAccount", model);
         }
 
-        public IActionResult HandleAccountCheckResults(bool phoneExists, bool emailExists)
+        public IActionResult HandleAccountCheckResults(bool phoneExists, bool emailExists, object model)
         {
             if (phoneExists && emailExists)
             {
-                ModelState.AddModelError("PhoneNumber", "Phone Number already exists");
+                ModelState.AddModelError("Phone", "Phone Number already exists");
                 ModelState.AddModelError("Email", "Email already exists");
             }
             else if (phoneExists)
             {
-                ModelState.AddModelError("PhoneNumber", "Phone Number already exists");
+                ModelState.AddModelError("Phone", "Phone Number already exists");
             }
             else if (emailExists)
             {
                 ModelState.AddModelError("Email", "Email already exists");
             }
 
-            return RedirectToAction("Create");
+            return View("Create", model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> LoginUser(LoginModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Login");
+            }
+
+            var request = new AuthenticateDto
+            {
+                Phone = model.Phone,
+                Password = model.Password
+            };
+
+            var result = await apiClient.AuthenticateUser(request);
+
+            if (result.IsFailure)
+            {
+                ModelState.AddModelError("Phone", "Invalid Phone Number or Password");
+
+                return View("Login", model);
+            }
+
+            await sessionService.SetUserData(result.Value);
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

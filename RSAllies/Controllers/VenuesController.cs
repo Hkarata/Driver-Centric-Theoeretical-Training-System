@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using RSAllies.Services;
 
 namespace RSAllies.Controllers
 {
@@ -9,9 +11,12 @@ namespace RSAllies.Controllers
             return View();
         }
 
-        public IActionResult AddVenue()
+        public IActionResult Create()
         {
-            return View("Add");
+            var x = new SelectList(FileService.GetDistricts(), "Id", "Name");
+            var y = new SelectList(FileService.GetRegions(), "Id", "Name");
+
+            return View();
         }
 
         public IActionResult Venue(string id, string venueName, string district, string region, string Capacity, string contact)
