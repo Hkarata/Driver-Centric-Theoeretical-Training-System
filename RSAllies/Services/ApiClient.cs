@@ -46,7 +46,7 @@ namespace RSAllies.Services
 
         public async Task<Result<Contracts.Responses.AdminDto>> AdminLogin(AdminLogin request)
         {
-            var response = await httpClient.PostAsJsonAsync<AdminLogin>("/api/admin", request);
+            var response = await httpClient.PostAsJsonAsync<AdminLogin>("/api/admin/authenticate", request);
             var content = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<Result<Contracts.Responses.AdminDto>>(content)!;
             return result;
@@ -81,6 +81,30 @@ namespace RSAllies.Services
             var response = await httpClient.PostAsJsonAsync("/api/admin", admin);
             var content = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<Result<object>>(content)!;
+            return result;
+        }
+
+        public async Task<Result> CreateVenue(CreateVenueDto venue)
+        {
+            var response = await httpClient.PostAsJsonAsync<CreateVenueDto>("/api/venue", venue);
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<object>>(content)!;
+            return result;
+        }
+
+        public async Task<Result<List<SVenueDto>>> GetVenues()
+        {
+            var response = await httpClient.GetAsync("/api/venues");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<List<SVenueDto>>>(content)!;
+            return result;
+        }
+
+        public async Task<Result<VenueDto>> GetVenue(Guid id)
+        {
+            var response = await httpClient.GetAsync($"/api/venue/{id}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<VenueDto>>(content)!;
             return result;
         }
     }

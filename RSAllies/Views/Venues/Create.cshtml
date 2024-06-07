@@ -1,7 +1,8 @@
-﻿@{
+﻿@using RSAllies.Services
+@{
     ViewData["Title"] = "Create venue";
-    var regions = ViewData["Regions"] as SelectList;
-    var districts = ViewData["Districts"] as SelectList;
+    var regions = FileService.GetRegions();
+    var districts = FileService.GetDistricts();
 }
 
 @model Venue
@@ -15,7 +16,7 @@
             <span class="swahili">Ongeza kituo</span>
         </div>
 
-        <form method="post">
+        <form enctype="multipart/form-data" asp-action="CreateVenue" method="post">
             <div class="form-group mb-3">
                 <label asp-for="Name" class="english">Venue name</label>
                 <label asp-for="Name" class="swahili">Jina la Kituo</label>
@@ -40,8 +41,12 @@
                         <span class="english">District</span>
                         <span class="swahili">Wilaya</span>
                     </label>
-                    <select asp-for="DistrictId" class="form-select" asp-items="@districts">
+                    <select asp-for="DistrictId" class="form-select">
                         <option value="">Choose...</option>
+                        @foreach (var district in districts)
+                        {
+                            <option value="@district.Id">@district.Name</option>
+                        }
                     </select>
                 </div>
                 <span asp-validation-for="DistrictId" class="text-danger"></span>
@@ -52,15 +57,18 @@
                         <span class="english">Region</span>
                         <span class="swahili">Mkoa</span>
                     </label>
-                    <select asp-for="RegionId" class="form-select" asp-items="@regions">
+                    <select asp-for="RegionId" class="form-select" >
                         <option value="">Choose...</option>
+                        @foreach (var region in regions)
+                        {
+                            <option value="@region.Id">@region.Name</option>
+                        }
                     </select>
                 </div>
                 <span asp-validation-for="RegionId" class="text-danger"></span>
             </div>
             <div class="input-group mb-3">
-                <input asp-for="ImageUrl" type="file" class="form-control">
-                <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Upload</button>
+                <input asp-for="ImageUrl" type="file" class="form-control" accept="image/*">
             </div>
             <button type="submit" style="font-weight:450" class="btn btn-primary w-100">Submit</button>
         </form>

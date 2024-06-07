@@ -25,6 +25,14 @@
     transition: 0.3s ease-in-out;
 }
 
+#NoSessions {
+    padding: 5px;
+    background-color: white;
+    border-radius: 5px;
+    width: 100%;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+}
+
 @media (max-width: 768px) {
     #Container {
         flex-direction: column;

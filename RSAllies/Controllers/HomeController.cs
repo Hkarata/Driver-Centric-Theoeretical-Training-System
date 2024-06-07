@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using RSAllies.Contracts.Responses;
 using RSAllies.Models;
 using RSAllies.Services;
 using System.Diagnostics;
@@ -19,7 +18,7 @@ namespace RSAllies.Controllers
 
             var booking = await apiClient.GetCurrentUserBooking(user!.Id);
 
-            return booking.IsSuccess ? View(booking) : View(null) ;
+            return booking.IsSuccess ? View(booking) : View(null);
         }
 
         public IActionResult Dashboard()

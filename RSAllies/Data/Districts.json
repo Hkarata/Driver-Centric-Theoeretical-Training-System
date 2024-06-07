@@ -1,706 +1,706 @@
 [
-    {
-        "Id": "0D988341-4FF8-4ABA-A4DA-0DCB2800D851",
-        "Name": "Meru"
-    },
-    {
-        "Id": "0D988341-4FF8-4ABA-A4DA-0DCB2800D851",
-        "Name": "Arusha City"
-    },
-    {
-        "Id": "0D988341-4FF8-4ABA-A4DA-0DCB2800D851",
-        "Name": "Arusha"
-    },
-    {
-        "Id": "0D988341-4FF8-4ABA-A4DA-0DCB2800D851",
-        "Name": "Karatu"
-    },
-    {
-        "Id": "0D988341-4FF8-4ABA-A4DA-0DCB2800D851",
-        "Name": "Longido"
-    },
-    {
-        "Id": "0D988341-4FF8-4ABA-A4DA-0DCB2800D851",
-        "Name": "Monduli"
-    },
-    {
-        "Id": "0D988341-4FF8-4ABA-A4DA-0DCB2800D851",
-        "Name": "Ngorongoro"
-    },
-    {
-        "Id": "6E164E10-F534-42D4-9D38-A6E874BDEC65",
-        "Name": "Ilala Manispaa"
-    },
-    {
-        "Id": "6E164E10-F534-42D4-9D38-A6E874BDEC65",
-        "Name": "Kinondoni Manispaa"
-    },
-    {
-        "Id": "6E164E10-F534-42D4-9D38-A6E874BDEC65",
-        "Name": "Temeke Manispaa"
-    },
-    {
-        "Id": "6E164E10-F534-42D4-9D38-A6E874BDEC65",
-        "Name": "Kigamboni Manispaa"
-    },
-    {
-        "Id": "6E164E10-F534-42D4-9D38-A6E874BDEC65",
-        "Name": "Ubungo Manispaa"
-    },
-    {
-        "Id": "77A45B72-E21A-4979-BE0F-B9AFB01A418C",
-        "Name": "Bahi"
-    },
-    {
-        "Id": "77A45B72-E21A-4979-BE0F-B9AFB01A418C",
-        "Name": "Chamwino"
-    },
-    {
-        "Id": "77A45B72-E21A-4979-BE0F-B9AFB01A418C",
-        "Name": "Chemba"
-    },
-    {
-        "Id": "77A45B72-E21A-4979-BE0F-B9AFB01A418C",
-        "Name": "Dodoma Manispaa"
-    },
-    {
-        "Id": "77A45B72-E21A-4979-BE0F-B9AFB01A418C",
-        "Name": "Kondoa"
-    },
-    {
-        "Id": "77A45B72-E21A-4979-BE0F-B9AFB01A418C",
-        "Name": "Kongwa"
-    },
-    {
-        "Id": "77A45B72-E21A-4979-BE0F-B9AFB01A418C",
-        "Name": "Mpwapwa"
-    },
-    {
-        "Id": "A7AE6311-090A-4098-834F-3CE7164EC94F",
-        "Name": "Bukombe"
-    },
-    {
-        "Id": "A7AE6311-090A-4098-834F-3CE7164EC94F",
-        "Name": "Chato"
-    },
-    {
-        "Id": "A7AE6311-090A-4098-834F-3CE7164EC94F",
-        "Name": "Geita"
-    },
-    {
-        "Id": "A7AE6311-090A-4098-834F-3CE7164EC94F",
-        "Name": "Mbogwe"
-    },
-    {
-        "Id": "A7AE6311-090A-4098-834F-3CE7164EC94F",
-        "Name": "Nyang'hwale"
-    },
-    {
-        "Id": "176AF58A-E88A-4E3E-BA2E-9318F6B42F07",
-        "Name": "Iringa"
-    },
-    {
-        "Id": "176AF58A-E88A-4E3E-BA2E-9318F6B42F07",
-        "Name": "Iringa Manispaa"
-    },
-    {
-        "Id": "176AF58A-E88A-4E3E-BA2E-9318F6B42F07",
-        "Name": "Kilolo"
-    },
-    {
-        "Id": "176AF58A-E88A-4E3E-BA2E-9318F6B42F07",
-        "Name": "Mafinga"
-    },
-    {
-        "Id": "176AF58A-E88A-4E3E-BA2E-9318F6B42F07",
-        "Name": "Mufindi"
-    },
-    {
-        "Id": "559B51C0-BA30-463C-A358-71DBC4091EC0",
-        "Name": "Biharamulo"
-    },
-    {
-        "Id": "559B51C0-BA30-463C-A358-71DBC4091EC0",
-        "Name": "Bukoba"
-    },
-    {
-        "Id": "559B51C0-BA30-463C-A358-71DBC4091EC0",
-        "Name": "Bukoba Manispaa"
-    },
-    {
-        "Id": "559B51C0-BA30-463C-A358-71DBC4091EC0",
-        "Name": "Karagwe"
-    },
-    {
-        "Id": "559B51C0-BA30-463C-A358-71DBC4091EC0",
-        "Name": "Kyerwa"
-    },
-    {
-        "Id": "559B51C0-BA30-463C-A358-71DBC4091EC0",
-        "Name": "Missenyi"
-    },
-    {
-        "Id": "559B51C0-BA30-463C-A358-71DBC4091EC0",
-        "Name": "Muleba"
-    },
-    {
-        "Id": "559B51C0-BA30-463C-A358-71DBC4091EC0",
-        "Name": "Ngara"
-    },
-    {
-        "Id": "F29F20C7-DF14-40DB-BD0E-04E8A4787D54",
-        "Name": "Mlele"
-    },
-    {
-        "Id": "F29F20C7-DF14-40DB-BD0E-04E8A4787D54",
-        "Name": "Mpanda"
-    },
-    {
-        "Id": "F29F20C7-DF14-40DB-BD0E-04E8A4787D54",
-        "Name": "Mpanda"
-    },
-    {
-        "Id": "1D64EB68-1BA0-4DF8-84FE-E188C4871A43",
-        "Name": "Buhigwe"
-    },
-    {
-        "Id": "1D64EB68-1BA0-4DF8-84FE-E188C4871A43",
-        "Name": "Kakonko"
-    },
-    {
-        "Id": "1D64EB68-1BA0-4DF8-84FE-E188C4871A43",
-        "Name": "Kasulu"
-    },
-    {
-        "Id": "1D64EB68-1BA0-4DF8-84FE-E188C4871A43",
-        "Name": "Kasulu"
-    },
-    {
-        "Id": "1D64EB68-1BA0-4DF8-84FE-E188C4871A43",
-        "Name": "Kibondo"
-    },
-    {
-        "Id": "1D64EB68-1BA0-4DF8-84FE-E188C4871A43",
-        "Name": "Kigoma"
-    },
-    {
-        "Id": "1D64EB68-1BA0-4DF8-84FE-E188C4871A43",
-        "Name": "Kigoma-Ujiji Manispaa"
-    },
-    {
-        "Id": "1D64EB68-1BA0-4DF8-84FE-E188C4871A43",
-        "Name": "Uvinza"
-    },
-    {
-        "Id": "37929049-00E2-4053-8886-6048F0CD64FC",
-        "Name": "Hai"
-    },
-    {
-        "Id": "37929049-00E2-4053-8886-6048F0CD64FC",
-        "Name": "Moshi"
-    },
-    {
-        "Id": "37929049-00E2-4053-8886-6048F0CD64FC",
-        "Name": "Moshi Manispaa"
-    },
-    {
-        "Id": "37929049-00E2-4053-8886-6048F0CD64FC",
-        "Name": "Mwanga"
-    },
-    {
-        "Id": "37929049-00E2-4053-8886-6048F0CD64FC",
-        "Name": "Rombo"
-    },
-    {
-        "Id": "37929049-00E2-4053-8886-6048F0CD64FC",
-        "Name": "Same"
-    },
-    {
-        "Id": "37929049-00E2-4053-8886-6048F0CD64FC",
-        "Name": "Siha"
-    },
-    {
-        "Id": "80D2AFEE-A15D-4DFB-91A6-FE2922AA28BC",
-        "Name": "Chake Chake"
-    },
-    {
-        "Id": "80D2AFEE-A15D-4DFB-91A6-FE2922AA28BC",
-        "Name": "Mkoani"
-    },
-    {
-        "Id": "4520B5F1-9D0D-4C34-B1A6-18AF2D967037",
-        "Name": "Kati"
-    },
-    {
-        "Id": "4520B5F1-9D0D-4C34-B1A6-18AF2D967037",
-        "Name": "Kusini"
-    },
-    {
-        "Id": "6C20C859-8370-4E60-80FF-9572239EDA1F",
-        "Name": "Kilwa"
-    },
-    {
-        "Id": "6C20C859-8370-4E60-80FF-9572239EDA1F",
-        "Name": "Lindi"
-    },
-    {
-        "Id": "6C20C859-8370-4E60-80FF-9572239EDA1F",
-        "Name": "Lindi Manispaa"
-    },
-    {
-        "Id": "6C20C859-8370-4E60-80FF-9572239EDA1F",
-        "Name": "Liwale"
-    },
-    {
-        "Id": "6C20C859-8370-4E60-80FF-9572239EDA1F",
-        "Name": "Nachingwea"
-    },
-    {
-        "Id": "6C20C859-8370-4E60-80FF-9572239EDA1F",
-        "Name": "Ruangwa"
-    },
-    {
-        "Id": "54F4D719-B835-4252-9EDE-98185253C5CA",
-        "Name": "Babati"
-    },
-    {
-        "Id": "54F4D719-B835-4252-9EDE-98185253C5CA",
-        "Name": "Babati"
-    },
-    {
-        "Id": "54F4D719-B835-4252-9EDE-98185253C5CA",
-        "Name": "Hanang"
-    },
-    {
-        "Id": "54F4D719-B835-4252-9EDE-98185253C5CA",
-        "Name": "Kiteto"
-    },
-    {
-        "Id": "54F4D719-B835-4252-9EDE-98185253C5CA",
-        "Name": "Mbulu"
-    },
-    {
-        "Id": "54F4D719-B835-4252-9EDE-98185253C5CA",
-        "Name": "Simanjiro"
-    },
-    {
-        "Id": "D9AC3D1D-D56A-4428-8A57-A948541A159E",
-        "Name": "Bunda"
-    },
-    {
-        "Id": "D9AC3D1D-D56A-4428-8A57-A948541A159E",
-        "Name": "Butiama"
-    },
-    {
-        "Id": "D9AC3D1D-D56A-4428-8A57-A948541A159E",
-        "Name": "Musoma"
-    },
-    {
-        "Id": "D9AC3D1D-D56A-4428-8A57-A948541A159E",
-        "Name": "Musoma Manispaa"
-    },
-    {
-        "Id": "D9AC3D1D-D56A-4428-8A57-A948541A159E",
-        "Name": "Rorya"
-    },
-    {
-        "Id": "D9AC3D1D-D56A-4428-8A57-A948541A159E",
-        "Name": "Serengeti"
-    },
-    {
-        "Id": "D9AC3D1D-D56A-4428-8A57-A948541A159E",
-        "Name": "Tarime"
-    },
-    {
-        "Id": "78807F60-451F-402E-A1C5-23CB01E49545",
-        "Name": "Busokelo"
-    },
-    {
-        "Id": "78807F60-451F-402E-A1C5-23CB01E49545",
-        "Name": "Chunya"
-    },
-    {
-        "Id": "78807F60-451F-402E-A1C5-23CB01E49545",
-        "Name": "Kyela"
-    },
-    {
-        "Id": "78807F60-451F-402E-A1C5-23CB01E49545",
-        "Name": "Mbarali City"
-    },
-    {
-        "Id": "78807F60-451F-402E-A1C5-23CB01E49545",
-        "Name": "Mbeya"
-    },
-    {
-        "Id": "78807F60-451F-402E-A1C5-23CB01E49545",
-        "Name": "Mbeya"
-    },
-    {
-        "Id": "78807F60-451F-402E-A1C5-23CB01E49545",
-        "Name": "Rungwe"
-    },
-    {
-        "Id": "8095096C-5B0A-4860-B955-51C77F1F6994",
-        "Name": "Magharibi"
-    },
-    {
-        "Id": "8095096C-5B0A-4860-B955-51C77F1F6994",
-        "Name": "Mjini"
-    },
-    {
-        "Id": "1793FE63-BCCF-41BF-806C-D917FA140CF6",
-        "Name": "Gairo"
-    },
-    {
-        "Id": "1793FE63-BCCF-41BF-806C-D917FA140CF6",
-        "Name": "Kilombero"
-    },
-    {
-        "Id": "1793FE63-BCCF-41BF-806C-D917FA140CF6",
-        "Name": "Kilosa"
-    },
-    {
-        "Id": "1793FE63-BCCF-41BF-806C-D917FA140CF6",
-        "Name": "Morogoro"
-    },
-    {
-        "Id": "1793FE63-BCCF-41BF-806C-D917FA140CF6",
-        "Name": "Morogoro Manispaa"
-    },
-    {
-        "Id": "1793FE63-BCCF-41BF-806C-D917FA140CF6",
-        "Name": "Mvomero"
-    },
-    {
-        "Id": "1793FE63-BCCF-41BF-806C-D917FA140CF6",
-        "Name": "Ulanga"
-    },
-    {
-        "Id": "1793FE63-BCCF-41BF-806C-D917FA140CF6",
-        "Name": "Malinyi"
-    },
-    {
-        "Id": "1793FE63-BCCF-41BF-806C-D917FA140CF6",
-        "Name": "Ifakaraship"
-    },
-    {
-        "Id": "6CEB76DD-E3F9-45C6-83A0-EAD052C7CD0B",
-        "Name": "Masasi"
-    },
-    {
-        "Id": "6CEB76DD-E3F9-45C6-83A0-EAD052C7CD0B",
-        "Name": "Masasi"
-    },
-    {
-        "Id": "6CEB76DD-E3F9-45C6-83A0-EAD052C7CD0B",
-        "Name": "Mtwara"
-    },
-    {
-        "Id": "6CEB76DD-E3F9-45C6-83A0-EAD052C7CD0B",
-        "Name": "Mtwara Manispaa"
-    },
-    {
-        "Id": "6CEB76DD-E3F9-45C6-83A0-EAD052C7CD0B",
-        "Name": "Nanyumbu"
-    },
-    {
-        "Id": "6CEB76DD-E3F9-45C6-83A0-EAD052C7CD0B",
-        "Name": "Newala"
-    },
-    {
-        "Id": "6CEB76DD-E3F9-45C6-83A0-EAD052C7CD0B",
-        "Name": "Tandahimba"
-    },
-    {
-        "Id": "55EEA569-C398-4E16-AE18-8950634C3204",
-        "Name": "Ilemela Manispaa"
-    },
-    {
-        "Id": "55EEA569-C398-4E16-AE18-8950634C3204",
-        "Name": "Kwimba"
-    },
-    {
-        "Id": "55EEA569-C398-4E16-AE18-8950634C3204",
-        "Name": "Magu"
-    },
-    {
-        "Id": "55EEA569-C398-4E16-AE18-8950634C3204",
-        "Name": "Misungwi"
-    },
-    {
-        "Id": "55EEA569-C398-4E16-AE18-8950634C3204",
-        "Name": "Nyamagana Manispaa"
-    },
-    {
-        "Id": "55EEA569-C398-4E16-AE18-8950634C3204",
-        "Name": "Sengerema"
-    },
-    {
-        "Id": "55EEA569-C398-4E16-AE18-8950634C3204",
-        "Name": "Ukerewe"
-    },
-    {
-        "Id": "34BE69EF-7DF7-4A98-85F9-E426C8144A22",
-        "Name": "Ludewa"
-    },
-    {
-        "Id": "34BE69EF-7DF7-4A98-85F9-E426C8144A22",
-        "Name": "Makambako"
-    },
-    {
-        "Id": "34BE69EF-7DF7-4A98-85F9-E426C8144A22",
-        "Name": "Makete"
-    },
-    {
-        "Id": "34BE69EF-7DF7-4A98-85F9-E426C8144A22",
-        "Name": "Njombe"
-    },
-    {
-        "Id": "34BE69EF-7DF7-4A98-85F9-E426C8144A22",
-        "Name": "Njombe"
-    },
-    {
-        "Id": "34BE69EF-7DF7-4A98-85F9-E426C8144A22",
-        "Name": "Wanging'ombe"
-    },
-    {
-        "Id": "F9560135-599B-4721-B033-DDA412499B81",
-        "Name": "Bagamoyo"
-    },
-    {
-        "Id": "F9560135-599B-4721-B033-DDA412499B81",
-        "Name": "Kibaha"
-    },
-    {
-        "Id": "F9560135-599B-4721-B033-DDA412499B81",
-        "Name": "Kibaha"
-    },
-    {
-        "Id": "F9560135-599B-4721-B033-DDA412499B81",
-        "Name": "Kisarawe"
-    },
-    {
-        "Id": "F9560135-599B-4721-B033-DDA412499B81",
-        "Name": "Mafia"
-    },
-    {
-        "Id": "F9560135-599B-4721-B033-DDA412499B81",
-        "Name": "Mkuranga"
-    },
-    {
-        "Id": "F9560135-599B-4721-B033-DDA412499B81",
-        "Name": "Rufiji"
-    },
-    {
-        "Id": "83288217-7D54-4B17-BFF1-113C16A91E97",
-        "Name": "Kalambo"
-    },
-    {
-        "Id": "83288217-7D54-4B17-BFF1-113C16A91E97",
-        "Name": "Nkasi"
-    },
-    {
-        "Id": "83288217-7D54-4B17-BFF1-113C16A91E97",
-        "Name": "Sumbawanga"
-    },
-    {
-        "Id": "83288217-7D54-4B17-BFF1-113C16A91E97",
-        "Name": "Sumbawanga Manispaa"
-    },
-    {
-        "Id": "0F97C2F0-E7D8-4473-9FB8-2FBD50240F37",
-        "Name": "Mbinga"
-    },
-    {
-        "Id": "0F97C2F0-E7D8-4473-9FB8-2FBD50240F37",
-        "Name": "Songea"
-    },
-    {
-        "Id": "0F97C2F0-E7D8-4473-9FB8-2FBD50240F37",
-        "Name": "Songea Manispaa"
-    },
-    {
-        "Id": "0F97C2F0-E7D8-4473-9FB8-2FBD50240F37",
-        "Name": "Tunduru"
-    },
-    {
-        "Id": "0F97C2F0-E7D8-4473-9FB8-2FBD50240F37",
-        "Name": "Namtumbo"
-    },
-    {
-        "Id": "0F97C2F0-E7D8-4473-9FB8-2FBD50240F37",
-        "Name": "Nyasa"
-    },
-    {
-        "Id": "E3581091-5B26-4839-93EB-B41DE340915B",
-        "Name": "Kahama"
-    },
-    {
-        "Id": "E3581091-5B26-4839-93EB-B41DE340915B",
-        "Name": "Kahama"
-    },
-    {
-        "Id": "E3581091-5B26-4839-93EB-B41DE340915B",
-        "Name": "Kishapu"
-    },
-    {
-        "Id": "E3581091-5B26-4839-93EB-B41DE340915B",
-        "Name": "Shinyanga"
-    },
-    {
-        "Id": "E3581091-5B26-4839-93EB-B41DE340915B",
-        "Name": "Shinyanga Manispaa"
-    },
-    {
-        "Id": "F4806A1E-4F40-4440-AF94-074FC5CBCB82",
-        "Name": "Bariadi"
-    },
-    {
-        "Id": "F4806A1E-4F40-4440-AF94-074FC5CBCB82",
-        "Name": "Busega"
-    },
-    {
-        "Id": "F4806A1E-4F40-4440-AF94-074FC5CBCB82",
-        "Name": "Itilima"
-    },
-    {
-        "Id": "F4806A1E-4F40-4440-AF94-074FC5CBCB82",
-        "Name": "Maswa"
-    },
-    {
-        "Id": "F4806A1E-4F40-4440-AF94-074FC5CBCB82",
-        "Name": "Meatu"
-    },
-    {
-        "Id": "DED1F515-9CBE-4890-B596-7B5B9EB187DB",
-        "Name": "Ikungi"
-    },
-    {
-        "Id": "DED1F515-9CBE-4890-B596-7B5B9EB187DB",
-        "Name": "Iramba"
-    },
-    {
-        "Id": "DED1F515-9CBE-4890-B596-7B5B9EB187DB",
-        "Name": "Manyoni"
-    },
-    {
-        "Id": "DED1F515-9CBE-4890-B596-7B5B9EB187DB",
-        "Name": "Mkalama"
-    },
-    {
-        "Id": "DED1F515-9CBE-4890-B596-7B5B9EB187DB",
-        "Name": "Singida"
-    },
-    {
-        "Id": "DED1F515-9CBE-4890-B596-7B5B9EB187DB",
-        "Name": "Singida Manispaa"
-    },
-    {
-        "Id": "4D623C64-B05F-45C4-BD21-C4BF5FAC49ED",
-        "Name": "Ileje"
-    },
-    {
-        "Id": "4D623C64-B05F-45C4-BD21-C4BF5FAC49ED",
-        "Name": "Mbozi"
-    },
-    {
-        "Id": "4D623C64-B05F-45C4-BD21-C4BF5FAC49ED",
-        "Name": "Momba"
-    },
-    {
-        "Id": "4D623C64-B05F-45C4-BD21-C4BF5FAC49ED",
-        "Name": "Songwe"
-    },
-    {
-        "Id": "4C2FFF75-B4D6-41A2-81B8-9EACA57A106F",
-        "Name": "Igunga"
-    },
-    {
-        "Id": "4C2FFF75-B4D6-41A2-81B8-9EACA57A106F",
-        "Name": "Kaliua"
-    },
-    {
-        "Id": "4C2FFF75-B4D6-41A2-81B8-9EACA57A106F",
-        "Name": "Nzega"
-    },
-    {
-        "Id": "4C2FFF75-B4D6-41A2-81B8-9EACA57A106F",
-        "Name": "Sikonge"
-    },
-    {
-        "Id": "4C2FFF75-B4D6-41A2-81B8-9EACA57A106F",
-        "Name": "Tabora Manispaa"
-    },
-    {
-        "Id": "4C2FFF75-B4D6-41A2-81B8-9EACA57A106F",
-        "Name": "Urambo"
-    },
-    {
-        "Id": "4C2FFF75-B4D6-41A2-81B8-9EACA57A106F",
-        "Name": "Uyui"
-    },
-    {
-        "Id": "7F60C70E-B346-4E19-B6DA-CC5CA922197C",
-        "Name": "Handeni"
-    },
-    {
-        "Id": "7F60C70E-B346-4E19-B6DA-CC5CA922197C",
-        "Name": "Handeni"
-    },
-    {
-        "Id": "7F60C70E-B346-4E19-B6DA-CC5CA922197C",
-        "Name": "Kilindi"
-    },
-    {
-        "Id": "7F60C70E-B346-4E19-B6DA-CC5CA922197C",
-        "Name": "Korogwe"
-    },
-    {
-        "Id": "7F60C70E-B346-4E19-B6DA-CC5CA922197C",
-        "Name": "Korogwe"
-    },
-    {
-        "Id": "7F60C70E-B346-4E19-B6DA-CC5CA922197C",
-        "Name": "Lushoto"
-    },
-    {
-        "Id": "7F60C70E-B346-4E19-B6DA-CC5CA922197C",
-        "Name": "Muheza"
-    },
-    {
-        "Id": "7F60C70E-B346-4E19-B6DA-CC5CA922197C",
-        "Name": "Mkinga"
-    },
-    {
-        "Id": "7F60C70E-B346-4E19-B6DA-CC5CA922197C",
-        "Name": "Pangani"
-    },
-    {
-        "Id": "7F60C70E-B346-4E19-B6DA-CC5CA922197C",
-        "Name": "Tanga City"
-    },
-    {
-        "Id": "B80F8D15-F287-4B68-983E-FFDAB85A047D",
-        "Name": "Kaskazini A"
-    },
-    {
-        "Id": "B80F8D15-F287-4B68-983E-FFDAB85A047D",
-        "Name": "Kaskazini B"
-    },
-    {
-        "Id": "80D2AFEE-A15D-4DFB-91A6-FE2922AA28BC",
-        "Name": "Micheweni"
-    },
-    {
-        "Id": "80D2AFEE-A15D-4DFB-91A6-FE2922AA28BC",
-        "Name": "Wete"
-    },
-    {
-        "Id": "8095096C-5B0A-4860-B955-51C77F1F6994",
-        "Name": "Unguja Magharibi"
-    },
-    {
-        "Id": "8095096C-5B0A-4860-B955-51C77F1F6994",
-        "Name": "Unguja Mjini"
-    }
+  {
+    "Id": "7dc992b3-88f6-4246-b939-01b5e784a476",
+    "Name": "Kishapu"
+  },
+  {
+    "Id": "bec29058-6787-4206-b918-022a269a28bd",
+    "Name": "Sikonge"
+  },
+  {
+    "Id": "c958a20d-4918-41ab-81b4-04ee31da199f",
+    "Name": "Bahi"
+  },
+  {
+    "Id": "f27a2bce-68be-4106-bde2-05b18c5e4a86",
+    "Name": "Mbeya"
+  },
+  {
+    "Id": "a9646bb3-50d4-4bde-bd94-075a27d1e87d",
+    "Name": "Mufindi"
+  },
+  {
+    "Id": "dee0633e-2c53-436b-bb1f-086ee61d0ddd",
+    "Name": "Serengeti"
+  },
+  {
+    "Id": "554a991b-0802-4f33-b562-08fc14cfb9e3",
+    "Name": "Lushoto"
+  },
+  {
+    "Id": "590deeea-46e2-4c49-b871-0957459120f5",
+    "Name": "Chato"
+  },
+  {
+    "Id": "86ebae52-a7ab-4fdc-9d77-095e6634a200",
+    "Name": "Musoma"
+  },
+  {
+    "Id": "e15bb711-4dde-4416-9489-0ac6a935208f",
+    "Name": "Ubungo Manispaa"
+  },
+  {
+    "Id": "bc098444-b992-4a98-a0e6-0cd52a33f484",
+    "Name": "Kilwa"
+  },
+  {
+    "Id": "a66d990c-38a6-4595-bace-0e86136c4cf3",
+    "Name": "Kaliua"
+  },
+  {
+    "Id": "aa60bde7-4996-4f8a-aa00-0eb3330087ff",
+    "Name": "Masasi"
+  },
+  {
+    "Id": "9ebe5215-6dc8-44c6-9911-102db68a0975",
+    "Name": "Liwale"
+  },
+  {
+    "Id": "fdc97ca4-c308-4ca1-b9ee-1183bf45aee1",
+    "Name": "Mpanda"
+  },
+  {
+    "Id": "e71d2462-08d4-4b30-be37-12368f793819",
+    "Name": "Kasulu"
+  },
+  {
+    "Id": "e3baad2d-823a-4536-a855-13b1a61ebcd9",
+    "Name": "Kilosa"
+  },
+  {
+    "Id": "1b80428d-cb11-4ff7-960d-169f4a51371f",
+    "Name": "Mbozi"
+  },
+  {
+    "Id": "69728743-db70-46af-8e1f-1709cb0bcc07",
+    "Name": "Micheweni"
+  },
+  {
+    "Id": "777b75ef-0cb4-409d-b5a5-182b8dce1000",
+    "Name": "Kigamboni Manispaa"
+  },
+  {
+    "Id": "d612fb3a-3e31-45ca-b9a4-18c8c3d4f635",
+    "Name": "Kilolo"
+  },
+  {
+    "Id": "fca91a84-d720-4113-9d48-1a25e09f7820",
+    "Name": "Babati"
+  },
+  {
+    "Id": "55b48d67-6d13-4efb-b6b3-1cae58eb50d4",
+    "Name": "Nyang'hwale"
+  },
+  {
+    "Id": "4b65b3eb-be76-4f6b-9d5b-217f6b3d9e18",
+    "Name": "Simanjiro"
+  },
+  {
+    "Id": "0e99efbb-1adf-446f-b289-21e8204e15c7",
+    "Name": "Karagwe"
+  },
+  {
+    "Id": "11462055-9a41-4f13-a17f-287cefbccf6b",
+    "Name": "Ilemela Manispaa"
+  },
+  {
+    "Id": "aa3739c3-8f2f-4f21-b5c0-2b56c2a4d63e",
+    "Name": "Handeni"
+  },
+  {
+    "Id": "b2ec86c3-ef73-443a-ab67-2f614e627ff5",
+    "Name": "Busokelo"
+  },
+  {
+    "Id": "4c6163ac-2a23-4a83-8ddf-30732827a179",
+    "Name": "Bukombe"
+  },
+  {
+    "Id": "fb241714-0cde-45d0-a0c9-333c2a020b6f",
+    "Name": "Kinondoni Manispaa"
+  },
+  {
+    "Id": "a2e350be-14bb-4291-806d-358efe6d4396",
+    "Name": "Mafia"
+  },
+  {
+    "Id": "cf17737d-94b6-4e26-8edc-36b93d8e1e88",
+    "Name": "Makete"
+  },
+  {
+    "Id": "17723720-a8ae-42aa-91fe-38e2407f6636",
+    "Name": "Ngorongoro"
+  },
+  {
+    "Id": "e3795332-e147-4c20-aa7c-39f97bced647",
+    "Name": "Iringa Manispaa"
+  },
+  {
+    "Id": "04a8c0dd-cf97-4ff0-8260-3cd6d81d90b4",
+    "Name": "Muleba"
+  },
+  {
+    "Id": "c4f7e4c3-1212-49a4-94f5-40b00533336c",
+    "Name": "Rorya"
+  },
+  {
+    "Id": "22d6b83d-4d4b-4036-b6ca-426dd6c21807",
+    "Name": "Unguja Magharibi"
+  },
+  {
+    "Id": "ca01316b-bb75-49e9-8994-455745e99ea6",
+    "Name": "Ifakaraship"
+  },
+  {
+    "Id": "c3e86bdf-b0dc-4459-8ce7-45b183ebf0f2",
+    "Name": "Kusini"
+  },
+  {
+    "Id": "4b244a4f-ed12-4edf-aaea-45fc158bd43a",
+    "Name": "Bukoba Manispaa"
+  },
+  {
+    "Id": "6fc72f39-8676-40cc-8434-48badc0e62bf",
+    "Name": "Mpwapwa"
+  },
+  {
+    "Id": "b2a1bfb7-a712-4591-81b6-495189dbcf57",
+    "Name": "Biharamulo"
+  },
+  {
+    "Id": "e2aab010-2d5c-4085-bb2b-49754e513b1e",
+    "Name": "Kilombero"
+  },
+  {
+    "Id": "8cc17c71-227a-439d-a9c4-4a5a38d2307c",
+    "Name": "Magharibi"
+  },
+  {
+    "Id": "cc52c059-3b46-4c2a-8f13-4cb10cca3066",
+    "Name": "Mbinga"
+  },
+  {
+    "Id": "78c68ae5-2ac2-4671-9fc1-4e9fc598c2ae",
+    "Name": "Bukoba"
+  },
+  {
+    "Id": "5c6c3bf3-4e7b-4640-8f19-4fac18f63001",
+    "Name": "Kyela"
+  },
+  {
+    "Id": "eb4a7daa-8bf5-4183-a31a-50b6685697f0",
+    "Name": "Pangani"
+  },
+  {
+    "Id": "f8ba76f4-6114-4191-8b14-50fc1591e1b3",
+    "Name": "Ludewa"
+  },
+  {
+    "Id": "73e997fd-de7d-48f7-b63d-56247d3bddb9",
+    "Name": "Ilala Manispaa"
+  },
+  {
+    "Id": "8396555e-94b1-4fcc-be8c-57e97442edeb",
+    "Name": "Songwe"
+  },
+  {
+    "Id": "e916c10e-44ad-4e6a-96b0-5ae24f90efca",
+    "Name": "Ikungi"
+  },
+  {
+    "Id": "ca9b6fcb-cd8c-41ff-8d05-5b3214698d1a",
+    "Name": "Bunda"
+  },
+  {
+    "Id": "6fc41c0e-cb2c-44d9-b0d1-5b6b175913c2",
+    "Name": "Ukerewe"
+  },
+  {
+    "Id": "83a2421c-f21b-4eba-b679-5bf531cd1c23",
+    "Name": "Chemba"
+  },
+  {
+    "Id": "abedcd8d-3dc5-48cf-99da-5c977989202e",
+    "Name": "Moshi"
+  },
+  {
+    "Id": "e5ce24e8-1af7-487b-b32c-5e1f81b95fef",
+    "Name": "Shinyanga Manispaa"
+  },
+  {
+    "Id": "223fa8ff-31a8-4318-bc2c-5eb54475af08",
+    "Name": "Missenyi"
+  },
+  {
+    "Id": "cea38893-22ca-48a5-9fc8-5ee58ce8decb",
+    "Name": "Geita"
+  },
+  {
+    "Id": "6eb0811a-a69a-40b6-99e6-6177ecc479c9",
+    "Name": "SingRegionIda Manispaa"
+  },
+  {
+    "Id": "40d2a4af-ba30-4847-9a61-677f5ef8cf10",
+    "Name": "Tunduru"
+  },
+  {
+    "Id": "498083fa-d56f-475c-92ee-6a98359304ef",
+    "Name": "Handeni"
+  },
+  {
+    "Id": "4198ad9d-c0a1-4ba1-a1b6-6b89d48bbb7a",
+    "Name": "Tabora Manispaa"
+  },
+  {
+    "Id": "1f65efb3-385b-499c-aaf0-6c77c1ffc72b",
+    "Name": "Urambo"
+  },
+  {
+    "Id": "4ba11db5-0bf2-417c-a8df-6c94eb2779ac",
+    "Name": "Nzega"
+  },
+  {
+    "Id": "b13a317c-8561-4c23-b61d-6eadd728c7ef",
+    "Name": "Masasi"
+  },
+  {
+    "Id": "c1362819-f6a0-47bc-90b0-73ee42fd7bf1",
+    "Name": "Tandahimba"
+  },
+  {
+    "Id": "99518621-980b-4be0-a887-74d981e5e805",
+    "Name": "Njombe"
+  },
+  {
+    "Id": "eac3a776-abfd-4f29-9cf8-751b33d81a20",
+    "Name": "Dodoma Manispaa"
+  },
+  {
+    "Id": "94fecce2-4c5f-4696-8f77-78a200715974",
+    "Name": "Kati"
+  },
+  {
+    "Id": "750614ba-af63-4e18-aeee-78d555c32cc0",
+    "Name": "Tarime"
+  },
+  {
+    "Id": "88d3b21d-21c1-4db7-aee9-78e00e622319",
+    "Name": "Chake Chake"
+  },
+  {
+    "Id": "9a0097f4-1599-462f-a4e8-78e2c71dd1cc",
+    "Name": "Kaskazini B"
+  },
+  {
+    "Id": "eac0ad0d-871a-4b32-82d8-78e7f7965bf6",
+    "Name": "Bariadi"
+  },
+  {
+    "Id": "c69affa6-edb7-48c0-b354-79947dd797b4",
+    "Name": "Same"
+  },
+  {
+    "Id": "94567ee8-64ee-4e02-890b-79a8fa8aa645",
+    "Name": "Kahama"
+  },
+  {
+    "Id": "4f1d13e4-ebdb-49e9-baeb-7ad9ec33418a",
+    "Name": "Mpanda"
+  },
+  {
+    "Id": "db04206b-d951-4097-aea1-7d510cc0f85d",
+    "Name": "Kibaha"
+  },
+  {
+    "Id": "9fd2ab91-5fda-4545-842c-7e0a3d07025a",
+    "Name": "Musoma Manispaa"
+  },
+  {
+    "Id": "280ecdd0-9872-4b67-bb95-7e27ae6f25e2",
+    "Name": "Sengerema"
+  },
+  {
+    "Id": "ab946694-eff0-4572-bb5a-7e60aaea2896",
+    "Name": "Mkoani"
+  },
+  {
+    "Id": "0d0c8f31-2c47-4e59-8db1-8066ff4fb4c7",
+    "Name": "SingRegionIda"
+  },
+  {
+    "Id": "36ea4886-b582-4966-92ca-807abb4e5dab",
+    "Name": "Bagamoyo"
+  },
+  {
+    "Id": "793fe9d8-c4d0-40b4-ba83-80c1ffa8ab82",
+    "Name": "Nyasa"
+  },
+  {
+    "Id": "075183e9-c3df-482b-8eae-82011db79d6d",
+    "Name": "Nyamagana Manispaa"
+  },
+  {
+    "Id": "3d7e05d4-a9e2-4daa-b8e1-82d4c0bb2b2f",
+    "Name": "Kibaha"
+  },
+  {
+    "Id": "24031c55-324b-4e31-b045-836290f383a5",
+    "Name": "Arusha"
+  },
+  {
+    "Id": "87d55710-5252-4f08-a564-85a564b125b8",
+    "Name": "Ruangwa"
+  },
+  {
+    "Id": "16de9c15-402a-4802-8c4c-877655b8fd3a",
+    "Name": "Chamwino"
+  },
+  {
+    "Id": "0c56db65-305d-487e-bba7-87fd88a382a6",
+    "Name": "Tanga City"
+  },
+  {
+    "Id": "f36d5e6a-c4a7-43db-9102-8ac262503c06",
+    "Name": "Kyerwa"
+  },
+  {
+    "Id": "f86ced88-0a03-4e65-870c-8c33f010ecd7",
+    "Name": "Sumbawanga Manispaa"
+  },
+  {
+    "Id": "0f4143cd-5c5e-4bb7-9da3-8d6d01576a8c",
+    "Name": "Kigoma-Ujiji Manispaa"
+  },
+  {
+    "Id": "ccf06a04-9722-4c5c-a625-8fb022da2591",
+    "Name": "Kigoma"
+  },
+  {
+    "Id": "d8fae309-e2e3-465c-bc0f-903909545869",
+    "Name": "Kwimba"
+  },
+  {
+    "Id": "9639fa62-a081-4e70-893e-92aec8963022",
+    "Name": "Iringa"
+  },
+  {
+    "Id": "0d560dbc-af16-437f-9654-92e557a04cc7",
+    "Name": "Unguja Mjini"
+  },
+  {
+    "Id": "ed1edce7-16b6-4a48-9553-97b841748679",
+    "Name": "Mtwara"
+  },
+  {
+    "Id": "1df1b903-2356-4e41-b3dd-97fc2d2811ae",
+    "Name": "Gairo"
+  },
+  {
+    "Id": "7d7a0f0f-58cc-4032-9010-996f032f8edc",
+    "Name": "Magu"
+  },
+  {
+    "Id": "9d1342ba-113a-44ca-9f8f-9a5dc0f152f9",
+    "Name": "Rungwe"
+  },
+  {
+    "Id": "99af5441-e15d-443a-be3f-9ab66d47e6b7",
+    "Name": "Wanging'ombe"
+  },
+  {
+    "Id": "1762919e-ad63-4678-8813-9c7ed8e49401",
+    "Name": "Chunya"
+  },
+  {
+    "Id": "06677985-dbfe-4235-8ff8-9dd72ff09554",
+    "Name": "Morogoro Manispaa"
+  },
+  {
+    "Id": "049b3f42-beaf-4cf3-a326-a0612021cd48",
+    "Name": "Arusha City"
+  },
+  {
+    "Id": "d3e6d1f2-3c3e-41d8-9d9b-a173b419f151",
+    "Name": "Babati"
+  },
+  {
+    "Id": "ad74b6fe-e54c-4ab8-8c36-a1998571cc26",
+    "Name": "Mkalama"
+  },
+  {
+    "Id": "da436a57-27ea-4a27-bca6-a28297af5113",
+    "Name": "Mlele"
+  },
+  {
+    "Id": "c313a56c-90cb-478e-8cbe-a3524e458e5d",
+    "Name": "Itilima"
+  },
+  {
+    "Id": "100fd00a-3912-4a78-85b8-a47a60b83108",
+    "Name": "Rombo"
+  },
+  {
+    "Id": "f752029d-51c7-46f6-bd32-a884f20a5186",
+    "Name": "Rufiji"
+  },
+  {
+    "Id": "1dd58cf7-b297-458a-8ac3-ab251a874e91",
+    "Name": "Manyoni"
+  },
+  {
+    "Id": "2dc71bcd-b703-4d00-a4dd-adc24d397f3c",
+    "Name": "Kongwa"
+  },
+  {
+    "Id": "377c5262-57ba-44af-8a6c-b0884eaac051",
+    "Name": "Mwanga"
+  },
+  {
+    "Id": "a923988a-3b3d-4e59-946c-b0f4b6c100fc",
+    "Name": "Kahama"
+  },
+  {
+    "Id": "7894b344-e2a9-4de5-8a84-b2934951671c",
+    "Name": "Mbeya"
+  },
+  {
+    "Id": "c5afbe08-2f98-45f6-bd6b-b43b3535382e",
+    "Name": "Korogwe"
+  },
+  {
+    "Id": "c3cd64cb-7c79-4a83-ac5f-b469f4bf104f",
+    "Name": "Karatu"
+  },
+  {
+    "Id": "094511ea-a675-418f-b326-b6462716c965",
+    "Name": "Hanang"
+  },
+  {
+    "Id": "b08de291-711b-4057-87f6-b6c2bb9b598a",
+    "Name": "Mbarali City"
+  },
+  {
+    "Id": "f80cc00d-3c5c-4a0b-832e-b94d35296061",
+    "Name": "Igunga"
+  },
+  {
+    "Id": "373407cb-ab44-42ef-9a6b-b9e7f9382b5b",
+    "Name": "Newala"
+  },
+  {
+    "Id": "f42a5013-0e5b-41d5-88a9-bae24ee11487",
+    "Name": "Kiteto"
+  },
+  {
+    "Id": "224f6698-fcd8-4631-88d7-bc593f6d3c1f",
+    "Name": "Busega"
+  },
+  {
+    "Id": "d31b4289-a2e6-4ce1-95c6-bceb488dc408",
+    "Name": "Mtwara Manispaa"
+  },
+  {
+    "Id": "bb809a5c-82ae-45be-8714-bcfa2b833f7d",
+    "Name": "LongRegionIdo"
+  },
+  {
+    "Id": "3c82bd4e-0ee1-49e3-b535-bd12c6c95f77",
+    "Name": "Kisarawe"
+  },
+  {
+    "Id": "547d3872-da95-4bcc-94f9-be28da3f69f7",
+    "Name": "Iramba"
+  },
+  {
+    "Id": "2317a359-3886-4098-b448-c370e916c688",
+    "Name": "Shinyanga"
+  },
+  {
+    "Id": "b04d7233-564f-41a4-a173-c451cf9b8b82",
+    "Name": "Moshi Manispaa"
+  },
+  {
+    "Id": "21195b12-b591-475a-868f-c52696c51435",
+    "Name": "Maswa"
+  },
+  {
+    "Id": "3710ac33-a0e4-43e0-941b-c5c78a63e55f",
+    "Name": "Malinyi"
+  },
+  {
+    "Id": "a6996d21-ae07-4c2c-95b5-c6056b42981a",
+    "Name": "Butiama"
+  },
+  {
+    "Id": "252d3fff-5928-47af-93da-c65bc8a89860",
+    "Name": "Songea Manispaa"
+  },
+  {
+    "Id": "26733eb8-dcaf-4840-b920-c7428b8fb74c",
+    "Name": "Buhigwe"
+  },
+  {
+    "Id": "19fb9cc1-da4c-46e2-ac13-c803fd07dfb8",
+    "Name": "Wete"
+  },
+  {
+    "Id": "be719ac2-6356-495a-980b-c943314c7c73",
+    "Name": "Siha"
+  },
+  {
+    "Id": "49864cd0-4ec5-45ff-8d7b-ca8056f3920d",
+    "Name": "Misungwi"
+  },
+  {
+    "Id": "ae1da4a4-3f28-4266-b015-cacb7eb19aad",
+    "Name": "Kibondo"
+  },
+  {
+    "Id": "e13ca309-b21d-44a3-951d-cb0c7e3e33a9",
+    "Name": "Mkinga"
+  },
+  {
+    "Id": "cddce853-23e8-420b-85fd-cb2e0925b662",
+    "Name": "Mjini"
+  },
+  {
+    "Id": "8a508d3f-ab30-430e-a8eb-cb77e0145fe7",
+    "Name": "Meru"
+  },
+  {
+    "Id": "d7bd2869-ffbd-44bc-a72d-cea7431ddd6f",
+    "Name": "Temeke Manispaa"
+  },
+  {
+    "Id": "7e70f76f-d157-4f7a-b095-cf4127a032ad",
+    "Name": "Kasulu"
+  },
+  {
+    "Id": "ed2fa86d-6249-4678-8ac5-cf9277cd9ee3",
+    "Name": "Namtumbo"
+  },
+  {
+    "Id": "e024b571-4cc9-4ceb-b713-cfc5d77789a1",
+    "Name": "Muheza"
+  },
+  {
+    "Id": "a1441c90-6086-441e-bad8-d2c8fd90f37b",
+    "Name": "Korogwe"
+  },
+  {
+    "Id": "726ac83f-f1a7-45e9-b88b-d45a6d3b48f5",
+    "Name": "Lindi"
+  },
+  {
+    "Id": "3fa9c759-c82e-4a1d-b92f-d56852c36544",
+    "Name": "Kondoa"
+  },
+  {
+    "Id": "2ae21003-c24f-467e-b8ca-d6a1ca391976",
+    "Name": "Nkasi"
+  },
+  {
+    "Id": "348e5e06-7b54-4b33-bb73-d768db06988a",
+    "Name": "Momba"
+  },
+  {
+    "Id": "728a740a-3748-4232-a5be-d8536e9ce42d",
+    "Name": "Meatu"
+  },
+  {
+    "Id": "1aada1e7-d7c2-43a7-8afe-d968c124140c",
+    "Name": "Nanyumbu"
+  },
+  {
+    "Id": "5b221bcd-3c29-442b-b233-dbb591d20f27",
+    "Name": "Morogoro"
+  },
+  {
+    "Id": "e13a8e12-cad9-413a-9e99-ddd2988c5af0",
+    "Name": "Sumbawanga"
+  },
+  {
+    "Id": "25f018f7-446e-40b3-8a69-de5af5c146e4",
+    "Name": "Ileje"
+  },
+  {
+    "Id": "c95acb15-6cf7-4eab-ac93-e0827158fc98",
+    "Name": "Monduli"
+  },
+  {
+    "Id": "3283c4e4-9ce3-46b3-bea3-e2b596a59297",
+    "Name": "Mbulu"
+  },
+  {
+    "Id": "2ac551fb-07f4-47f4-ad3e-e5543186fe62",
+    "Name": "Ngara"
+  },
+  {
+    "Id": "82d46f42-89a2-466b-a48f-e5640005565f",
+    "Name": "Uyui"
+  },
+  {
+    "Id": "4acba1b7-c975-4f2e-b64f-e687cb6515ef",
+    "Name": "Mvomero"
+  },
+  {
+    "Id": "98ccf798-ac36-4603-8967-e8aa067069d2",
+    "Name": "Kilindi"
+  },
+  {
+    "Id": "c0056945-2501-4cc8-aac3-ea8a2ec2d39a",
+    "Name": "Kakonko"
+  },
+  {
+    "Id": "0aff2c61-b000-4ff5-863e-eab35ee3f5d7",
+    "Name": "Uvinza"
+  },
+  {
+    "Id": "9f582e90-b426-49fb-831d-ec5d2402ae8a",
+    "Name": "Nachingwea"
+  },
+  {
+    "Id": "295981a8-4357-4b58-975f-ec8b13e04933",
+    "Name": "Makambako"
+  },
+  {
+    "Id": "d0e4372e-48df-42b7-ae50-f121a990d4b5",
+    "Name": "Kaskazini A"
+  },
+  {
+    "Id": "fcd06753-99c0-41ac-9339-f18db92beac9",
+    "Name": "Njombe"
+  },
+  {
+    "Id": "1d04fbb6-0f4d-46d3-b207-f27007eda222",
+    "Name": "Ulanga"
+  },
+  {
+    "Id": "7a7edf5d-35af-4294-acfb-f2964eaaa8dd",
+    "Name": "Lindi Manispaa"
+  },
+  {
+    "Id": "508c793a-e4c4-4f36-b725-f62871ca80b9",
+    "Name": "Songea"
+  },
+  {
+    "Id": "1d5d3891-9a16-4d13-a30f-f78b47b2d83e",
+    "Name": "Mafinga"
+  },
+  {
+    "Id": "67dc7f00-a9f9-4d7e-a2e5-f984ee75da4e",
+    "Name": "Mbogwe"
+  },
+  {
+    "Id": "2b14ebdd-8b7b-434b-9cc0-fa5c2f17ae25",
+    "Name": "Kalambo"
+  },
+  {
+    "Id": "ea099754-f9ee-4b95-9a07-fb7389e753d5",
+    "Name": "Mkuranga"
+  },
+  {
+    "Id": "2c466411-1efd-4450-b60e-fce9595bfd2b",
+    "Name": "Hai"
+  }
 ]

@@ -1,38 +1,65 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using RSAllies.Contracts.Requests;
+using RSAllies.Models;
 using RSAllies.Services;
 
 namespace RSAllies.Controllers
 {
-    public class VenuesController(SessionService sessionService) : Controller
+    public class VenuesController(/*SessionService sessionService*/ ApiClient apiClient) : Controller
     {
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            if (sessionService.Check())
-            {
+            //if (sessionService.Check())
+            //{
 
-                return RedirectToAction("Login", "Account");
-            }
+            //    return RedirectToAction("Login", "Account");
+            //}
 
-            return View();
+            var result = await apiClient.GetVenues();
+
+            return View(result.Value);
         }
 
         public IActionResult Create()
         {
-            ViewBag.Districts = new SelectList(FileService.GetDistricts(), "Id", "Name");
-            ViewBag.Regions = new SelectList(FileService.GetRegions(), "Id", "Name");
             return View();
         }
 
-        public IActionResult Venue(string id, string venueName, string district, string region, string Capacity, string contact)
+        public async Task<IActionResult> Venue(string id)
         {
-            ViewBag.Id = id;
-            ViewBag.VenueName = venueName;
-            ViewBag.District = district;
-            ViewBag.Region = region;
-            ViewBag.Capacity = Capacity;
-            ViewBag.Contact = contact;
-            return View();
+            var result = await apiClient.GetVenue(Guid.Parse(id));
+
+            return View(result.Value);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateVenue(Venue model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Create", model);
+            }
+
+            var venue = new CreateVenueDto
+            {
+                Name = model.Name,
+                DistrictId = model.DistrictId,
+                RegionId = model.RegionId,
+                Capacity = model.Capacity,
+                ImageUrl = ImageUploadService.UploadVenueImage(model.ImageUrl),
+                Address = model.Address
+            };
+
+            var result = await apiClient.CreateVenue(venue);
+
+            if (result.IsSuccess)
+            {
+                return RedirectToAction("Index", "Venues");
+            }
+
+            return View("Create", model);
+
         }
     }
 }

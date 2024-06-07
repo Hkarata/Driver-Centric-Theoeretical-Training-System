@@ -1,11 +1,11 @@
-﻿using RSAllies.Models;
-using System.Text.Json;
+﻿using Newtonsoft.Json;
+using RSAllies.Models;
 
 namespace RSAllies.Services
 {
     public static class FileService
     {
-        public static IEnumerable<Data> GetDistricts()
+        public static List<Data> GetDistricts()
         {
             var data = new List<Data>();
 
@@ -13,13 +13,13 @@ namespace RSAllies.Services
             {
                 var reader = new StreamReader(stream);
                 var json = reader.ReadToEnd();
-                data = JsonSerializer.Deserialize<List<Data>>(json);
+                data = JsonConvert.DeserializeObject<List<Data>>(json);
             }
 
-            return data!;
+            return data!.OrderBy(d => d.Name).ToList();
         }
 
-        public static IEnumerable<Data> GetRegions()
+        public static List<Data> GetRegions()
         {
             var data = new List<Data>();
 
@@ -27,10 +27,10 @@ namespace RSAllies.Services
             {
                 var reader = new StreamReader(stream);
                 var json = reader.ReadToEnd();
-                data = JsonSerializer.Deserialize<List<Data>>(json);
+                data = JsonConvert.DeserializeObject<List<Data>>(json);
             }
 
-            return data!;
+            return data!.OrderBy(r => r.Name).ToList();
         }
     }
 }

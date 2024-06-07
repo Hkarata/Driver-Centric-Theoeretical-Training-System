@@ -11,6 +11,12 @@ public class SessionService(IHttpContextAccessor httpContextAccessor)
         return !string.IsNullOrEmpty(session);
     }
 
+    public bool CheckAdmin()
+    {
+        var session = httpContextAccessor.HttpContext?.Session.GetString("AdminSession");
+        return !string.IsNullOrEmpty(session);
+    }
+
     public UserDto? GetUserData()
     {
         var session = httpContextAccessor.HttpContext?.Session.GetString("UserSession");

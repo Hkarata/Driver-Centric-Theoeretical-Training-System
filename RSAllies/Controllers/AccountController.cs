@@ -198,7 +198,7 @@ namespace RSAllies.Controllers
 
             await sessionService.SetAdminData(result.Value);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Administration");
         }
     }
 }
