@@ -1,0 +1,16 @@
+﻿#TheContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+#TheHolder{
+    background-color:white;
+    width: 500px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+    font-family: 'Fira Code VF';
+}
