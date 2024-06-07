@@ -4,18 +4,23 @@ using RSAllies.Services;
 
 namespace RSAllies.Controllers
 {
-    public class VenuesController : Controller
+    public class VenuesController(SessionService sessionService) : Controller
     {
         public IActionResult Index()
         {
+            if (sessionService.Check())
+            {
+
+                return RedirectToAction("Login", "Account");
+            }
+
             return View();
         }
 
         public IActionResult Create()
         {
-            var x = new SelectList(FileService.GetDistricts(), "Id", "Name");
-            var y = new SelectList(FileService.GetRegions(), "Id", "Name");
-
+            ViewBag.Districts = new SelectList(FileService.GetDistricts(), "Id", "Name");
+            ViewBag.Regions = new SelectList(FileService.GetRegions(), "Id", "Name");
             return View();
         }
 

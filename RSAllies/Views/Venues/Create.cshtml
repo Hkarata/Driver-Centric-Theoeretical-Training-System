@@ -1,5 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Create venue";
+    var regions = ViewData["Regions"] as SelectList;
+    var districts = ViewData["Districts"] as SelectList;
 }
 
 @model Venue
@@ -33,31 +35,28 @@
                 <span asp-validation-for="Capacity" class="text-danger"></span>
             </div>
             <div class="form-group mb-3">
-                <div class="input-group">
-                    <label class="input-group-text" asp-for="RegionId">
-                        <span class="english">Region</span>
-                        <span class="swahili">Mkoa</span>
-                    </label>
-                    <select asp-for="RegionId" class="form-select">
-                        <option value="">Choose...</option>
-                    </select>
-                </div>
-                <span asp-validation-for="RegionId" class="text-danger"></span>
-            </div>
-            <div class="form-group mb-3">
                 <div class="input-group mb-3">
                     <label class="input-group-text" asp-for="DistrictId">
                         <span class="english">District</span>
                         <span class="swahili">Wilaya</span>
                     </label>
-                    <select asp-for="DistrictId" class="form-select">
+                    <select asp-for="DistrictId" class="form-select" asp-items="@districts">
                         <option value="">Choose...</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
                     </select>
                 </div>
                 <span asp-validation-for="DistrictId" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <div class="input-group">
+                    <label class="input-group-text" asp-for="RegionId">
+                        <span class="english">Region</span>
+                        <span class="swahili">Mkoa</span>
+                    </label>
+                    <select asp-for="RegionId" class="form-select" asp-items="@regions">
+                        <option value="">Choose...</option>
+                    </select>
+                </div>
+                <span asp-validation-for="RegionId" class="text-danger"></span>
             </div>
             <div class="input-group mb-3">
                 <input asp-for="ImageUrl" type="file" class="form-control">

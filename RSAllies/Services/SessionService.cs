@@ -24,4 +24,17 @@ public class SessionService(IHttpContextAccessor httpContextAccessor)
         httpContextAccessor.HttpContext?.Session.SetString("UserSession", data);
         return Task.CompletedTask;
     }
+
+    public Task Clear()
+    {
+        httpContextAccessor.HttpContext?.Session.Remove("UserSession");
+        return Task.CompletedTask;
+    }
+
+    public Task SetAdminData(AdminDto admin)
+    {
+        var data = JsonConvert.SerializeObject(admin);
+        httpContextAccessor.HttpContext?.Session.SetString("AdminSession", data);
+        return Task.CompletedTask;
+    }
 }

@@ -175,5 +175,30 @@ namespace RSAllies.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AdminLogin(AdminModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Admin");
+            }
+
+            var request = model.Adapt<AdminLogin>();
+
+            var result = await apiClient.AdminLogin(request);
+
+            if (result.IsFailure)
+            {
+                ModelState.AddModelError("Username", "Invalid Username or Password");
+
+                return View("Admin", model);
+            }
+
+            await sessionService.SetAdminData(result.Value);
+
+            return RedirectToAction("Index");
+        }
     }
 }

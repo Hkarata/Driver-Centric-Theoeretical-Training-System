@@ -44,11 +44,11 @@ namespace RSAllies.Services
             return result;
         }
 
-        public async Task<Result<AdminDto>> AdminLogin(AdminLogin request)
+        public async Task<Result<Contracts.Responses.AdminDto>> AdminLogin(AdminLogin request)
         {
             var response = await httpClient.PostAsJsonAsync<AdminLogin>("/api/admin", request);
             var content = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<Result<AdminDto>>(content)!;
+            var result = JsonConvert.DeserializeObject<Result<Contracts.Responses.AdminDto>>(content)!;
             return result;
         }
 
@@ -73,6 +73,14 @@ namespace RSAllies.Services
             var response = await httpClient.GetAsync($"/api/booking/{userId}");
             var content = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<Result<BookingDto>>(content)!;
+            return result;
+        }
+
+        public async Task<Result> CreateAdmin(Contracts.Requests.AdminDto admin)
+        {
+            var response = await httpClient.PostAsJsonAsync("/api/admin", admin);
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<object>>(content)!;
             return result;
         }
     }

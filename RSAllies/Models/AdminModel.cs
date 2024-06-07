@@ -13,7 +13,7 @@ namespace RSAllies.Models
 
         [PasswordPropertyText]
         [Required(ErrorMessage = "Please provide your password")]
-        [MinLength(12, ErrorMessage = "Password must be at least 12 characters long")]
+        [MinLength(8, ErrorMessage = "Password must be at least 12 characters long")]
         public string Password { get; set; } = string.Empty;
     }
 }
