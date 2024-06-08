@@ -1,4 +1,6 @@
 ﻿@using RSAllies.Contracts.Responses
+@using RSAllies.Services
+@inject SessionService sessionService
 @{
     ViewData["Title"] = "Venue";
 }
@@ -36,12 +38,17 @@
 
         <div class="d-flex flex-row justify-content-between align-items-center" style="font-family:'Fira Code VF';">
             <span style="font-size:14px" class="badge bg-success">Available</span>
-            No. of Sessions: {@Model.Sessions!.Count}
+            <span class="english">No. of Sessions: {@Model.Sessions!.Count}</span>
+            <span class="swahili">Idadi ya Nafasi: {@Model.Sessions!.Count}</span>
         </div>
 
 
 
-
+        <a class="w-100 btn btn-primary" style="font-family:'Fira Code VF';margin-top:auto;"
+            asp-controller="Sessions" 
+            asp-action="Create" 
+            asp-route-id="@Model.Id"
+            asp-route-venueName="@Model.Name">Create session</a>
 
     </div>
 
@@ -49,34 +56,38 @@
         
         @if (Model.Sessions.Any())
         {
-            @foreach (var i in Enumerable.Range(0, 60))
+            @foreach (var session in Model.Sessions)
             {
                 <div class="Card">
 
                     <div class="d-flex flex-row justify-content-between align-items-center w-100" style="font-family:'Fira Code'">
-                        <span>11:00 - 11:30</span>
+                        <span>@session.StartTime - @session.EndTime</span>
                         <i style="color:green;font-size:16px;" class="bi bi-patch-check"></i>
                     </div>
 
                     <div class="d-flex flex-row justify-content-between align-items-center w-100" style="font-family:'Fira Code'">
                         <i style="color:green;font-size:16px;" style="color:#f2c94c" class="bi bi-calendar2-date"></i>
-                        <span>17/08/2002</span>
+                        <span>@session.Date.ToString("dd/MM/yyyy")</span>
                     </div>
 
                     <div class="d-flex flex-row justify-content-between align-items-center w-100" style="font-family:'Fira Code'">
                         <i style="color:green;font-size:16px;" class="bi bi-people"></i>
-                        <span>2/60</span>
+                        <span>@session.Capacity/@Model.Capacity</span>
                     </div>
 
-                    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="60" style="height: 3px">
-                        <div class="progress-bar" style="width:@i%"></div>
+                    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="@Model.Capacity" style="height: 3px">
+                        <div class="progress-bar" style="width:@session.Capacity%"></div>
                     </div>
 
                     <button data-bs-toggle="modal" data-bs-target="#staticBackdrop">Book</button>
-                    <button data-bs-toggle="modal" data-bs-target="#Attendees">
-                        <i class="bi bi-eye"></i>
-                        View
-                    </button>
+
+                    @if (!sessionService.CheckAdmin())
+                    {
+                        <a asp-controller="Sessions" asp-action="Details" asp-route-id="@session.Id"
+                           style="color:black;text-align:center;text-decoration:none;border: none;border-radius: 5px;font-family: 'Fira Code VF';font-size: 14px;background-color: #f2c94c;">
+                            Details
+                        </a>
+                    }
 
                 </div>
             }
@@ -85,7 +96,10 @@
         {
             <div id="NoSessions">
                 
-                <img src="/Images/upcoming.gif" />
+                <img src="/Images/upcoming.gif" width="100" height="100"/>
+
+                <p style="font-family:'Fira Code VF'" class="english">This venue is yet to have sessions.</p>
+                <p style="font-family:'Fira Code VF'" class="swahili">kituo hiki hakina nafasi</p>
 
             </div>
         }
@@ -132,62 +146,6 @@
             <div class="modal-footer" style="font-family:'Fira Code VF';font-size:15px;">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary">Book</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="Attendees" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-fullscreen modal-dialog-centered">
-        <div class="modal-content" id="TheList">
-            <div class="modal-header">
-                <div style="font-family:'Fira Code VF'" class="modal-title" id="staticBackdropLabel">
-                    <div  class="d-flex flex-row justify-content-between align-items-center g-5">
-                        <span class="english">Session Attendees</span>
-                        <span class="swahili">Hifadhi nafasi</span>
-                        <form class="d-flex align-self-center">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-primary" type="submit">Search</button>
-                        </form>
-                    </div>
-                </div>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" style="height:500px;overflow-y:auto;scrollbar-width:none;">
-                
-                <table class="table table-hover" style="font-family:'Fira Code VF'">
-                    <thead>
-                        <tr style="background-color:red;">
-                            <th style="font-weight:500" scope="col">First name</th>
-                            <th style="font-weight:500" scope="col">Middle name</th>
-                            <th style="font-weight:500" scope="col">Last name</th>
-                            <th style="font-weight:500" scope="col">Booked Date</th>
-                            <th style="font-weight:500" scope="col">Status</th>
-                            <th style="font-weight:500" scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach(var i in Enumerable.Range(0, 100))
-                        {
-                            <tr>
-                                <td>Heri</td>
-                                <td>Mussa</td>
-                                <td>Karata</td>
-                                <td>2024-05-27</td>
-                                <td>Booked</td>
-                                <td>
-                                    <a href="#" class="btn btn-warning btn-sm">Cancel</a>
-                                    <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-
-
-            </div>
-            <div class="modal-footer" style="font-family:'Fira Code VF';font-size:15px;">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

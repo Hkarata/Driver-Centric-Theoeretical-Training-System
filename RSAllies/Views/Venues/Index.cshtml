@@ -41,7 +41,7 @@
             {
                 <a class="Card" asp-controller="Venues" asp-action="Venue" asp-route-id="@venue.Id">
 
-                    <img class="img-shuffle" class="w-100" />
+                    <img class="img-shuffle" src="/venues/@venue.ImageUrl" class="w-100" />
 
                     <div style="font-family: 'Fira Code Regular';font-weight:650">
                         <span>@venue.Name</span>
@@ -79,30 +79,6 @@
 </div>
 
 @section Scripts {
-
-    <script>
-        $(document).ready(function () {
-            // Define image URLs with clear descriptions (same as before)
-            const venueImages = [
-                { url: "/Images/first-image.jpg", title: "First Image" },
-                { url: "/Images/second-image.jpg", title: "Second Image" },
-                { url: "/Images/fourth-image.jpg", title: "Fourth Image" }
-            ];
-
-            // Shuffle image URLs using Math.random()
-            venueImages.sort(() => Math.random() - 0.5);
-
-            // Apply shuffled images to cards on document load
-            $('.img-shuffle').each(function (index) {
-                // Ensure image index stays within bounds
-                const imageIndex = index % venueImages.length; // Wrap around if needed
-                $(this).attr('src', venueImages[imageIndex].url);
-                $(this).attr('alt', venueImages[imageIndex].title);
-            });
-        });
-
-
-    </script>
 }
 
 <style>

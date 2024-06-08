@@ -107,5 +107,13 @@ namespace RSAllies.Services
             var result = JsonConvert.DeserializeObject<Result<VenueDto>>(content)!;
             return result;
         }
+
+        public async Task<Result> CreateSession(CreateSessionDto session)
+        {
+            var response = await httpClient.PostAsJsonAsync<CreateSessionDto>("/api/session", session);
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<object>>(content)!;
+            return result;
+        }
     }
 }
