@@ -10,6 +10,7 @@ namespace RSAllies.Models
 
         [MaxLength(50)]
         [Required]
+        [EmailAddress]
         public string Address { get; set; } = string.Empty;
 
         [Required]

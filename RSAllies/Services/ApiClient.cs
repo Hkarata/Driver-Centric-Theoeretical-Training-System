@@ -115,5 +115,21 @@ namespace RSAllies.Services
             var result = JsonConvert.DeserializeObject<Result<object>>(content)!;
             return result;
         }
+
+        public async Task<Result<List<Admin>>> GetAdmins()
+        {
+            var response = await httpClient.GetAsync("/api/admins");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<List<Admin>>>(content)!;
+            return result;
+        }
+
+        public async Task<Result<Admin>> GetAdmin(Guid id)
+        {
+            var response = await httpClient.GetAsync($"/api/admin/{id}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<Admin>>(content)!;
+            return result;
+        }
     }
 }

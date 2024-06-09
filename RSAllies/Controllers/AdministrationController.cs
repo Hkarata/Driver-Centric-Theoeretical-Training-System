@@ -18,6 +18,7 @@ namespace RSAllies.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateAdmin model)
         {
             if (ModelState.IsValid)
@@ -44,6 +45,20 @@ namespace RSAllies.Controllers
             }
 
             return View("CreateAdmin", model);
+        }
+
+        public async Task<IActionResult> Admins()
+        {
+            var result = await apiClient.GetAdmins();
+
+            return View(result.Value ?? null);
+        }
+
+        public async Task<IActionResult> Admin(string id)
+        {
+            var result = await apiClient.GetAdmin(Guid.Parse(id));
+
+            return View(result.Value ?? null);
         }
     }
 }

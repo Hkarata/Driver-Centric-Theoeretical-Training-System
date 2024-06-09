@@ -1,0 +1,209 @@
+﻿@using RSAllies.Contracts.Responses
+@{
+    ViewData["Title"] = "Admins";
+}
+
+@model IEnumerable<Admin>
+
+
+<div id="TheContainer">
+
+    <div id="firstDiv">
+        
+        <div class="Card">
+            aa
+        </div>
+
+        <div class="Card">
+            aa
+        </div>
+
+        <div class="Card">
+            
+            <figure class="highcharts-figure">
+                <div id="container"></div>
+            </figure>
+
+        </div>
+
+    </div>
+
+    <div id="secondDiv">
+
+        <div class="Card d-flex flex-row justify-content-between">
+
+            <div>
+
+            </div>
+
+            <a class="btn btn-primary" style="font-family: 'Fira Code VF'" asp-action="Create-Admin">Create admin</a>
+        </div>
+        
+        <div id="TheHolder">
+
+            @foreach(var admin in Model)
+            {
+
+                <a asp-action="Admin" asp-route-id="@admin.Id" class="Cards" style="font-family:'Fira Code VF'">
+                    
+                    <div id="myDiv">
+                        <span style="font-size:25px;font-family: 'Fira Code VF'">HK</span>
+                    </div>
+
+                    <span style="align-self:center">@admin.Username</span>
+
+                    <div class="d-flex flex-row justify-content-between">
+
+                        <span>Name</span>
+
+                        <span style="font-weight:500">@admin.FirstName</span>
+
+                    </div>
+
+                    <div class="d-flex flex-row justify-content-between">
+
+                        <span>Surname</span>
+
+                        <span style="font-weight:500">@admin.LastName</span>
+
+                    </div>
+
+                    <div class="d-flex flex-row justify-content-between">
+
+                        <span>Role</span>
+
+                        <span style="font-weight:500">@admin.Role</span>
+
+                    </div>
+
+                    <div class="d-flex flex-row justify-content-between">
+
+                        <i class="bi bi-telephone-fill text-success"></i>
+
+                        <span style="font-weight:500">@admin.Phone</span>
+
+                    </div>
+
+                    <div class="d-flex flex-row justify-content-between">
+
+                        <i class="bi bi-envelope-at-fill text-primary"></i>
+
+                        <span style="font-weight:500">@admin.Email</span>
+
+                    </div>
+
+                </a>
+                
+            }
+
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+    .Cards {
+        background-color: white;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+        transition: 0.3s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        cursor: pointer;
+        color: black;
+        text-decoration: none;
+    }
+
+        .Cards:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+        }
+</style>
+
+@section Scripts{
+
+    <script src="/js/highcharts.js"></script>
+    <script src="/js/exporting.js"></script>
+    <script src="/js/accessibility.js"></script>
+    <script src="/js/export-data.js"></script>
+    <script src="/js/highcharts-more.js"></script>
+
+    <script type="text/javascript">
+        Highcharts.chart('container', {
+            colors: ['#ff3133', '#ffdc01', '#9cd108'],
+            chart: {
+                type: 'column',
+                inverted: true,
+                polar: true,
+                style: {
+                    fontFamily: 'Fira Code VF'
+                }
+            },
+            title: {
+                text: '',
+                align: 'left'
+            },
+            tooltip: {
+                outside: false
+            },
+            pane: {
+                size: '85%',
+                innerSize: '80%',
+                endAngle: 270
+            },
+            xAxis: {
+                tickInterval: 1,
+                labels: {
+                    align: 'right',
+                    useHTML: true,
+                    allowOverlap: true,
+                    step: 1,
+                    y: 3,
+                    style: {
+                        fontSize: '13px'
+                    }
+                },
+                lineWidth: 0,
+                gridLineWidth: 0,
+                categories: [
+                    'Roles <span class="f16"><span id="flag" class="flag no">' +
+                    '</span></span>'
+                ]
+            },
+            yAxis: {
+                lineWidth: 0,
+                tickInterval: 1,
+                reversedStacks: false,
+                endOnTick: true,
+                showLastLabel: true,
+                gridLineWidth: 0
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'normal',
+                    borderWidth: 1,
+                    pointPadding: 0,
+                    groupPadding: 0.15,
+                    borderRadius: '50%',
+                    maxPointWidth: 20
+                }
+            },
+            series: [{
+                name: 'Super Users',
+                data: [@Model.Where(a => a.Role == "SuperUser").Count()]
+            }, {
+                name: 'Administrators',
+                data: [@Model.Where(a => a.Role == "SuperUser").Count()]
+            }, {
+                name: 'Managers',
+                data: [@Model.Where(a => a.Role == "Manager").Count()]
+            }]
+        });
+
+    </script>
+
+
+}
