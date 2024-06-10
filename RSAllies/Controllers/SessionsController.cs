@@ -46,11 +46,21 @@ namespace RSAllies.Controllers
             return View(session);
         }
 
-        public IActionResult Details(string id)
+        public async Task<IActionResult> Details(string id, string startTime,
+            string endTime, string date, 
+            string capacity, string venueName)
         {
-            ViewBag.SessionId = Guid.Parse(id);
+            ViewBag.SessionId = id;
+            ViewBag.StartTime = startTime;
+            ViewBag.EndTime = endTime;
+            ViewBag.Date = date;
+            ViewBag.Capacity = capacity;
+            ViewBag.VenueName = venueName;
 
-            return View();
+
+            var result = await apiClient.GetSessionUsers(Guid.Parse(id));
+
+            return result.IsSuccess ? View(result.Value) : View(null);
         }
     }
 }

@@ -1,3 +1,83 @@
-﻿@{
+﻿@using RSAllies.Contracts.Responses
+@{
     ViewData["Title"] = "Session";
 }
+
+@model IEnumerable<UserData>
+
+<div id="TheContainer">
+
+    <div id="firstContainer">
+        
+        <img src="/Images/session-image.jpg" class="img-fluid" style="border-radius:5px"/>
+
+        <br />
+
+        <p>@ViewBag.VenueName</p>
+
+        <div class="d-flex flex-row justify-content-between">
+
+            <span class="english">Date</span>
+            <span class="swahili">Tarehe</span>
+
+            @ViewBag.Date
+
+        </div>
+
+        <div class="d-flex flex-row justify-content-between">
+
+            <p>Start Time: @ViewBag.StartTime</p>
+            <p>End Time: @ViewBag.EndTime</p>
+
+        </div>
+
+        <div class="d-flex flex-row justify-content-between">
+            
+            <span class="english">Current Capacity</span>
+            <span class="swahili">Nafasi zilizohifadhiwa</span>
+
+            @ViewBag.Capacity
+
+        </div>
+
+        <a class="btn btn-danger" style="margin-top: auto">
+            <span class="english">Cancel session</span>
+            <span class="swahili">Sitisha</span>
+        </a>
+
+    </div>
+
+    <div id="secondContainer">
+        
+        <div id="myHeader">
+            <span class="english">First Name</span>
+            <span class="swahili">Jina la Kwanza</span>
+            <span class="english">Middle Name</span>
+            <span class="swahili">Jina la Kati</span>
+            <span class="english">Surname</span>
+            <span class="swahili">Jina la Mwisho</span>
+            <span class="english">Phone number</span>
+            <span class="swahili">Nambari ya simu</span>
+            <span class="english">Email</span>
+            <span class="swahili">Barua pepe</span>
+        </div>
+
+        <div id="myContent">
+
+            @foreach(var i in Enumerable.Range(1, 10))
+            {
+                <div id="myData">
+                    <span>Heri</span>
+                    <span>Mussa</span>
+                    <span>Karata</span>
+                    <span>0679844679</span>
+                    <span>hreishine.gmail.com</span>
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+
+</div>

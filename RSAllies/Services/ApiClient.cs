@@ -131,5 +131,13 @@ namespace RSAllies.Services
             var result = JsonConvert.DeserializeObject<Result<Admin>>(content)!;
             return result;
         }
+
+        public async Task<Result<List<UserData>>> GetSessionUsers(Guid sessionId)
+        {
+            var response = await httpClient.GetAsync($"/api/sessions/{sessionId}/users");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<List<UserData>>>(content)!;
+            return result;
+        }
     }
 }

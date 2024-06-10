@@ -83,7 +83,7 @@
 
                     @if (!sessionService.CheckAdmin())
                     {
-                        <a asp-controller="Sessions" asp-action="Details" asp-route-id="@session.Id"
+                        <a asp-controller="Sessions" asp-action="Details" asp-route-id="@session.Id" asp-route-startTime="@session.StartTime" asp-route-endTime="@session.EndTime" asp-route-date="@session.Date.ToString("dd/MM/yyyy")" asp-route-capacity="@session.Capacity" asp-route-venueName="@Model.Name"
                            style="color:black;text-align:center;text-decoration:none;border: none;border-radius: 5px;font-family: 'Fira Code VF';font-size: 14px;background-color: #f2c94c;">
                             Details
                         </a>
