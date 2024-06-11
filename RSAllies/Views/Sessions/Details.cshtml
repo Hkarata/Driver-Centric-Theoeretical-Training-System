@@ -40,44 +40,98 @@
 
         </div>
 
-        <a class="btn btn-danger" style="margin-top: auto">
+        <button type="button" class="btn btn-danger" style="margin-top: auto" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
             <span class="english">Cancel session</span>
             <span class="swahili">Sitisha</span>
-        </a>
+        </button>
 
     </div>
 
     <div id="secondContainer">
         
         <div id="myHeader">
-            <span class="english">First Name</span>
-            <span class="swahili">Jina la Kwanza</span>
-            <span class="english">Middle Name</span>
-            <span class="swahili">Jina la Kati</span>
-            <span class="english">Surname</span>
-            <span class="swahili">Jina la Mwisho</span>
-            <span class="english">Phone number</span>
-            <span class="swahili">Nambari ya simu</span>
+            <span class="english" >First Name</span>
+            <span class="swahili" >Jina la Kwanza</span>
+            <span class="english" > Middle Name</span>
+            <span class="swahili"> Jina la Kati</span>
+            <span class="english"> Surname</span>
+            <span class="swahili" > Jina la Mwisho</span>
+            <span class="english" > Phone number</span>
+            <span class="swahili" > Nambari ya simu</span>
             <span class="english">Email</span>
             <span class="swahili">Barua pepe</span>
         </div>
 
+        
         <div id="myContent">
 
-            @foreach(var i in Enumerable.Range(1, 10))
+            @foreach(var i in Enumerable.Range(1, 100))
             {
-                <div id="myData">
+                <div class="myData">
+
                     <span>Heri</span>
                     <span>Mussa</span>
                     <span>Karata</span>
                     <span>0679844679</span>
-                    <span>hreishine.gmail.com</span>
+                    <span style="text-overflow:ellipsis;word-wrap:break-word">heri.karata.outlook.com</span>
+
                 </div>
             }
 
         </div>
 
+
     </div>
 
 
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    
+</div>
+
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="staticBackdropLabel" style="font-family:'Fira Code VF';font-weight:600">Session Cancellation</span>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="font-family:'Fira Code VF';">
+                <span class="english">Are you sure you want to cancel this session?</span>
+                <span class="swahili">Je, unataka kuhairisha kipindi hichi cha mtihani?</span>
+            </div>
+            <div class="modal-footer" style="font-family:'Fira Code VF'">
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal">
+                    <span class="english">Abort</span>
+                    <span class="swahili">Ghairisha</span>
+                </button>
+                <button type="button" class="btn btn-danger" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">
+                    <span class="english">Cancel</span>
+                    <span class="swahili">Sitisha</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title fs-5" id="exampleModalToggleLabel2" style="font-family:'Fira Code VF'">Session Cancellation</span>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="font-family:'Fira Code VF'">
+                <span class="english">Are you sure? This action is irreversible</span>
+                <span class="swahili">Je, una uhakika? Kitendo hiki hakiwezi kubadilishwa.</span>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
+                    <span class="english">Continue cancellation</span>
+                    <span class="swahili">Endelea</span>
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
