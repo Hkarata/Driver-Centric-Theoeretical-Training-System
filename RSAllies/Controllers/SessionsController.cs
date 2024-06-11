@@ -47,7 +47,7 @@ namespace RSAllies.Controllers
         }
 
         public async Task<IActionResult> Details(string id, string startTime,
-            string endTime, string date, 
+            string endTime, string date,
             string capacity, string venueName)
         {
             ViewBag.SessionId = id;

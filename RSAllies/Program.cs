@@ -16,7 +16,7 @@ builder.Services.AddScoped<SessionService>();
 
 builder.Services.AddHttpClient<ApiClient>(client =>
 {
-    client.BaseAddress = new Uri("http://localhost:5000");
+    client.BaseAddress = new Uri("https://rsallies.azurewebsites.net/");
 });
 
 var app = builder.Build();
