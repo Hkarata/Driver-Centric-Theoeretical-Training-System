@@ -41,3 +41,13 @@
         margin-top: 10px;
     }
 }
+
+.myHeader {
+    font-weight: 900;
+    color: #f2c94c;
+    font-size: 25px;
+}
+
+.myContent{
+    font-weight:600;
+}

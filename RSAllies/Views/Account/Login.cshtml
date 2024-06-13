@@ -17,7 +17,7 @@
             <span class="swahili">Ingia kwenye akaunti yako.</span>
         </p>
 
-        <form asp-action="LoginUser" method="post">
+        <form asp-action="LoginUser" method="post" class="loginForm">
 
             <div class="mb-3">
 
@@ -50,6 +50,20 @@
 
 </div>
 
+<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <img src="~/images/wip.gif" width="70" height="70" />
+                <p style="font-family:'Fira Code VF'">
+                    <span class="english">Signing in...</span>
+                    <span class="swahili" style="display: none">Tafadhali subiri...</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
 <style>
     input {
         font-family: 'Fira Code VF';
@@ -59,4 +73,20 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+
+    <script>
+
+        $(document).ready(function () {
+
+            $(".loginForm").submit(function (event) {
+                
+                // Show the loading modal
+                $("#loadingModal").modal("show");
+
+                $('body').css('pointer-events', 'none')
+            });
+
+        });
+
+    </script>
 }

@@ -17,7 +17,7 @@ namespace RSAllies.Controllers
 
             var result = await apiClient.GetVenues();
 
-            return View(result.Value);
+            return result.IsSuccess ? View(result.Value) : View(null);
         }
 
         public IActionResult Create()

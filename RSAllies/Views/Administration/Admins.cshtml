@@ -3,7 +3,7 @@
     ViewData["Title"] = "Admins";
 }
 
-@model IEnumerable<Admin>
+@model IList<Admin>
 
 
 <div id="TheContainer">
@@ -41,59 +41,62 @@
         
         <div id="TheHolder">
 
-            @foreach(var admin in Model)
+            @if(Model is not null)
             {
+                @foreach (var admin in Model)
+                {
 
-                <a asp-action="Admin" asp-route-id="@admin.Id" class="Cards" style="font-family:'Fira Code VF'">
-                    
-                    <div id="myDiv">
-                        <span style="font-size:25px;font-family: 'Fira Code VF'">HK</span>
-                    </div>
+                    <a asp-action="Admin" asp-route-id="@admin.Id" class="Cards" style="font-family:'Fira Code VF'">
 
-                    <span style="align-self:center">@admin.Username</span>
+                        <div id="myDiv">
+                            <span style="font-size:25px;font-family: 'Fira Code VF'">HK</span>
+                        </div>
 
-                    <div class="d-flex flex-row justify-content-between">
+                        <span style="align-self:center">@admin.Username</span>
 
-                        <span>Name</span>
+                        <div class="d-flex flex-row justify-content-between">
 
-                        <span style="font-weight:500">@admin.FirstName</span>
+                            <span>Name</span>
 
-                    </div>
+                            <span style="font-weight:500">@admin.FirstName</span>
 
-                    <div class="d-flex flex-row justify-content-between">
+                        </div>
 
-                        <span>Surname</span>
+                        <div class="d-flex flex-row justify-content-between">
 
-                        <span style="font-weight:500">@admin.LastName</span>
+                            <span>Surname</span>
 
-                    </div>
+                            <span style="font-weight:500">@admin.LastName</span>
 
-                    <div class="d-flex flex-row justify-content-between">
+                        </div>
 
-                        <span>Role</span>
+                        <div class="d-flex flex-row justify-content-between">
 
-                        <span style="font-weight:500">@admin.Role</span>
+                            <span>Role</span>
 
-                    </div>
+                            <span style="font-weight:500">@admin.Role</span>
 
-                    <div class="d-flex flex-row justify-content-between">
+                        </div>
 
-                        <i class="bi bi-telephone-fill text-success"></i>
+                        <div class="d-flex flex-row justify-content-between">
 
-                        <span style="font-weight:500">@admin.Phone</span>
+                            <i class="bi bi-telephone-fill text-success"></i>
 
-                    </div>
+                            <span style="font-weight:500">@admin.Phone</span>
 
-                    <div class="d-flex flex-row justify-content-between">
+                        </div>
 
-                        <i class="bi bi-envelope-at-fill text-primary"></i>
+                        <div class="d-flex flex-row justify-content-between">
 
-                        <span style="font-weight:500">@admin.Email</span>
+                            <i class="bi bi-envelope-at-fill text-primary"></i>
 
-                    </div>
+                            <span style="font-weight:500">@admin.Email</span>
 
-                </a>
-                
+                        </div>
+
+                    </a>
+
+                }
             }
 
         </div>
@@ -193,13 +196,13 @@
             },
             series: [{
                 name: 'Super Users',
-                data: [@Model.Where(a => a.Role == "SuperUser").Count()]
+                data: [@(Model?.Where(a => a.Role == "SuperUser").Count() ?? 2)]
             }, {
                 name: 'Administrators',
-                data: [@Model.Where(a => a.Role == "SuperUser").Count()]
+                data: [(@Model?.Where(a => a.Role == "Administrator").Count() ?? 3)]
             }, {
                 name: 'Managers',
-                data: [@Model.Where(a => a.Role == "Manager").Count()]
+                data: [(@Model?.Where(a => a.Role == "Manager").Count() ?? 5)]
             }]
         });
 

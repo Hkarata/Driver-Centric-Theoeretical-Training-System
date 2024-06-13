@@ -3,7 +3,7 @@
     ViewData["Title"] = "Create Venue";
 }
 
-@model IEnumerable<SVenueDto>
+@model IList<SVenueDto>
 
 <div id="Container">
 
@@ -11,10 +11,10 @@
 
         <img src="/images/venue.jpg" alt="Image description">
         <div>
-            <span class="english" style="font-family: Georgia;font-size: 30px">Get Ready for your exam.</span>
+            <span class="english" style="font-family: 'Fira Code VF';">Get Ready for your exam.</span>
             <span class="swahili"></span>
             <br />
-            <p class="english">Please choose a convenient location from the options below. You can browse through available venues, view their details, and select the one that best suits your needs</p>
+            <p style="font-family:'Fira Code VF'" class="english">Please choose a convenient location from the options below. You can browse through available venues, view their details, and select the one that best suits your needs</p>
             <br />
             <p class="english" style="font-family: 'Fira Code Regular'">Reserve your spot, show up for the exam, and then follow the remaining steps to obtain your license.</p>
             <p class="swahili" style="font-family: 'Fira Code Regular'">Hifadhi nafasi yako, tokea kujibu mtihani kisha endelea na taratibu nyengine za kupata leseni.</p>
@@ -34,7 +34,7 @@
 
     <div id="Second">
         
-        @if(Model.Any())
+        @if(Model is not null)
         {
 
             @foreach (var venue in Model)
@@ -70,7 +70,8 @@
         }
         else
         {
-            <p>none</p>
+            <p class="english" style="font-family:'Fira Code VF'">Oops! There are no venues</p>
+            <p class="swahili" style="font-family:'Fira Code VF'">Hakuna vituo</p>
         }
 
 

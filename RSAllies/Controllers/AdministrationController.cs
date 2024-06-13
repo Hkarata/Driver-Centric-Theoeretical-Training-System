@@ -51,7 +51,7 @@ namespace RSAllies.Controllers
         {
             var result = await apiClient.GetAdmins();
 
-            return View(result.Value ?? null);
+            return result.IsSuccess ? View(result.Value) : View(null);
         }
 
         public async Task<IActionResult> Admin(string id)
