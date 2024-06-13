@@ -1,17 +1,143 @@
-﻿@{
+﻿@using RSAllies.Services
+@{
     ViewData["Title"] = "Sessions";
+    var regions = FileService.GetRegions();
 }
 
 <div id="TheContainer">
 
     <div id="firstContainer">
         
-        ssssss
+        <div id="Inner">
+            <p>Let's find you a session</p>
+        </div>
+
+        <div id="Outer">
+            <p class="english">Choose your region and desired date.</p>
+            <p class="swahili">Chagua mkoa na tarehe husika.</p>
+            <form style="margin-top:auto;" class="sessionForm">
+                <div class="mb-3">
+                    <label>
+                        <span class="english">Select region</span>
+                        <span class="swahili">Chagua mkoa</span>
+                    </label>
+                    <select class="form-select">
+                        <option></option>
+                        @foreach (var item in regions.OrderBy(i => i.Name))
+                        {
+                        <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="mb-3">
+
+                    <label>Select a date</label>
+                    <input type="datetime-local" class="form-control"/>
+
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Find session</button>
+            </form>
+        </div>
 
     </div>
 
     <div id="secondContainer">
-        ss
+        
+        @foreach(var i in Enumerable.Range(1, 10))
+        {
+            <div class="Card">
+
+                <div class="d-flex flex-row justify-content-between">
+                    <span>11/06/2024</span>
+                    <i style="color:green;font-size:16px;" class="bi bi-patch-check"></i>
+                    <i style="color:red;font-size:16px;" class="bi bi-ban"></i>
+                </div>
+
+                <span style="font-size:14px">Julius Nyerere International Conference centre</span>
+
+                <div class="d-flex flex-row justify-content-between">
+                    <span style="font-size:12px">Kinondoni Manispaa, Dar es Salaam</span>
+                </div>
+
+                <div class="d-flex flex-row justify-content-between">
+                    <i style="color:green;font-size:16px;" class="bi bi-stopwatch"></i>
+                    <span>11:00-11:30</span>
+                </div>
+
+                <div class="d-flex flex-row justify-content-between align-items-center w-100" style="font-family:'Fira Code'">
+                    <i style="color:green;font-size:16px;" class="bi bi-people"></i>
+                    <span>1/100</span>
+                </div>
+
+                <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="50" style="height: 3px">
+                    <div class="progress-bar" style="width:10%"></div>
+                </div>
+
+                <button data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <span class="english">Book</span>
+                    <span class="swahili">Hifadhi</span>
+                </button>
+
+            </div>
+        }
+
     </div>
 
 </div>
+
+<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <img src="~/images/wip.gif" width="70" height="70" />
+                <p style="font-family:'Fira Code VF'">
+                    <span class="english">searching...</span>
+                    <span class="swahili" style="display: none">Tafadhali subiri...</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div style="font-family:'Fira Code VF'" class="modal-title" id="staticBackdropLabel">
+                    <span class="english">Book a session</span>
+                    <span class="swahili">Hifadhi nafasi</span>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer" style="font-family:'Fira Code VF';font-size:15px;">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Book</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+
+        $(document).ready(function () {
+
+            $(".sessionForm").submit(function (event) {
+                event.preventDefault();
+                // Show the loading modal
+                $("#loadingModal").modal("show");
+
+                $('body').css('pointer-events', 'none')
+            });
+
+        });
+
+    </script>
+}

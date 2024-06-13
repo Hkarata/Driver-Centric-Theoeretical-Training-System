@@ -16,14 +16,9 @@ namespace RSAllies.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            var booking = await apiClient.GetCurrentUserBooking(user!.Id);
+            var result = await apiClient.GetCurrentUserBooking(user.Id);
 
-            return booking.IsSuccess ? View(booking) : View(null);
-        }
-
-        public IActionResult Dashboard()
-        {
-            return View();
+            return result.IsSuccess ? View(result.Value) : View(null);
         }
 
         public IActionResult Privacy()
