@@ -43,12 +43,14 @@
         </div>
 
 
-
-        <a class="w-100 btn btn-primary" style="font-family:'Fira Code VF';margin-top:auto;"
-            asp-controller="Sessions" 
-            asp-action="Create" 
-            asp-route-id="@Model.Id"
-            asp-route-venueName="@Model.Name">Create session</a>
+        @if (sessionService.CheckAdmin())
+        {
+            <a class="w-100 btn btn-primary" style="font-family:'Fira Code VF';margin-top:auto;"
+               asp-controller="Sessions"
+               asp-action="Create"
+               asp-route-id="@Model.Id"
+               asp-route-venueName="@Model.Name">Create session</a>
+        }
 
     </div>
 
@@ -79,15 +81,19 @@
                         <div class="progress-bar" style="width:@session.Capacity%"></div>
                     </div>
 
-                    <button data-bs-toggle="modal" data-bs-target="#staticBackdrop">Book</button>
+                    @if (sessionService.Check())
+                    {
+                        <button data-bs-toggle="modal" data-bs-target="#staticBackdrop">Book</button>
+                    }
 
-                    @if (!sessionService.CheckAdmin())
+                    @if (sessionService.CheckAdmin())
                     {
                         <a asp-controller="Sessions" asp-action="Details" asp-route-id="@session.Id" asp-route-startTime="@session.StartTime" asp-route-endTime="@session.EndTime" asp-route-date="@session.Date.ToString("dd/MM/yyyy")" asp-route-capacity="@session.Capacity" asp-route-venueName="@Model.Name"
                            style="color:black;text-align:center;text-decoration:none;border: none;border-radius: 5px;font-family: 'Fira Code VF';font-size: 14px;background-color: #f2c94c;">
                             Details
                         </a>
                     }
+
 
                 </div>
             }

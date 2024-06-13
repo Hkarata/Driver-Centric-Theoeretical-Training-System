@@ -5,10 +5,14 @@ using RSAllies.Services;
 
 namespace RSAllies.Controllers
 {
-    public class SessionsController(ApiClient apiClient) : Controller
+    public class SessionsController(ApiClient apiClient, SessionService sessionService) : Controller
     {
         public async Task<IActionResult> Index(CancellationToken cancellationToken)
         {
+            if (!sessionService.Check())
+            {
+                return RedirectToAction("Login", "Account");
+            }
             var result = await apiClient.GetSessionsAsync(cancellationToken);
             return result.IsSuccess ? View(result.Value) : View(null);
         }
@@ -74,7 +78,7 @@ namespace RSAllies.Controllers
             if (!string.IsNullOrEmpty(date) || false)
             {
                 var result = await apiClient.GetSessionByDate(DateTime.Parse(date!));
-                return result.IsSuccess ? View("Index", result.Value) : View(null);
+                return result.IsSuccess ? View("Index", result.Value) : View("Index", null);
             }
 
             if (string.IsNullOrEmpty(regionId))
@@ -86,7 +90,7 @@ namespace RSAllies.Controllers
             {
                 var result = await apiClient.GetSessionByRegionAndDate(regionId!);
 
-                return result.IsSuccess ? View("Index",result.Value) : View(null);
+                return result.IsSuccess ? View("Index",result.Value) : View("Index",null);
             }
         }
     }

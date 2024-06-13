@@ -51,11 +51,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body" style="font-family: 'Fira Code VF';display:flex; flex-direction:column; gap: 5px;">
-                <a asp-controller="Home" class="btn btn-primary w-100">Home</a>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-primary w-100">Home</a>
 
-                <a asp-controller="Venues" class="btn btn-primary w-100">Venues</a>
+                <a asp-controller="Venues" asp-action="Index" class="btn btn-primary w-100">Venues</a>
 
-                <a asp-controller="Sessions" class="btn btn-primary w-100">Sessions</a>
+                <a asp-controller="Sessions" asp-action="Index" class="btn btn-primary w-100">Sessions</a>
 
             </div>
         </div>

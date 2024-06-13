@@ -8,10 +8,9 @@
 
 #firstContainer {
     width: 30%;
-    display: grid;
-    grid-template-rows: 1fr 1fr;
+    display: flex;
+    flex-direction:column;
     gap: 5px;
-    height: 100%;
 }
 
 #Inner{
@@ -46,6 +45,19 @@
     scrollbar-width:none;
 }
 
+#None {
+    font-family: 'Fira Code VF';
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+    flex-direction: column;
+    width: 70%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 @media screen and (max-width: 768px) {
     #TheContainer {
@@ -58,6 +70,10 @@
         width: 100%;
         display:flex;
         flex-direction:column;
+    }
+
+    #None{
+        width: 100%;
     }
 }
 

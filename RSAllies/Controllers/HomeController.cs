@@ -9,20 +9,25 @@ namespace RSAllies.Controllers
     {
         public async Task<IActionResult> Index()
         {
-            var user = sessionService.GetUserData();
-
-            if (user is null)
+            if (!sessionService.Check())
             {
                 return RedirectToAction("Login", "Account");
             }
 
-            var result = await apiClient.GetCurrentUserBooking(user.Id);
+            var userId = sessionService.GetUserId();
+
+            var result = await apiClient.GetCurrentUserBooking(userId);
 
             return result.IsSuccess ? View(result.Value) : View(null);
         }
 
         public IActionResult Privacy()
         {
+            if (!sessionService.Check())
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             return View();
         }
 

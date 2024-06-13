@@ -5,15 +5,14 @@ using RSAllies.Services;
 
 namespace RSAllies.Controllers
 {
-    public class VenuesController(/*SessionService sessionService*/ ApiClient apiClient) : Controller
+    public class VenuesController(SessionService sessionService, ApiClient apiClient) : Controller
     {
         public async Task<IActionResult> Index()
         {
-            //if (sessionService.Check())
-            //{
-
-            //    return RedirectToAction("Login", "Account");
-            //}
+            if (!sessionService.Check())
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
             var result = await apiClient.GetVenues();
 
@@ -22,6 +21,10 @@ namespace RSAllies.Controllers
 
         public IActionResult Create()
         {
+            if (sessionService.CheckAdmin())
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View();
         }
 

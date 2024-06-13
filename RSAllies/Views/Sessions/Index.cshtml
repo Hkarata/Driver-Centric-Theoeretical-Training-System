@@ -17,9 +17,9 @@
         </div>
 
         <div id="Outer">
-            <p class="english">Choose your region and desired date.</p>
+            <p class="english" style="font-family:'Fira Code VF';color: #f2c94c;font-weight:800;">Choose your region and desired date.</p>
             <p class="swahili">Chagua mkoa na tarehe husika.</p>
-            <form asp-controller="Sessions" asp-action="Search" method="post" style="margin-top:auto;" class="sessionForm">
+            <form asp-controller="Sessions" asp-action="Search" method="post" class="sessionForm">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="mb-3">
                     <label>
@@ -102,7 +102,7 @@
         else
         {
 
-        <div style="font-family:'Fira Code VF';border-radius: 5px;box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);flex-direction:column;width: 70%;height: 100%;background-color:white;display:flex;justify-content:center;align-items:center;">
+        <div id="None">
                 <img src="/Images/past.gif" width="100" />
 
                 <p class="english">No sessions found ....</p>
