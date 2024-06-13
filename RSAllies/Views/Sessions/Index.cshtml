@@ -1,27 +1,32 @@
 ﻿@using RSAllies.Services
+@using RSAllies.Contracts.Responses
+@inject SessionService SessionService
 @{
     ViewData["Title"] = "Sessions";
     var regions = FileService.GetRegions();
 }
+
+@model IList<ASessionDto>
 
 <div id="TheContainer">
 
     <div id="firstContainer">
         
         <div id="Inner">
-            <p>Let's find you a session</p>
+            <img src="/Images/girl-road-sign.jpg" class="img-fluid rounded"/>
         </div>
 
         <div id="Outer">
             <p class="english">Choose your region and desired date.</p>
             <p class="swahili">Chagua mkoa na tarehe husika.</p>
-            <form style="margin-top:auto;" class="sessionForm">
+            <form asp-controller="Sessions" asp-action="Search" method="post" style="margin-top:auto;" class="sessionForm">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="mb-3">
                     <label>
                         <span class="english">Select region</span>
                         <span class="swahili">Chagua mkoa</span>
                     </label>
-                    <select class="form-select">
+                    <select class="form-select" name="regionId">
                         <option></option>
                         @foreach (var item in regions.OrderBy(i => i.Name))
                         {
@@ -33,59 +38,81 @@
                 <div class="mb-3">
 
                     <label>Select a date</label>
-                    <input type="datetime-local" class="form-control"/>
+                    <input type="date" id="dateField" name="date" class="form-control" />
 
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100">Find session</button>
+                <button type="submit" class="btn btn-primary w-100">
+                    <span class="english">Find session</span>
+                    <span class="swahili">Tafuta</span>
+                </button>
             </form>
         </div>
 
     </div>
 
-    <div id="secondContainer">
-        
-        @foreach(var i in Enumerable.Range(1, 10))
+    
+
+        @if(Model is not null)
         {
-            <div class="Card">
+        <div id="secondContainer">
+            @foreach (var item in Model!.OrderBy(i => i.Date))
+            {
+                <div class="Card" style="pointer-events: @(() => item.Capacity == item.VenueCapacity ? "none" : "")">
 
-                <div class="d-flex flex-row justify-content-between">
-                    <span>11/06/2024</span>
-                    <i style="color:green;font-size:16px;" class="bi bi-patch-check"></i>
-                    <i style="color:red;font-size:16px;" class="bi bi-ban"></i>
+                    <div class="d-flex flex-row justify-content-between">
+                        <span>@item.Date.ToString("dd/MM/yyyy")</span>
+
+                        @if (item.Capacity < item.VenueCapacity)
+                        {
+                            <i style="color:green;font-size:16px;" class="bi bi-patch-check"></i>
+                        }
+                        else
+                        {
+                            <i style="color:red;font-size:16px;" class="bi bi-ban"></i>
+                        }
+                    </div>
+
+                    <span style="font-size:14px">@item.VenueName</span>
+
+                    <div class="d-flex flex-row justify-content-between">
+                        <i style="color:green;font-size:16px;" class="bi bi-stopwatch"></i>
+                        <span>@item.StartTime - @item.EndTime</span>
+                    </div>
+
+                    <div class="d-flex flex-row justify-content-between align-items-center w-100" style="font-family:'Fira Code'">
+                        <i style="color:green;font-size:16px;" class="bi bi-people"></i>
+                        <span>@item.Capacity/@item.VenueCapacity</span>
+                    </div>
+
+                    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="@item.Capacity" style="height: 3px">
+                        <div class="progress-bar" style="@(() => (item.Capacity * 100)/item.VenueCapacity)%"></div>
+                    </div>
+
+                    <button id="myButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-userId="@SessionService.GetUserId()" data-sessionId="@item.Id" data-sessionDate="@item.Date.ToString("dd/MM/yyyy")">
+                        <span class="english">Book</span>
+                        <span class="swahili">Hifadhi</span>
+                    </button>
+
                 </div>
+            }
 
-                <span style="font-size:14px">Julius Nyerere International Conference centre</span>
+        </div>
+        }
+        else
+        {
 
-                <div class="d-flex flex-row justify-content-between">
-                    <span style="font-size:12px">Kinondoni Manispaa, Dar es Salaam</span>
-                </div>
+        <div style="font-family:'Fira Code VF';border-radius: 5px;box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);flex-direction:column;width: 70%;height: 100%;background-color:white;display:flex;justify-content:center;align-items:center;">
+                <img src="/Images/past.gif" width="100" />
 
-                <div class="d-flex flex-row justify-content-between">
-                    <i style="color:green;font-size:16px;" class="bi bi-stopwatch"></i>
-                    <span>11:00-11:30</span>
-                </div>
-
-                <div class="d-flex flex-row justify-content-between align-items-center w-100" style="font-family:'Fira Code'">
-                    <i style="color:green;font-size:16px;" class="bi bi-people"></i>
-                    <span>1/100</span>
-                </div>
-
-                <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="50" style="height: 3px">
-                    <div class="progress-bar" style="width:10%"></div>
-                </div>
-
-                <button data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                    <span class="english">Book</span>
-                    <span class="swahili">Hifadhi</span>
-                </button>
-
+                <p class="english">No sessions found ....</p>
+                <p class="swahili">Hamna kituo ....</p>
             </div>
+            
         }
 
     </div>
 
-</div>
 
 <div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -106,17 +133,24 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div style="font-family:'Fira Code VF'" class="modal-title" id="staticBackdropLabel">
-                    <span class="english">Book a session</span>
+                    <span class="english">Session Booking</span>
                     <span class="swahili">Hifadhi nafasi</span>
                 </div>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                ...
+            <div class="modal-body" style="font-family:'Fira Code VF'">
+                <span class="english">You are about to book a session at the selected session, Do you want to continue?</span>
+                <span class="swahili">Unakaribia kuhifadhi kikao katika kikao kilichochaguliwa, Je, unataka kuendelea? </span>
             </div>
             <div class="modal-footer" style="font-family:'Fira Code VF';font-size:15px;">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Book</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                    <span class="english">Close</span>
+                    <span class="swahili">Ghairisha</span>
+                </button>
+                <button id="bookBtn" type="button" class="btn btn-primary">
+                    <span class="english">Book</span>
+                    <span class="swahili">Hifadhi</span>
+                </button>
             </div>
         </div>
     </div>
@@ -130,12 +164,71 @@
         $(document).ready(function () {
 
             $(".sessionForm").submit(function (event) {
-                event.preventDefault();
                 // Show the loading modal
                 $("#loadingModal").modal("show");
 
                 $('body').css('pointer-events', 'none')
             });
+
+            var today = new Date().toISOString().split('T')[0];
+            $('#dateField').attr('min', today);
+
+
+            $("#myButton").on("click", function () {
+                // Get the values from data attributes
+                var userId = $(this).data("userid");
+                var sessionId = $(this).data("sessionid");
+                var sessionDate = $(this).data("sessiondate");
+
+                // Save userId and sessionId to session storage
+                sessionStorage.setItem("userId", userId);
+                sessionStorage.setItem("sessionId", sessionId);
+                sessionStorage.setItem("sessionDate", sessionDate);
+
+            });
+
+
+            $('#bookBtn').on('click', function () {
+
+                var userId = sessionStorage.getItem("userId");
+                var sessionId = sessionStorage.getItem("sessionId");
+                var sessionDate = new Date(sessionStorage.getItem("sessionDate"));
+
+
+                let request = {
+                    userId : userId,
+                    sessionId : sessionId
+                }
+
+                $.ajax({
+                    url: "https://rsallies.azurewebsites.net/api/booking",
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(request)
+                }).done(function (data){
+
+                    // Read the session date from sessionStorage and convert it to the correct format
+                    let sessionDateStr = sessionStorage.getItem('sessionDate');
+                    let sessionDateParts = sessionDateStr.split("/");
+                    let sessionDate = new Date(sessionDateParts[2], sessionDateParts[1] - 1, sessionDateParts[0]);
+
+                    document.cookie = "HasBooked=true; expires=" + sessionDate.toUTCString() + "; path=/";
+
+                    // Delete the values from sessionStorage
+                    sessionStorage.removeItem('userId');
+                    sessionStorage.removeItem('sessionId');
+                    sessionStorage.removeItem('sessionDate');
+
+                    // Handle success here
+                    window.location.href = "/home"; // Navigate to the home page
+
+
+                }).fail(function (error) {
+                    window.location.href = "/home"; // Navigate to the home page
+                });
+
+            });
+
 
         });
 

@@ -19,6 +19,16 @@ builder.Services.AddHttpClient<ApiClient>(client =>
     client.BaseAddress = new Uri("https://rsallies.azurewebsites.net/");
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -35,6 +45,9 @@ app.UseStaticFiles();
 app.UseSession();
 
 app.UseRouting();
+
+app.UseCors();
+
 
 app.UseAuthorization();
 

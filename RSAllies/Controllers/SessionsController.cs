@@ -7,9 +7,10 @@ namespace RSAllies.Controllers
 {
     public class SessionsController(ApiClient apiClient) : Controller
     {
-        public IActionResult Index()
+        public async Task<IActionResult> Index(CancellationToken cancellationToken)
         {
-            return View();
+            var result = await apiClient.GetSessionsAsync(cancellationToken);
+            return result.IsSuccess ? View(result.Value) : View(null);
         }
 
         public IActionResult Create(string id, string venueName)
@@ -61,6 +62,32 @@ namespace RSAllies.Controllers
             var result = await apiClient.GetSessionUsers(Guid.Parse(id));
 
             return result.IsSuccess ? View(result.Value) : View(null);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Search()
+        {
+            var regionId = Request.Form["regionId"];
+            var date = Request.Form["date"];
+
+            if (!string.IsNullOrEmpty(date) || false)
+            {
+                var result = await apiClient.GetSessionByDate(DateTime.Parse(date!));
+                return result.IsSuccess ? View("Index", result.Value) : View(null);
+            }
+
+            if (string.IsNullOrEmpty(regionId))
+            {
+                ModelState.AddModelError(string.Empty, "Please select a region");
+                return View();
+            }
+            else
+            {
+                var result = await apiClient.GetSessionByRegionAndDate(regionId!);
+
+                return result.IsSuccess ? View("Index",result.Value) : View(null);
+            }
         }
     }
 }

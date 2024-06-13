@@ -139,5 +139,31 @@ namespace RSAllies.Services
             var result = JsonConvert.DeserializeObject<Result<List<UserData>>>(content)!;
             return result;
         }
+
+        public async Task<Result<List<ASessionDto>>> GetSessionsAsync(CancellationToken cancellationToken)
+        {
+            var response = await httpClient.GetAsync("/api/sessions", cancellationToken);
+            var content = await response.Content.ReadAsStringAsync(cancellationToken);
+            var result = JsonConvert.DeserializeObject<Result<List<ASessionDto>>>(content)!;
+            return result;
+        }
+
+        public async Task<Result<List<ASessionDto>>> GetSessionByRegionAndDate(string regionId)
+        {
+            var response = await httpClient.GetAsync($"/api/sessions/{regionId}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<List<ASessionDto>>>(content)!;
+            return result;
+        }
+
+        public async Task<Result<List<ASessionDto>>> GetSessionByDate(DateTime date)
+        {
+            var x = date.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+            var response = await httpClient.GetAsync($"/api/sessions/{x}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<List<ASessionDto>>>(content)!;
+            return result;
+        }
+
     }
 }

@@ -56,6 +56,8 @@
     }
     #secondContainer {
         width: 100%;
+        display:flex;
+        flex-direction:column;
     }
 }
 
@@ -70,6 +72,7 @@
     display:flex;
     flex-direction: column;
     gap:5px;
+    height:max-content;
 }
 
     .Card:hover {

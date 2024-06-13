@@ -43,4 +43,11 @@ public class SessionService(IHttpContextAccessor httpContextAccessor)
         httpContextAccessor.HttpContext?.Session.SetString("AdminSession", data);
         return Task.CompletedTask;
     }
+
+    public Guid GetUserId()
+    {
+        var session = httpContextAccessor.HttpContext?.Session.GetString("UserSession");
+        var data = JsonConvert.DeserializeObject<UserDto>(session!);
+        return data!.Id;
+    }
 }
