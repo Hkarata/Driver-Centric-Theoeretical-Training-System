@@ -30,7 +30,6 @@
     font-family: 'Fira Code VF', serif;
     display: flex;
     flex-direction: column;
-    height: 100%;
 }
 
 #secondContainer {
@@ -87,8 +86,9 @@
     transition: 0.3s ease-in-out;
     display:flex;
     flex-direction: column;
+    justify-content:space-between;
     gap:5px;
-    height:max-content;
+    height:199px;
 }
 
     .Card:hover {

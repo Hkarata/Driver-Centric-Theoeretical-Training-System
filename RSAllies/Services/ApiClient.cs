@@ -165,5 +165,13 @@ namespace RSAllies.Services
             return result;
         }
 
+        public async Task<Result> CreateBooking(CreateBookingDto booking)
+        {
+            var response = await httpClient.PostAsJsonAsync<CreateBookingDto>("/api/booking", booking);
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<object>>(content)!;
+            return result;
+        }
+
     }
 }

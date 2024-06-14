@@ -18,7 +18,7 @@
 
         <div id="Outer">
             <p class="english" style="font-family:'Fira Code VF';color: #f2c94c;font-weight:800;">Choose your region and desired date.</p>
-            <p class="swahili">Chagua mkoa na tarehe husika.</p>
+            <p class="swahili" style="font-family:'Fira Code VF';color: #f2c94c;font-weight:800;">Chagua mkoa na tarehe husika.</p>
             <form asp-controller="Sessions" asp-action="Search" method="post" class="sessionForm">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="mb-3">
@@ -139,8 +139,18 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" style="font-family:'Fira Code VF'">
-                <span class="english">You are about to book a session at the selected session, Do you want to continue?</span>
-                <span class="swahili">Unakaribia kuhifadhi kikao katika kikao kilichochaguliwa, Je, unataka kuendelea? </span>
+                
+                <div id="info">
+                    <span class="english">You are about to book a session at the selected session, Do you want to continue?</span>
+                    <span class="swahili">Unakaribia kuhifadhi kikao katika kikao kilichochaguliwa, Je, unataka kuendelea? </span>
+                </div>
+
+
+                <div class="msg">
+                    <p class="english text-danger" style="font-size:16px">Please note that you can only book one session at a time.</p>
+                    <p class="swahili text-danger" style="font-size:16px">Huwezi kuweka nafasi nyingine kama tayari unayo</p>
+                </div>
+
             </div>
             <div class="modal-footer" style="font-family:'Fira Code VF';font-size:15px;">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
@@ -162,6 +172,19 @@
     <script>
 
         $(document).ready(function () {
+
+            $('.msg').hide();
+            $('#info').show();
+
+            let hasBookedCookie = document.cookie.split('; ').find(row => row.startsWith('HasBooked'));
+            if (hasBookedCookie) {
+                $('.msg').show();
+                $('#bookBtn').hide();
+                $('#info').hide();
+                return;
+            }
+
+            $('#bookBtn').show();
 
             $(".sessionForm").submit(function (event) {
                 // Show the loading modal
@@ -192,7 +215,7 @@
 
                 var userId = sessionStorage.getItem("userId");
                 var sessionId = sessionStorage.getItem("sessionId");
-                var sessionDate = new Date(sessionStorage.getItem("sessionDate"));
+                var sessionDate = sessionStorage.getItem("sessionDate");
 
 
                 let request = {
@@ -200,32 +223,9 @@
                     sessionId : sessionId
                 }
 
-                $.ajax({
-                    url: "https://rsallies.azurewebsites.net/api/booking",
-                    type: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify(request)
-                }).done(function (data){
+                var url = `/booking?userId=${request.userId}&sessionId=${request.sessionId}&date=${sessionDate}`;
 
-                    // Read the session date from sessionStorage and convert it to the correct format
-                    let sessionDateStr = sessionStorage.getItem('sessionDate');
-                    let sessionDateParts = sessionDateStr.split("/");
-                    let sessionDate = new Date(sessionDateParts[2], sessionDateParts[1] - 1, sessionDateParts[0]);
-
-                    document.cookie = "HasBooked=true; expires=" + sessionDate.toUTCString() + "; path=/";
-
-                    // Delete the values from sessionStorage
-                    sessionStorage.removeItem('userId');
-                    sessionStorage.removeItem('sessionId');
-                    sessionStorage.removeItem('sessionDate');
-
-                    // Handle success here
-                    window.location.href = "/home"; // Navigate to the home page
-
-
-                }).fail(function (error) {
-                    window.location.href = "/home"; // Navigate to the home page
-                });
+                window.location.href = url
 
             });
 
