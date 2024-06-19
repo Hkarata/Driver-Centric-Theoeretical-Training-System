@@ -51,11 +51,31 @@
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body" style="font-family: 'Fira Code VF';display:flex; flex-direction:column; gap: 5px;">
-                <a asp-controller="Home" asp-action="Index" class="btn btn-primary w-100">Home</a>
 
-                <a asp-controller="Venues" asp-action="Index" class="btn btn-primary w-100">Venues</a>
+                @if(!SessionService.CheckAdmin())
+                {
+                    <a asp-controller="Administration" asp-action="Index" class="btn btn-primary w-100 btn text-start">Dashboard</a>
 
-                <a asp-controller="Sessions" asp-action="Index" class="btn btn-primary w-100">Sessions</a>
+                }
+                else
+                {
+
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-primary w-100 btn text-start">Home</a>
+                }
+
+                <a asp-controller="Venues" asp-action="Index" class="btn btn-primary w-100 text-start">Venues</a>
+
+                <a asp-controller="Sessions" asp-action="Index" class="btn btn-primary w-100 text-start">Sessions</a>
+
+                @if (!SessionService.CheckAdmin())
+                {
+                    <a asp-controller="Administration" asp-action="Admins" class="btn btn-primary w-100 btn text-start">Administration</a>
+
+                    <a asp-controller="Test" asp-action="Index" class="btn btn-primary w-100 btn text-start">Questions</a>
+
+                    <a asp-controller="Test" asp-action="Create-Question" class="btn btn-primary w-100 btn text-start">Create question</a>
+
+                }
 
             </div>
         </div>

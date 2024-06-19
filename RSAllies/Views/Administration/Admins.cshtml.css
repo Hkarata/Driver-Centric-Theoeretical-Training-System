@@ -57,6 +57,12 @@
     #firstDiv{
         grid-template-columns: 1fr;
     }
+
+    #TheHolder{
+        display:flex;
+        flex-direction:column;
+        gap: 5px;
+    }
 }
 
 #myDiv {

@@ -63,13 +63,13 @@
 }
 
 #Inner {
-    background-color: #f2c94c;
+    background-color: white;
     padding: 10px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     display: flex;
     flex-direction:column;
-    gap: 10px;
+    gap: 15px;
 }
 
 #Outer

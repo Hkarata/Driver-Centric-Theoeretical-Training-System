@@ -8,10 +8,6 @@ namespace RSAllies.Controllers
     {
         public async Task<IActionResult> Index(string userId, string sessionId, string date)
         {
-            var x = userId;
-            var y = sessionId;
-            var z = DateTime.Parse(date);
-
             var request = new CreateBookingDto
             {
                 UserId = Guid.Parse(userId),
