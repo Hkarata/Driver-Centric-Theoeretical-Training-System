@@ -30,9 +30,11 @@
                     
                     <div class="d-flex flex-row justify-content-between">
 
-                        <span>@Model.VenueName</span>
+                        <span id="VN">@Model.VenueName</span>
 
                     </div>
+
+                    <br/>
 
                     <div class="d-flex flex-row justify-content-between">
 
@@ -42,6 +44,7 @@
                         <span>@Model.BookedAt.ToString("dd/MM/yyyy")</span>
 
                     </div>
+                    <br />
 
                     <div class="d-flex flex-row justify-content-between">
 
@@ -51,6 +54,7 @@
                         <span>@Model.StartTime - @Model.EndTime</span>
 
                     </div>
+                    <br />
 
                     <div class="d-flex flex-row justify-content-between">
 
@@ -61,10 +65,53 @@
 
                     </div>
 
+                    <hr/>
+
+                    <div style="margin-top: auto">
+                        <p>Actions</p>
+
+                        <div id="BDiv">
+
+                            <button class="myButtons" style="background-color:#356dca" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                <span class="english">Confirm</span>
+                                <span class="swahili">Hakikisha</span>
+                            </button>
+
+                            <a asp-controller="Test" asp-action="Index" class="myButtons" style="background-color:#8fbe26">
+                                <span class="english">Attempt test</span>
+                                <span class="swahili">Fanya mtihani</span>
+                            </a>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
                 <div id="Outer">
-                    ss
+                    
+                    <p id="GDiv">
+                        <span class="english">Guidelines</span>
+                        <span class="swahili">Angalizo</span>
+                    </p>
+
+                    <ul class="english">
+                        <li>Arrive at least 30 minutes before the exam.</li>
+                        <li>An ID with your picture.</li>
+                        <li>Confirm your booking 45 minutes before the onset of the test, otherwise your booking will be discarded.</li>
+                        <li>Cheating is prohibited, and will lead to a temporary ban to attempt the exam.</li>
+                    </ul>
+
+                    <span style="margin-top:auto" class="english">Best oƒ luck</span>
+
+                    <ul class="swahili"> 
+                        <li>Fika angalau dakika 30 kabla ya mtihani.</li> 
+                        <li>Kitambulisho chenye picha yako.</li> 
+                        <li>Thibitisha uhifadhi wako dakika 45 kabla ya kuanza kwa mtihani, vinginevyo uhifadhi wako utatupiliwa mbali.</li>
+                        <li>Kudanganya ni marufuku, na itasababisha marufuku ya muda kujaribu mtihani.</li> </ul>
+
+                    <span style="margin-top:auto" class="swahili">Kila la kheri</span>
+
                 </div>
 
             </div>
@@ -105,3 +152,45 @@
     </div>
 
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" style="font-family:'Fira Code VF'" id="staticBackdropLabel">
+                    <span class="english">Booking Confirmation</span>
+                    <span class="swahili">Thibitisha nafasi yako</span>
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div style="font-family:'Fira Code VF'" class="modal-body">
+                
+                <span class="english">You are about to confirm your attendance on the test sitting!</span>
+                <span class="swahili">Unakaribia kuthibitisha uwepo wako siku ya mtihani</span>
+            </div>
+            <div style="font-family:'Fira Code VF'" class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .myButtons {
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        transition: 0.3s ease-in-out;
+        color: white;
+        font-weight: 500;
+        text-decoration: none;
+        text-align:center;
+    }
+
+        .myButtons:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+        }
+</style>

@@ -54,10 +54,10 @@
 
 #Card{
     border-radius: 5px;
-    box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
     font-family:'Fira Code VF';
     display:flex;
-    flex-direction:column;
+    flex-direction: row;
+    gap: 10px;
     padding: 0;
     margin: 0;
 }
@@ -65,23 +65,79 @@
 #Inner {
     background-color: white;
     padding: 10px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-radius: 5px;
     display: flex;
-    flex-direction:column;
-    gap: 15px;
+    flex-direction: column;
+    width: 55%;
+    height: 300px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
 }
 
-#Outer
-{
-    background-color: black;
+#Outer {
+    background-color: #f2c94c;
     padding: 10px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-radius: 5px;
+    width: 45%;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+#VN{
+    font-size: 16px;
+    font-weight: 900;
+    border-bottom: 1px dashed ;
+}
+
+#BDiv{
+    display:flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+#GDiv {
+    font-size: 16px;
+    font-weight: 900;
+    border-bottom: 1px dashed;
+}
+
+.myButtons{
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+    color:white;
+    font-weight:500;
+}
+    .myButtons:hover{
+        transform: scale(1.1);
+        box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+    }
+
+
+ul{
+    font-weight: 600;
 }
 
 @media (max-width: 768px) {
     #hidden{
         display: none;
+    }
+
+    #Card{
+        flex-direction: column-reverse;
+    }
+
+    #Inner, #Outer{
+        width: 100%;
+        height: max-content;
+    }
+
+    #BDiv{
+        flex-direction: column;
+    }
+
+    .myButtons:hover {
+        transform: scale(1.03);
     }
 }
