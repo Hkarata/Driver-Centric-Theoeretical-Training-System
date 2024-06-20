@@ -173,5 +173,12 @@ namespace RSAllies.Services
             return result;
         }
 
+        public async Task<Result> ConfirmBooking(string bookingId)
+        {
+            var response = await httpClient.GetAsync($"/api/booking/{bookingId}/confirm");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<object>>(content)!;
+            return result;
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace RSAllies.Controllers
 
         public IActionResult Create()
         {
-            if (sessionService.CheckAdmin())
+            if (!sessionService.CheckAdmin())
             {
                 return RedirectToAction("Login", "Account");
             }

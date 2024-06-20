@@ -72,7 +72,7 @@
 
                         <div id="BDiv">
 
-                            <button class="myButtons" style="background-color:#356dca" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            <button id="confirm" data-bookingId="@Model!.Id" class="myButtons" style="background-color:#356dca" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                 <span class="english">Confirm</span>
                                 <span class="swahili">Hakikisha</span>
                             </button>
@@ -170,12 +170,45 @@
                 <span class="swahili">Unakaribia kuthibitisha uwepo wako siku ya mtihani</span>
             </div>
             <div style="font-family:'Fira Code VF'" class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Confirm</button>
+                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
+                <a asp-controller="Home" asp-action="ConfirmBooking" asp-route-bookingId="@Model.Id" id="confirmButton" type="button" class="btn btn-success">
+                        <span class="english">Confirm</span>
+                        <span class="swahili">Thibitisha</span>
+                </a>
             </div>
         </div>
     </div>
 </div>
+
+@section Scripts {
+
+    <script>
+
+        $(document).ready(function () {
+
+            $("#confirm").click(function () {
+                var bookingId = $(this).data("bookingId");
+
+                console.log(bookingId);
+
+                $("#confirmButton").data("bookingId", bookingId);
+            });
+
+            $("#confirmButton").click(function () {
+                var bookingId = $(this).data("bookingId");
+
+                console.log(bookingId);
+
+                // var url = `/confirmbooking?bookingId=${bookingId}`;
+
+                // window.location.href = url;
+            });
+
+        });
+
+    </script>
+
+}
 
 <style>
     .myButtons {

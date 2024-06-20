@@ -31,6 +31,13 @@ namespace RSAllies.Controllers
             return View();
         }
 
+        public async Task<IActionResult> ConfirmBooking(string bookingId)
+        {
+            await apiClient.ConfirmBooking(bookingId);
+
+            return RedirectToAction("Index");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
