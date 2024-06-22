@@ -9,7 +9,7 @@ namespace RSAllies.Controllers
     {
         public async Task<IActionResult> Index()
         {
-            if (!sessionService.Check())
+            if (!sessionService.Check() ^ sessionService.CheckAdmin())
             {
                 return RedirectToAction("Login", "Account");
             }

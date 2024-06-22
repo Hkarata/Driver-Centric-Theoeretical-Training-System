@@ -47,6 +47,10 @@ public class SessionService(IHttpContextAccessor httpContextAccessor)
     public Guid GetUserId()
     {
         var session = httpContextAccessor.HttpContext?.Session.GetString("UserSession");
+        if (session is null)
+        {
+            return Guid.Empty;
+        }
         var data = JsonConvert.DeserializeObject<UserDto>(session!);
         return data!.Id;
     }

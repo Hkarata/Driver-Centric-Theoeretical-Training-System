@@ -18,7 +18,7 @@ namespace RSAllies.Controllers
 
             if (result.IsSuccess)
             {
-                var cookieBuilder = new CookieBuilder 
+                var cookieBuilder = new CookieBuilder
                 {
                     Name = "hasBooked",
                     HttpOnly = false,

@@ -9,7 +9,7 @@ namespace RSAllies.Controllers
     {
         public async Task<IActionResult> Index(CancellationToken cancellationToken)
         {
-            if (!sessionService.Check())
+            if (!sessionService.Check() ^ sessionService.CheckAdmin())
             {
                 return RedirectToAction("Login", "Account");
             }
@@ -90,7 +90,7 @@ namespace RSAllies.Controllers
             {
                 var result = await apiClient.GetSessionByRegionAndDate(regionId!);
 
-                return result.IsSuccess ? View("Index",result.Value) : View("Index",null);
+                return result.IsSuccess ? View("Index", result.Value) : View("Index", null);
             }
         }
     }
