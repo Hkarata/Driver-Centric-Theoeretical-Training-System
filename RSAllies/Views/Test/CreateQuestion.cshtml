@@ -14,7 +14,7 @@
 
                 <label asp-for="Scenario">Scenario</label>
                 <textarea id="Scenario" asp-for="Scenario" rows="4" style="outline:none;scrollbar-width:none;" class="form-control"></textarea>
-                <span asp-validation-for="Scenario" class="text-danger"></span>
+                <span id="firstSpan" asp-validation-for="Scenario" class="text-danger"></span>
             </div>
 
             <div class="mb-3">
@@ -151,6 +151,12 @@
                 $("#loadingModal").modal("show");
 
                 $('body').css('pointer-events', 'none')
+            });
+
+            const inputElement = $('#firstSpan'); // Target specific input by ID
+
+            inputElement.on('change', function () {
+                $("#loadingModal").hide()
             });
 
         });

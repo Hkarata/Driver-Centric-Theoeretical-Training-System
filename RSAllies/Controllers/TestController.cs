@@ -20,8 +20,16 @@ namespace RSAllies.Controllers
         }
 
         [ActionName("English-Questions")]
-        public IActionResult EnglishQuestion()
+        public async Task<IActionResult> EnglishQuestion()
         {
+            var result = await apiClient.GetEnglishQuestions();
+
+            if (result.IsSuccess)
+            {
+                var questions = result.Value;
+                return View("EnglishQuestion", questions);
+            }
+
             return View("EnglishQuestion");
         }
 

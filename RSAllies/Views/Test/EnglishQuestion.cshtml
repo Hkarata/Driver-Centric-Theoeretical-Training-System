@@ -1,6 +1,11 @@
-﻿@{
+﻿@using RSAllies.Contracts.Responses;
+@{
 	ViewData["Title"] = "English Test";
+	int i = 1;
+	var sasToken = "?sv=2022-11-02&ss=b&srt=sco&sp=rwdlaciytfx&se=2024-07-30T18:05:10Z&st=2024-06-25T10:05:10Z&spr=https,http&sig=uKay28N0zByr8tUiGDPIOZflPIJoWcWO8xtQg8WMpEI%3D";
 }
+
+@model IEnumerable<QuestionDto>
 
 <div id="Container">
 
@@ -26,20 +31,21 @@
 				<p>You are out of Time, Please click the <span class="text-primary">button</span> below to submit your answers</p>
 			</div>
 
-			@foreach (var i in Enumerable.Range(1, 25))
+			@foreach (var question in Model)
 			{
+
 				<div id="@i" class="QCard mb-3">
 
 					<p style="text-align:justify-all;font-size:15px;">
-						You are driving on a single-lane road with a speed limit of 55 mph. It's a clear day with good visibility.  Ahead, you see a slow-moving farm tractor partially on the shoulder. There is a solid yellow line painted in the center of the lane separating you from oncoming traffic
+						@question.Scenario
 					</p>
 
 					<div class="theImage mb-3">
-						<img src="/Images/building.png" style="object-fit:contain" />
+						<img src="@(question.ImageUrl+sasToken)" style="object-fit:contain" />
 					</div>
 
 					<p style="font-size:15px;">
-						What is the safest course of action in this situation?
+						@question.Question
 					</p>
 
 					<div class="theOptions mb-3">
@@ -71,6 +77,7 @@
 					</div>
 
 				</div>
+				i++;
 			}
 
 			<div class="d-flex justify-content-center">
@@ -85,10 +92,10 @@
 		
 		<div id="Tracer">
 			
-			@foreach(var i in Enumerable.Range(1, 25))
+			@foreach(var x in Enumerable.Range(1, 25))
 			{
-				<a href="#@i" id="@i" class="TCard">
-					@i
+				<a href="#@x" id="@x" class="TCard">
+					@x
 				</a>
 			}
 

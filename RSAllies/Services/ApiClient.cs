@@ -188,5 +188,21 @@ namespace RSAllies.Services
             var result = JsonConvert.DeserializeObject<Result<object>>(content)!;
             return result;
         }
+
+        public async Task<Result<List<QuestionDto>>> GetEnglishQuestions()
+        {
+            var response = await httpClient.GetAsync("/api/questions/english");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<List<QuestionDto>>>(content)!;
+            return result;
+        }
+
+        public async Task<Result<List<QuestionDto>>> GetSwahiliQuestions()
+        {
+            var response = await httpClient.GetAsync("/api/questions/swahili");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<List<QuestionDto>>>(content)!;
+            return result;
+        }
     }
 }
