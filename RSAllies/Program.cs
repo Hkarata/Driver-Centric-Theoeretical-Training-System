@@ -1,3 +1,4 @@
+using RSAllies.Analytics;
 using RSAllies.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +19,11 @@ builder.Services.AddHttpClient<ApiClient>(client =>
 {
     client.BaseAddress = new Uri("http://localhost:5000");
 });
+
+builder.Services.AddHttpClient<ApiService>(client =>
+{
+    client.BaseAddress = new Uri("http://localhost:5000");
+});     
 
 builder.Services.AddCors(options =>
 {
