@@ -8,7 +8,7 @@
 
     <div id="First">
         
-        <form enctype="multipart/form-data" asp-action="AddQuestion" method="post" style="height:100%;" class="d-flex flex-column">
+        <form id="QuestionForm" enctype="multipart/form-data" asp-action="AddQuestion" method="post" style="height:100%;" class="d-flex flex-column">
 
             <div class="mb-3">
 
@@ -46,7 +46,7 @@
             <div class="mb-3">
                 <div class="input-group">
                     <div class="input-group-text">
-                        <input class="form-check-input mt-0" type="radio" value="">
+                        <input class="form-check-input mt-0" asp-for="IsAnswerA" >
                     </div>
                     <input type="text" asp-for="ChoiceA" class="form-control" id="ChoiceA">
                 </div>
@@ -56,7 +56,7 @@
             <div class="mb-3">
                 <div class="input-group">
                     <div class="input-group-text">
-                        <input class="form-check-input mt-0" type="radio" value="">
+                        <input class="form-check-input mt-0" asp-for="IsAnswerB" >
                     </div>
                     <input type="text" asp-for="ChoiceB" class="form-control" id="ChoiceB">
                 </div>
@@ -66,7 +66,7 @@
             <div class="mb-3">
                 <div class="input-group">
                     <div class="input-group-text">
-                        <input class="form-check-input mt-0" type="radio" value="">
+                        <input class="form-check-input mt-0" asp-for="IsAnswerC" >
                     </div>
                     <input type="text" asp-for="ChoiceC" class="form-control" id="ChoiceC">
                 </div>
@@ -76,7 +76,7 @@
             <div class="mb-3">
                 <div class="input-group">
                     <div class="input-group-text">
-                        <input class="form-check-input mt-0" type="radio" value="" >
+                        <input class="form-check-input mt-0" asp-for="IsAnswerD" >
                     </div>
                     <input type="text" asp-for="ChoiceD" class="form-control" id="ChoiceD">
                 </div>
@@ -122,8 +122,38 @@
 
 </div>
 
+<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <img src="~/images/wip.gif" width="70" height="70" />
+                <p style="font-family:'Fira Code VF'">
+                    <span class="english">Creating question...</span>
+                    <span class="swahili" style="display: none">Tafadhali subiri...</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />
 
     <script src="/js/question-preview.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $("#QuestionForm").submit(function (event) {
+
+                // Show the loading modal
+                $("#loadingModal").modal("show");
+
+                $('body').css('pointer-events', 'none')
+            });
+
+        });
+
+    </script>
 }

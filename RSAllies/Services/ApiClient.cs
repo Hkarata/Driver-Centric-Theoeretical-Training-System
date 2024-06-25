@@ -180,5 +180,13 @@ namespace RSAllies.Services
             var result = JsonConvert.DeserializeObject<Result<object>>(content)!;
             return result;
         }
+
+        public async Task<Result> CreateQuestion(CreateQuestionDto question)
+        {
+            var response = await httpClient.PostAsJsonAsync<CreateQuestionDto>("/api/question", question);
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<object>>(content)!;
+            return result;
+        }
     }
 }

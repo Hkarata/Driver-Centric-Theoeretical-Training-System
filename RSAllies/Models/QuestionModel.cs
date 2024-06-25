@@ -27,5 +27,10 @@ namespace RSAllies.Models
 
         [Required(ErrorMessage = "Please provide a choice")]
         public String ChoiceD { get; set; } = string.Empty;
+
+        public bool IsAnswerA { get; set; }
+        public bool IsAnswerB { get; set; }
+        public bool IsAnswerC { get; set; }
+        public bool IsAnswerD { get; set; }
     }
 }

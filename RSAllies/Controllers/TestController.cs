@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RSAllies.AzureStorage;
+using RSAllies.Contracts.Requests;
 using RSAllies.Models;
 using RSAllies.Services;
 
 namespace RSAllies.Controllers
 {
-    public class TestController : Controller
+    public class TestController(ApiClient apiClient) : Controller
     {
         public IActionResult Index()
         {
@@ -30,7 +32,7 @@ namespace RSAllies.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddQuestion(QuestionModel model)
+        public async Task<IActionResult> AddQuestion(QuestionModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -38,10 +40,29 @@ namespace RSAllies.Controllers
             }
 
             // Upload the image
-            var fileName = ImageUploadService.UploadImage(model.Image);
+            var fileName = await StorageService.UploadFileAsync(Guid.NewGuid(), model.Image.OpenReadStream());
 
             // Add the question to the database
+            var question = new CreateQuestionDto(
+                    model.Scenario, 
+                    fileName, 
+                    model.Question, 
+                    model.IsEnglish, 
+                    new List<CreateChoiceDto> 
+                    {
+                        new CreateChoiceDto(model.ChoiceA, model.IsAnswerA),
+                        new CreateChoiceDto(model.ChoiceB, model.IsAnswerB),
+                        new CreateChoiceDto(model.ChoiceC, model.IsAnswerC),
+                        new CreateChoiceDto(model.ChoiceD, model.IsAnswerD)
+                    }
+                );
 
+            var result = await apiClient.CreateQuestion(question);
+
+            if (result.IsSuccess)
+            {
+                return RedirectToAction("Index");
+            }
 
 
             return View("CreateQuestion", model);
