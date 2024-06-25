@@ -1,2 +1,73 @@
-﻿body {
+﻿#TheContainer{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+main{
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+    font-family: "Fira Code VF", serif;
+    width: 80%;
+    height: 70%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    transition: 0.3s ease-in-out;
+}
+
+#left{
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+    justify-content:center;
+}
+    #left img{
+        height: 250px;
+    }
+
+#right{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#right a{
+    border: none;
+    width: 98%;
+    text-decoration: none;
+    background-color: #8fbe26;
+    border-radius: 5px;
+    padding: 4px 0;
+    font-size: 18px;
+    transition: 0.3s ease-in-out;
+    margin-top: auto;
+    color: white;
+    font-weight:550;
+}
+
+    #right a:hover{
+        box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+        transform: scale(1.01);
+    }
+
+@media (max-width: 768px) {
+    main{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: max-content;
+        gap: 30px;
+    }
+
+    #left img {
+        height: 200px;
+    }
+
+    #right button {
+        width: 100%;
+    }
 }

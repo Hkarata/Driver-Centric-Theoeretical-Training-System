@@ -171,7 +171,7 @@
             </div>
             <div style="font-family:'Fira Code VF'" class="modal-footer">
                 <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
-                <a asp-controller="Home" asp-action="ConfirmBooking" asp-route-bookingId="@Model.Id" id="confirmButton" type="button" class="btn btn-success">
+                <a asp-controller="Home" asp-action="ConfirmBooking" asp-route-bookingId="@Model!.Id" id="confirmButton" type="button" class="btn btn-success">
                         <span class="english">Confirm</span>
                         <span class="swahili">Thibitisha</span>
                 </a>

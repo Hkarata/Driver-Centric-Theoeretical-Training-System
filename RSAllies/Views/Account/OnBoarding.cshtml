@@ -3,5 +3,65 @@
 }
 
 <div id="TheContainer">
-    sssff
+    
+    <main>
+        
+        <div id="left">
+            <img src="/Images/coatofarms.png" class="object-fit-contain"/>
+        </div>
+        
+        <div id="right">
+            <br/>
+            <span class="english">Before you proceed consider the following:</span>
+            <span class="swahili">Kabla ya kuendelea zingatia yafuatayo:</span>
+            
+            <br/>
+            
+            <ol class="english">
+                <li>Have your National Identification Number for tanzanians.</li>
+                <li>Or passport number for non-nationals</li>
+                <li>Know your three names</li>
+                <li>Desired license class</li>
+                <li>Educational level</li>
+                <li>know your phone number and/or email</li>
+            </ol>
+            
+            <ol class="swahili">
+                <li>Uwe na namba yako ya NIDA kwa mtanzania.</li>
+                <li>Au namba ya passpoti kwa wageni.</li>
+                <li>Fahamu majina yako matatu.</li>
+                <li>Daraja la leseni ya udereva.</li>
+                <li>Kiwango cha elimu.</li>
+                <li>Jua namba yako ya simu au/na barua pepe</li>
+            </ol>
+            
+            <a asp-controller="Account" asp-action="Register">
+                <span class="english">Proceed</span>
+                <span class="swahili">Endelea</span>
+            </a>
+        </div>
+        
+    </main>
+    
 </div>
+<style>
+    #right a {
+        border: none;
+        width: 98%;
+        text-decoration: none;
+        background-color: #8fbe26;
+        border-radius: 5px;
+        padding: 4px 0;
+        font-size: 18px;
+        transition: 0.3s ease-in-out;
+        margin-top: auto;
+        color: white;
+        font-weight: 550;
+        text-align:center;
+    }
+
+        #right a:hover {
+            box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+            transform: scale(1.01);
+        }
+</style>

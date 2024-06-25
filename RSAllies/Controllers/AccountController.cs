@@ -20,6 +20,11 @@ namespace RSAllies.Controllers
             return View();
         }
 
+        public IActionResult OnBoarding()
+		{
+            return View();
+		}
+
         public IActionResult Register()
         {
             return View();
