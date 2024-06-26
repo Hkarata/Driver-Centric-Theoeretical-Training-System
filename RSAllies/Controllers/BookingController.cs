@@ -36,5 +36,10 @@ namespace RSAllies.Controllers
 
             return View();
         }
+
+        public IActionResult Analysis()
+        {
+            return View();
+        }
     }
 }

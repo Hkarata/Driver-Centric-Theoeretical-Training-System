@@ -29,7 +29,9 @@
         <div id="second-div-left">
             <p style="font-weight:900;color:#f2c94c">Exam Retake Analysis</p>
             <p style="text-align:center;font-size:60px;font-weight:900;font-family:'Segoe Script'">102</p>
-            <p>students have retaken the exam</p>
+            <p>students have retaken the exam.</p>
+            <p>Total number of questions: 25</p>
+            <p>Pass mark is 16 questions</p>
         </div>
 
         <div id="second-div-center">
@@ -41,6 +43,9 @@
 
         <div id="second-div-right">
             <p style="font-weight:900;color:#f2c94c">Test retake analysis by Gender</p>
+            <figure class="highcharts-figure">
+                <div id="genderAnalysis"></div>
+            </figure>
         </div>
 
     </div>
@@ -266,6 +271,34 @@
             }, {
                 name: 'Failed',
                 data: [5, 10, 8, 15, 20]
+            }]
+        });
+    </script>
+
+    <script type="text/javascript">
+        Highcharts.chart('genderAnalysis', {
+            chart: {
+                type: 'column',
+                style: {
+                    fontFamily: 'Fira Code VF',
+                    padding: 0,
+                    margin: 0
+                }
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                categories: ['Male', 'Female']
+            },
+            yAxis: {
+                title: {
+                    text: 'Number of Test Passes'
+                }
+            },
+            series: [{
+                name: 'Test Passes',
+                data: [85, 65] // Example data, replace with your actual data
             }]
         });
     </script>
