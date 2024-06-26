@@ -13,6 +13,11 @@ namespace RSAllies.Controllers
             return View();
         }
 
+        public IActionResult Analysis()
+        {
+            return View();
+        }
+
         [ActionName("Create-Question")]
         public IActionResult CreateQuestion()
         {
