@@ -58,7 +58,7 @@
         
         @if (Model.Sessions.Any())
         {
-            @foreach (var session in Model.Sessions)
+            @foreach (var session in Model.Sessions.OrderBy(s => s.Date))
             {
                 <div class="Card">
 
@@ -83,7 +83,9 @@
 
                     @if (sessionService.Check())
                     {
-                        <button data-bs-toggle="modal" data-bs-target="#staticBackdrop">Book</button>
+                        <button id="myButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-userId="@sessionService.GetUserId()" data-sessionId="@session.Id" data-sessionDate="@session.Date.ToString("dd/MM/yyyy")">
+                            Book
+                        </button>
                     }
 
                     @if (sessionService.CheckAdmin())
@@ -120,18 +122,105 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div style="font-family:'Fira Code VF'" class="modal-title" id="staticBackdropLabel">
-                    <span class="english">Book a session</span>
+                    <span class="english">Session Booking</span>
                     <span class="swahili">Hifadhi nafasi</span>
                 </div>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                ...
+            <div class="modal-body" style="font-family:'Fira Code VF'">
+
+                <div id="info">
+                    <span class="english">You are about to book a session at the selected session, Do you want to continue?</span>
+                    <span class="swahili">Unakaribia kuhifadhi kikao katika kikao kilichochaguliwa, Je, unataka kuendelea? </span>
+                </div>
+
+
+                <div class="msg">
+                    <p class="english text-danger" style="font-size:16px">Please note that you can only book one session at a time.</p>
+                    <p class="swahili text-danger" style="font-size:16px">Huwezi kuweka nafasi nyingine kama tayari unayo</p>
+                </div>
+
             </div>
             <div class="modal-footer" style="font-family:'Fira Code VF';font-size:15px;">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Book</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                    <span class="english">Close</span>
+                    <span class="swahili">Ghairisha</span>
+                </button>
+                <button id="bookBtn" type="button" class="btn btn-primary">
+                    <span class="english">Book</span>
+                    <span class="swahili">Hifadhi</span>
+                </button>
             </div>
         </div>
     </div>
 </div>
+
+
+
+
+@section Scripts{
+    <script>
+
+        $(document).ready(function () {
+
+            $('.msg').hide();
+            $('#info').show();
+
+            let hasBookedCookie = document.cookie.split('; ').find(row => row.startsWith('HasBooked'));
+            if (hasBookedCookie) {
+                $('.msg').show();
+                $('#bookBtn').hide();
+                $('#info').hide();
+                return;
+            }
+
+            $('#bookBtn').show();
+
+            $(".sessionForm").submit(function (event) {
+                // Show the loading modal
+                $("#loadingModal").modal("show");
+
+                $('body').css('pointer-events', 'none')
+            });
+
+            var today = new Date().toISOString().split('T')[0];
+            $('#dateField').attr('min', today);
+
+
+            $("#myButton").on("click", function () {
+                // Get the values from data attributes
+                var userId = $(this).data("userid");
+                var sessionId = $(this).data("sessionid");
+                var sessionDate = $(this).data("sessiondate");
+
+                // Save userId and sessionId to session storage
+                sessionStorage.setItem("userId", userId);
+                sessionStorage.setItem("sessionId", sessionId);
+                sessionStorage.setItem("sessionDate", sessionDate);
+
+            });
+
+
+            $('#bookBtn').on('click', function () {
+
+                var userId = sessionStorage.getItem("userId");
+                var sessionId = sessionStorage.getItem("sessionId");
+                var sessionDate = sessionStorage.getItem("sessionDate");
+
+
+                let request = {
+                    userId: userId,
+                    sessionId: sessionId
+                }
+
+                var url = `/booking?userId=${request.userId}&sessionId=${request.sessionId}&date=${sessionDate}`;
+
+                window.location.href = url
+
+            });
+
+
+        });
+
+    </script>
+}
