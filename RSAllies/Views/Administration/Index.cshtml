@@ -18,11 +18,13 @@
                 <div id="container"></div>
             </figure>
 
+            <div></div>
+
         </div>
 
         <div id="second">
             
-            <div style="display:flex;flex-direction:row;justify-content:start;align-items:start;gap:8px;">
+            <div style="display:flex;flex-direction:row;justify-content:start;align-items:start;gap:8px;align-self:flex-start">
                 <i style="color:#f2c94c" class="bi bi-123"></i>
                 <span class="english">Age group demographics</span>
                 <span class="swahili">Umri</span>
@@ -32,22 +34,44 @@
                 <div id="Age"></div>
             </figure>
 
+            <div></div>
+
         </div>
 
         <div id="third">
 
             <div style="display:flex;flex-direction:row;justify-content:start;align-items:start;gap:8px;">
-                <i style="color:#f2c94c" class="bi bi bi-marker-tip"></i>
-                <span class="english">Test analysis</span>
-                <span class="swahili">Umri</span>
+                <i style="color:#f2c94c" class="bi bi-bar-chart-line-fill"></i>
+                <span class="english">Education Level analysis</span>
+                <span class="swahili">Kiwango cha elimu</span>
             </div>
+
+            <figure class="highcharts-figure">
+                <div id="column-drill"></div>
+            </figure>
+
+
 
         </div>
 
     </div>
 
     <div id="secondContainer">
-        ss
+        
+        <div id="left">
+            ss
+        </div>
+
+        <div id="right">
+            
+            <p style="font-weight:900;color:#f2c94c">Peak Booking by Day</p>
+
+            <figure class="highcharts-figure">
+                <div id="peakBooking"></div>
+            </figure>
+
+        </div>
+
     </div>
 
     <div id="thirdContainer">
@@ -77,6 +101,8 @@
     <script src="/js/highcharts.js"></script>
     <script src="/js/exporting.js"></script>
     <script src="/js/accessibility.js"></script>
+    <script src="/js/drilldown.js"></script>
+    <script src="/js/series-label.js"></script>
     <script src="/js/export-data.js"></script>
 
     <script type="text/javascript">
@@ -272,4 +298,158 @@
         });
 
     </script>
+
+    <script type="text/javascript">
+        // Data retrieved from https://gs.statcounter.com/browser-market-share#monthly-202201-202201-bar
+
+        // Create the chart
+        Highcharts.chart('column-drill', {
+            chart: {
+                type: 'column',
+                style: {
+                    fontFamily: 'Fira Code VF',
+                    padding: 0,
+                    margin: 0
+                }
+            },
+            title: {
+                align: 'left',
+                text: ''
+            },
+            accessibility: {
+                announceNewData: {
+                    enabled: true
+                }
+            },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: {
+                    text: 'Total percent users share'
+                }
+
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.1f}%'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: ' +
+                    '<b>{point.y:.2f}%</b> of total<br/>'
+            },
+
+            series: [
+                {
+                    name: 'Education level analysis',
+                    colorByPoint: true,
+                    data: [
+                        {
+                            name: 'Uneducated',
+                            y: 63.06,
+                            drilldown: null
+                        },
+                        {
+                            name: 'Class 7',
+                            y: 19.84,
+                            drilldown: null
+                        },
+                        {
+                            name: 'Form 2',
+                            y: 4.18,
+                            drilldown: null
+                        },
+                        {
+                            name: 'Form 4',
+                            y: 4.12,
+                            drilldown: null
+                        },
+                        {
+                            name: 'Form 6',
+                            y: 2.33,
+                            drilldown: null
+                        },
+                        {
+                            name: 'Diploma',
+                            y: 0.45,
+                            drilldown: null
+                        },
+                        {
+                            name: 'Degree',
+                            y: 1.582,
+                            drilldown: 'Degree'
+                        }
+                    ]
+                }
+            ],
+            drilldown: {
+                breadcrumbs: {
+                    position: {
+                        align: 'center'
+                    }
+                },
+                series: [
+                    {
+                        name: 'Degree',
+                        id: 'Degree',
+                        data: [
+                            [
+                                'Bachelors Degree',
+                                78
+                            ],
+                            [
+                                'Masters Degree',
+                                21
+                            ],
+                            [
+                                'PhD',
+                                1
+                            ]
+                        ]
+                    }
+                ]
+            }
+        });
+
+    </script>
+
+    <script type="text/javascript">
+        Highcharts.chart('peakBooking', {
+            chart: {
+                type: 'column',
+                style: {
+                    fontFamily: 'Fira Code VF',
+                    padding: 0,
+                    margin: 0
+                }
+            },
+            title: {
+                text: '',
+                align:  'left'
+            },
+            xAxis: {
+                categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+            },
+            yAxis: {
+                title: {
+                    text: 'Peak Booking'
+                }
+            },
+            series: [{
+                name: 'Peak Booking',
+                data: [150, 200, 180, 220, 250, 230, 210] // Example data, you should replace this with your actual data
+            }]
+        });
+    </script>
+
 }
