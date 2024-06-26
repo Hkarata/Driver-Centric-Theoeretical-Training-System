@@ -6,6 +6,315 @@
 
     <div id="first">
 
+        <div id="left">
+            <p style="font-weight:900;color:#f2c94c">Booking rate analysis</p>
+            <figure class="highcharts-figure">
+                <div id="bookingRate"></div>
+            </figure>
+        </div>
+
+        <div id="right">
+            
+            <p style="font-weight:900;color:#f2c94c">Confirmation & Cancellation rates</p>
+            <figure class="highcharts-figure">
+                <div id="confirmCancel"></div>
+            </figure>
+
+        </div>
+
+    </div>
+
+    <div id="second">
+
+        <div id="second-left">
+            <p style="font-weight:900;color:#f2c94c">Peak booking times</p>
+            <figure class="highcharts-figure">
+                <div id="peakTimes"></div>
+            </figure>
+        </div>
+
+        <div id="second-center">
+            <p style="font-weight:900;color:#f2c94c">Peak booking months</p>
+            <figure class="highcharts-figure">
+                <div id="peakMonths"></div>
+            </figure>
+        </div>
+
+        <div id="second-right">
+            <p style="font-weight:900;color:#f2c94c">Peak Booking Trends for Last 5 Years</p>
+            <figure class="highcharts-figure">
+                <div id="last5"></div>
+            </figure>
+        </div>
+
+    </div>
+
+    <div id="third">
+
+        <div id="third-left">
+            <p style="font-weight:900;color:#f2c94c">Booking Status Counts by Venue</p>
+            <figure class="highcharts-figure">
+                <div id="statusCounts"></div>
+            </figure>
+        </div>
+        <div id="third-right">
+            <p style="font-weight:900;color:#f2c94c">Repeated bookings Count</p>
+            <p style="text-align:center;font-size:60px;font-weight:900;font-family:'Segoe Script'">102</p>
+            <div>
+                <p>This may be due to:</p>
+                <ol>
+                    <li>Late confirmation</li>
+                    <li>Test retake</li>
+                    <li>Other personal reasons</li>
+                </ol>
+            </div>
+        </div>
+
     </div>
 
 </div>
+@section Scripts{
+
+
+    <script src="/js/highcharts.js"></script>
+    <script src="/js/exporting.js"></script>
+    <script src="/js/accessibility.js"></script>
+    <script src="/js/drilldown.js"></script>
+    <script src="/js/series-label.js"></script>
+    <script src="/js/export-data.js"></script>
+    <script src="/js/highcharts-3d.js"></script>
+
+    <script type="text/javascript">
+
+        Highcharts.chart('bookingRate', {
+            chart: {
+                type: 'bar',
+                style: {
+                    fontFamily: 'Fira Code VF',
+                    padding: 0,
+                    margin: 0
+                }
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                categories: ['Venue A', 'Venue B', 'Venue C', 'Venue D'],
+                labels: {
+                    rotation: -45,
+                    style: {
+                        fontSize: '12px'
+                    }
+                }
+
+            },
+            yAxis: {
+                title: {
+                    text: 'Venues'
+                }
+            },
+            series: [{
+                name: 'Booking rate',
+                data: [80, 65, 90, 75] // Add your average utilization rate data here
+            }]
+        });
+
+    </script>
+
+    <script type="text/javascript">
+        Highcharts.chart('confirmCancel', {
+            chart: {
+                type: 'column',
+                style: {
+                    fontFamily: 'Fira Code VF',
+                    padding: 0,
+                    margin: 0
+                }
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                categories: ['Venue A', 'Venue B', 'Venue C'],
+                labels: {
+                    rotation: -45,
+                    style: {
+                        fontSize: '12px'
+                    }
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Booking Confirmation and Cancellation Rates'
+                }
+            },
+            tooltip: {
+                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+                shared: true
+            },
+            plotOptions: {
+                series: {
+                    stacking: 'normal'
+                }
+            },
+            series: [{
+                name: 'Confirmed',
+                data: [100, 80, 90], // Add your booking confirmation rate data here
+                color: '#9cd108' // Custom color for confirmation bars
+            }, {
+                name: 'Canceled',
+                data: [20, 30, 10], // Add your booking cancellation rate data here
+                color: '#ff3133' // Custom color for cancellation bars
+            }]
+        });
+    </script>
+
+    <script type="text/javascript">
+        Highcharts.chart('peakTimes', {
+            chart: {
+                type: 'pie',
+                style: {
+                    fontFamily: 'Fira Code VF',
+                    padding: 0,
+                    margin: 0
+                }
+            },
+            title: {
+                text: ''
+            },
+            series: [{
+                name: 'Time of Day',
+                colorByPoint: true,
+                data: [{
+                    name: 'AM',
+                    y: 40,
+                    drilldown: 'AM' // Drilldown ID for AM bookings
+                }, {
+                    name: 'PM',
+                    y: 60,
+                    drilldown: 'PM' // Drilldown ID for PM bookings
+                }]
+            }],
+            drilldown: {
+                series: [{
+                    id: 'AM',
+                    name: 'AM Bookings',
+                    data: [
+                        ['12AM', 10],
+                        ['1AM', 5],
+                        ['2AM', 8],
+                        ['3AM', 15],
+                        ['4AM', 20]
+                    ]
+                }, {
+                    id: 'PM',
+                    name: 'PM Bookings',
+                    data: [
+                        ['12PM', 70],
+                        ['1PM', 75],
+                        ['2PM', 80],
+                        ['3PM', 85],
+                        ['4PM', 90]
+                    ]
+                }]
+            }
+        });
+
+    </script>
+
+    <script type="text/javascript">
+        Highcharts.chart('peakMonths', {
+            chart: {
+                type: 'column',
+                style: {
+                    fontFamily: 'Fira Code VF',
+                    padding: 0,
+                    margin: 0
+                }
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] // Months of the year
+            },
+            yAxis: {
+                title: {
+                    text: 'Number of Bookings'
+                }
+            },
+            series: [{
+                name: 'Bookings',
+                data: [100, 120, 150, 130, 160, 180, 200, 190, 170, 140, 120, 110] // Add your booking data for each month
+            }]
+        });
+    </script>
+
+    <script type="text/javascript">
+        Highcharts.chart('last5', {
+            chart: {
+                type: 'line',
+                style: {
+                    fontFamily: 'Fira Code VF',
+                    padding: 0,
+                    margin: 0
+                }
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                categories: ['2017', '2018', '2019', '2020', '2021'] // Last 5 years
+            },
+            yAxis: {
+                title: {
+                    text: 'Total Number of Bookings'
+                }
+            },
+            series: [{
+                name: 'Bookings',
+                data: [1000, 1200, 1500, 1300, 1600] // Add your total booking data for each year
+            }]
+        });
+    </script>
+
+    <script type="text/javascript">
+        Highcharts.chart('statusCounts', {
+            chart: {
+                type: 'column',
+                style: {
+                    fontFamily: 'Fira Code VF',
+                    padding: 0,
+                    margin: 0
+                }
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                categories: ['Venue A', 'Venue B', 'Venue C', 'Venue D'],
+                labels: {
+                    rotation: -45,
+                    style: {
+                        fontSize: '12px'
+                    }
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Total Bookings'
+                }
+            },
+            series: [{
+                name: 'Booked',
+                data: [100, 120, 90, 110] // Total count of booked bookings for each venue
+            }, {
+                name: 'Confirmed',
+                data: [80, 100, 70, 90] // Total count of confirmed bookings for each venue
+            }, {
+                name: 'Cancelled',
+                data: [20, 30, 20, 25] // Total count of cancelled bookings for each venue
+            }]
+        });
+    </script>
+}

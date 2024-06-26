@@ -42,7 +42,7 @@
         </div>
 
         <div id="second-div-right">
-            <p style="font-weight:900;color:#f2c94c">Test retake analysis by Gender</p>
+            <p style="font-weight:900;color:#f2c94c">Test analysis by Gender</p>
             <figure class="highcharts-figure">
                 <div id="genderAnalysis"></div>
             </figure>
@@ -296,10 +296,18 @@
                     text: 'Number of Test Passes'
                 }
             },
-            series: [{
-                name: 'Test Passes',
-                data: [85, 65] // Example data, replace with your actual data
-            }]
+            series: [
+                {
+                    name: 'Test Passes',
+                    data: [85, 65],
+                    color: '#9cd108'
+                },
+                {
+                    name: 'Test Retake',
+                    data: [45, 25],
+                    color: '#ff3133'
+                }
+            ]
         });
     </script>
 

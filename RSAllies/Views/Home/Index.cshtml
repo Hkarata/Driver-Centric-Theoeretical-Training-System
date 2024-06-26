@@ -72,15 +72,21 @@
 
                         <div id="BDiv">
 
-                            <button id="confirm" data-bookingId="@Model!.Id" class="myButtons" style="background-color:#356dca" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                <span class="english">Confirm</span>
-                                <span class="swahili">Hakikisha</span>
-                            </button>
+                            @if(Model.Status != BookingStatus.Confirmed)
+                            {
+                                <button id="confirm" data-bookingId="@Model!.Id" class="myButtons" style="background-color:#356dca" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                    <span class="english">Confirm</span>
+                                    <span class="swahili">Hakikisha</span>
+                                </button>
+                            }
 
-                            <a asp-controller="Test" asp-action="Index" class="myButtons" style="background-color:#8fbe26">
-                                <span class="english">Attempt test</span>
-                                <span class="swahili">Fanya mtihani</span>
-                            </a>
+                            @if (Model.BookedAt.Date == DateTime.Today)
+                            {
+                                <a asp-controller="Test" asp-action="Index" class="myButtons" style="background-color:#8fbe26">
+                                    <span class="english">Attempt test</span>
+                                    <span class="swahili">Fanya mtihani</span>
+                                </a>
+                            }
 
                         </div>
 

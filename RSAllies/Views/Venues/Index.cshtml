@@ -49,7 +49,14 @@
             {
                 <a class="Card" asp-controller="Venues" asp-action="Venue" asp-route-id="@venue.Id">
 
-                    <img class="img-shuffle" src="/venues/@venue.ImageUrl" class="w-100" />
+                    @if (venue.Name.Equals("Julius Nyerere International Conference centre") || venue.Name.Equals("Arusha Technical College"))
+                    {
+                        <img src="/venues/@venue.ImageUrl" class="w-100 img-shuffle" />
+                    }
+                    else
+                    {
+                        <img src="@venue.ImageUrl" class="img-shuffle w-100" />
+                    }
 
                     <div style="font-family: 'Fira Code Regular';font-weight:650">
                         <span>@venue.Name</span>
