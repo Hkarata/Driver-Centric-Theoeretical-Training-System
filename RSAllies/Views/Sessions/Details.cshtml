@@ -49,36 +49,53 @@
 
     <div id="secondContainer">
         
-        <div id="myHeader">
-            <span class="english" >First Name</span>
-            <span class="swahili" >Jina la Kwanza</span>
-            <span class="english" > Middle Name</span>
-            <span class="swahili"> Jina la Kati</span>
-            <span class="english"> Surname</span>
-            <span class="swahili" > Jina la Mwisho</span>
-            <span class="english" > Phone number</span>
-            <span class="swahili" > Nambari ya simu</span>
-            <span class="english">Email</span>
-            <span class="swahili">Barua pepe</span>
-        </div>
+        @if(Model is not null)
+        {
+            <div id="myHeader">
+                <span class="english">First Name</span>
+                <span class="swahili">Jina la Kwanza</span>
+                <span class="english"> Middle Name</span>
+                <span class="swahili"> Jina la Kati</span>
+                <span class="english"> Surname</span>
+                <span class="swahili"> Jina la Mwisho</span>
+                <span class="english"> Phone number</span>
+                <span class="swahili"> Nambari ya simu</span>
+                <span class="english">Email</span>
+                <span class="swahili">Barua pepe</span>
+            </div>
 
-        
-        <div id="myContent">
 
-            @foreach(var i in Enumerable.Range(1, 100))
-            {
-                <div class="myData">
+            <div id="myContent">
 
-                    <span>Heri</span>
-                    <span>Mussa</span>
-                    <span>Karata</span>
-                    <span>0679844679</span>
-                    <span style="text-overflow:ellipsis;word-wrap:break-word">heri.karata.outlook.com</span>
+                @foreach (var user in Model)
+                {
+                    <div class="myData">
 
-                </div>
-            }
+                        <span>@user.FirstName</span>
+                        <span>@user.MiddleName</span>
+                        <span>@user.LastName</span>
+                        <span>@user.Phone</span>
+                        <span style="text-overflow:ellipsis;word-wrap:break-word">@user.Email</span>
 
-        </div>
+                    </div>
+                }
+
+            </div>
+        }
+        else
+        {
+            
+            <div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+
+                <img src="/Images/folder.png" width="100"/>
+                <br />
+                <br />
+                <p class="english">This session is empty, it has no bookings</p>
+                <p class="swahili">Kipindi hiki ni tupu, hakina nafasi zilizohifadhiwa. </p>
+
+            </div>
+
+        }
 
 
     </div>
@@ -127,7 +144,7 @@
                 <span class="swahili">Je, una uhakika? Kitendo hiki hakiwezi kubadilishwa.</span>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-danger" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
+                <button style="font-family:'Fira Code VF'" class="btn btn-danger" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
                     <span class="english">Continue cancellation</span>
                     <span class="swahili">Endelea</span>
                 </button>

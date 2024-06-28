@@ -21,9 +21,12 @@
             </div>
         </div>
 
-        @if (Model is not null)
+        @if (Model is null)
         {
-            
+
+        }
+        else
+        {
             <div id="Card">
                 @if (Model.BookedAt < DateTime.Today)
                 {
@@ -107,8 +110,9 @@
                 }
 
 
+
                 <div id="Outer">
-                    
+
                     <p id="GDiv">
                         <span class="english">Guidelines</span>
                         <span class="swahili">Angalizo</span>
@@ -123,18 +127,18 @@
 
                     <span style="margin-top:auto" class="english">Best oƒ luck</span>
 
-                    <ul class="swahili"> 
-                        <li>Fika angalau dakika 30 kabla ya mtihani.</li> 
-                        <li>Kitambulisho chenye picha yako.</li> 
+                    <ul class="swahili">
+                        <li>Fika angalau dakika 30 kabla ya mtihani.</li>
+                        <li>Kitambulisho chenye picha yako.</li>
                         <li>Thibitisha uhifadhi wako dakika 45 kabla ya kuanza kwa mtihani, vinginevyo uhifadhi wako utatupiliwa mbali.</li>
-                        <li>Kudanganya ni marufuku, na itasababisha marufuku ya muda kujaribu mtihani.</li> </ul>
+                        <li>Kudanganya ni marufuku, na itasababisha marufuku ya muda kujaribu mtihani.</li>
+                    </ul>
 
                     <span style="margin-top:auto" class="swahili">Kila la kheri</span>
 
                 </div>
 
             </div>
-
         }
 
         <br />
@@ -172,32 +176,37 @@
 
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" style="font-family:'Fira Code VF'" id="staticBackdropLabel">
-                    <span class="english">Booking Confirmation</span>
-                    <span class="swahili">Thibitisha nafasi yako</span>
-                </h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div style="font-family:'Fira Code VF'" class="modal-body">
-                
-                <span class="english">You are about to confirm your attendance on the test sitting!</span>
-                <span class="swahili">Unakaribia kuthibitisha uwepo wako siku ya mtihani</span>
-            </div>
-            <div style="font-family:'Fira Code VF'" class="modal-footer">
-                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
-                <a asp-controller="Home" asp-action="ConfirmBooking" asp-route-bookingId="@Model!.Id" id="confirmButton" type="button" class="btn btn-success">
+@if(Model is not null)
+{
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" style="font-family:'Fira Code VF'" id="staticBackdropLabel">
+                        <span class="english">Booking Confirmation</span>
+                        <span class="swahili">Thibitisha nafasi yako</span>
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div style="font-family:'Fira Code VF'" class="modal-body">
+
+                    <span class="english">You are about to confirm your attendance on the test sitting!</span>
+                    <span class="swahili">Unakaribia kuthibitisha uwepo wako siku ya mtihani</span>
+                </div>
+                <div style="font-family:'Fira Code VF'" class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
+                    <a asp-controller="Home" asp-action="ConfirmBooking" asp-route-bookingId="@Model!.Id" id="confirmButton" type="button" class="btn btn-success">
                         <span class="english">Confirm</span>
                         <span class="swahili">Thibitisha</span>
-                </a>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+}
 
 @section Scripts {
 
