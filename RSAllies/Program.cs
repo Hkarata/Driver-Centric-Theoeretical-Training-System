@@ -16,7 +16,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<SessionService>();
 
 builder.Services.AddHttpClient<ApiClient>(client =>
-{ 
+                                          {
     client.BaseAddress = new Uri("https://rsallies.azurewebsites.net");
 });
 
