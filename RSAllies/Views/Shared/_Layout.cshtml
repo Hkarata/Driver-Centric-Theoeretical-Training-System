@@ -24,10 +24,28 @@
                 <i id="Menu" class="bi bi-justify-left" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation"></i>
             }
 
-            <a asp-controller="Account" asp-action="Index" id="AppName">
-                <span class="english">Driver-Centric Theoretical Training System</span>
-                <span class="swahili">Mfumo wa Kupima Nadharia ya Udereva</span>
-            </a>
+            @if (SessionService.Check())
+            {
+                <a asp-controller="Home" asp-action="Index" id="AppName">
+                    <span class="english">Driver-Centric Theoretical Training System</span>
+                    <span class="swahili">Mfumo wa Kupima Nadharia ya Udereva</span>
+                </a>
+            }
+            else if (SessionService.CheckAdmin())
+            {
+                <a asp-controller="Administration" asp-action="Index" id="AppName">
+                    <span class="english">Driver-Centric Theoretical Training System</span>
+                    <span class="swahili">Mfumo wa Kupima Nadharia ya Udereva</span>
+                </a>
+            }
+            else
+            {
+                <a asp-controller="Account" asp-action="Index" id="AppName">
+                    <span class="english">Driver-Centric Theoretical Training System</span>
+                    <span class="swahili">Mfumo wa Kupima Nadharia ya Udereva</span>
+                </a>
+            }
+
 
             <div id="LD" class="dropdown" style="margin-left: auto;padding:0;">
                 <a id="DT" class="btn btn-danger dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -55,6 +73,8 @@
                 @if(SessionService.CheckAdmin())
                 {
                     <a asp-controller="Administration" asp-action="Index" class="btn btn-primary w-100 btn text-start">Dashboard</a>
+                    <a asp-controller="Booking" asp-action="Analysis" class="btn btn-primary w-100 btn text-start">Booking Analysis</a>
+                    <a asp-controller="Test" asp-action="Analysis" class="btn btn-primary w-100 btn text-start">Test Analysis</a>
 
                 }
                 else
