@@ -26,6 +26,7 @@ namespace RSAllies.Controllers
                 {
                     Name = "hasBooked",
                     HttpOnly = false,
+                    SameSite = SameSiteMode.Lax,
                     Expiration = DateTime.Parse(date) - DateTime.Today
                 };
 
