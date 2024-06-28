@@ -338,11 +338,11 @@ namespace RSAllies.Analytics
         /// Retrieves the venue booking status counts.
         /// </summary>
         /// <returns>A task that represents the asynchronous operation. The task result contains the venue booking status counts.</returns>
-        public async Task<Result<VenueBookingStatusCount>> GetVenueBookingStatusCounts()
+        public async Task<Result<List<VenueBookingStatusCount>>> GetVenueBookingStatusCounts()
         {
             var response = await httpClient.GetAsync("/api/venue-booking-status-counts");
             var content = await response.Content.ReadAsStringAsync();
-            var venueBookingStatusCounts = JsonConvert.DeserializeObject<Result<VenueBookingStatusCount>>(content)!;
+            var venueBookingStatusCounts = JsonConvert.DeserializeObject<Result<List<VenueBookingStatusCount>>>(content)!;
             return venueBookingStatusCounts;
         }
     }

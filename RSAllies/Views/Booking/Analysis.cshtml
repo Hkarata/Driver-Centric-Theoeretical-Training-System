@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Newtonsoft.Json
+@{
     ViewData["Title"] = "Booking Analysis";
 }
 
@@ -59,7 +60,7 @@
         </div>
         <div id="third-right">
             <p style="font-weight:900;color:#f2c94c">Repeated bookings Count</p>
-            <p style="text-align:center;font-size:60px;font-weight:900;font-family:'Segoe Script'">102</p>
+            <p style="text-align:center;font-size:60px;font-weight:900;font-family:'Segoe Script'">@ViewBag.RepeatedBookings</p>
             <div>
                 <p>This may be due to:</p>
                 <ol>
@@ -75,6 +76,12 @@
 </div>
 @section Scripts{
 
+    <script>
+
+        console.log(@Html.Raw(ViewBag.AmData));
+        console.log(@Html.Raw(ViewBag.AmData));
+
+    </script>
 
     <script src="/js/highcharts.js"></script>
     <script src="/js/exporting.js"></script>
@@ -99,11 +106,14 @@
                 text: ''
             },
             xAxis: {
-                categories: ['Venue A', 'Venue B', 'Venue C', 'Venue D'],
+                categories: @Html.Raw(ViewBag.Venues),
                 labels: {
                     rotation: -45,
                     style: {
                         fontSize: '12px'
+                    },
+                    formatter: function () {
+                        return this.value.length > 10 ? this.value.substring(0, 10) + '...' : this.value;
                     }
                 }
 
@@ -115,7 +125,7 @@
             },
             series: [{
                 name: 'Booking rate',
-                data: [80, 65, 90, 75] // Add your average utilization rate data here
+                data: @Html.Raw(ViewBag.VenueNumbers) // Add your average utilization rate data here
             }]
         });
 
@@ -135,7 +145,7 @@
                 text: ''
             },
             xAxis: {
-                categories: ['Venue A', 'Venue B', 'Venue C'],
+                categories: @Html.Raw(ViewBag.ConfirmedVenues),
                 labels: {
                     rotation: -45,
                     style: {
@@ -159,11 +169,11 @@
             },
             series: [{
                 name: 'Confirmed',
-                data: [100, 80, 90], // Add your booking confirmation rate data here
+                data: @Html.Raw(ViewBag.ConfirmedNumbers), // Add your booking confirmation rate data here
                 color: '#9cd108' // Custom color for confirmation bars
             }, {
                 name: 'Canceled',
-                data: [20, 30, 10], // Add your booking cancellation rate data here
+                data: @Html.Raw(ViewBag.CancelledNumbers), // Add your booking cancellation rate data here
                 color: '#ff3133' // Custom color for cancellation bars
             }]
         });
@@ -199,23 +209,11 @@
                 series: [{
                     id: 'AM',
                     name: 'AM Bookings',
-                    data: [
-                        ['12AM', 10],
-                        ['1AM', 5],
-                        ['2AM', 8],
-                        ['3AM', 15],
-                        ['4AM', 20]
-                    ]
+                    data: @Html.Raw(ViewBag.AmData)
                 }, {
                     id: 'PM',
                     name: 'PM Bookings',
-                    data: [
-                        ['12PM', 70],
-                        ['1PM', 75],
-                        ['2PM', 80],
-                        ['3PM', 85],
-                        ['4PM', 90]
-                    ]
+                    data: @Html.Raw(ViewBag.PmData)
                 }]
             }
         });
@@ -245,7 +243,7 @@
             },
             series: [{
                 name: 'Bookings',
-                data: [100, 120, 150, 130, 160, 180, 200, 190, 170, 140, 120, 110] // Add your booking data for each month
+                data: @Html.Raw(ViewBag.MonthlyBookings) // Add your booking data for each month
             }]
         });
     </script>
@@ -264,7 +262,7 @@
                 text: ''
             },
             xAxis: {
-                categories: ['2017', '2018', '2019', '2020', '2021'] // Last 5 years
+                categories: @Html.Raw(ViewBag.Years) // Last 5 years
             },
             yAxis: {
                 title: {
@@ -273,7 +271,7 @@
             },
             series: [{
                 name: 'Bookings',
-                data: [1000, 1200, 1500, 1300, 1600] // Add your total booking data for each year
+                data: @Html.Raw(ViewBag.Bookings) // Add your total booking data for each year
             }]
         });
     </script>
@@ -292,7 +290,7 @@
                 text: ''
             },
             xAxis: {
-                categories: ['Venue A', 'Venue B', 'Venue C', 'Venue D'],
+                categories: @Html.Raw(ViewBag.VenuesList),
                 labels: {
                     rotation: -45,
                     style: {
@@ -307,13 +305,18 @@
             },
             series: [{
                 name: 'Booked',
-                data: [100, 120, 90, 110] // Total count of booked bookings for each venue
-            }, {
+                data: @Html.Raw(ViewBag.Booked) // Total count of booked bookings for each venue
+            },
+            {
+                name: 'Paid',
+                data: @Html.Raw(ViewBag.Paid) // Total count of confirmed bookings for each venue
+            },
+            {
                 name: 'Confirmed',
-                data: [80, 100, 70, 90] // Total count of confirmed bookings for each venue
+                data: @Html.Raw(ViewBag.Confirmed) // Total count of confirmed bookings for each venue
             }, {
                 name: 'Cancelled',
-                data: [20, 30, 20, 25] // Total count of cancelled bookings for each venue
+                data: @Html.Raw(ViewBag.Cancelled) // Total count of cancelled bookings for each venue
             }]
         });
     </script>
