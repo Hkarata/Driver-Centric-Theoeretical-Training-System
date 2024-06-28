@@ -27,7 +27,7 @@
 
         <div id="second-div-left">
             <p style="font-weight:900;color:#f2c94c">Exam Retake Analysis</p>
-            <p style="text-align:center;font-size:60px;font-weight:900;font-family:'Segoe Script'">102</p>
+            <p style="text-align:center;font-size:60px;font-weight:900;font-family:'Segoe Script'">@ViewBag.RetakeCount</p>
             <p>students have retaken the exam.</p>
             <p>Total number of questions: 25</p>
             <p>Pass mark is 16 questions</p>
@@ -84,13 +84,13 @@
             },
             series: [{
                 name: 'Total Responses',
-                data: [30, 12, 30, 0, 0, 0]
+                data: @Html.Raw(ViewBag.TotalResponses)
             }, {
                 name: 'Correct Responses',
-                data: [10, 7, 16, 0, 0, 0]
+                data: @Html.Raw(ViewBag.CorrectResponses)
             }, {
                 name: 'Incorrect Responses',
-                data: [20, 5, 14, 0, 0, 0]
+                data: @Html.Raw(ViewBag.IncorrectResponses)
             }]
         });
     </script>
@@ -185,7 +185,7 @@
                 align: 'left'
             },
             tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                pointFormat: 'Score range: <b>{point.percentage:.1f}%</b>'
             },
             accessibility: {
                 point: {
@@ -199,7 +199,7 @@
                     cursor: 'pointer',
                     dataLabels: {
                         enabled: true,
-                        format: '<b>{point.name}</b><br>{point.percentage}%',
+                        format: '<b>{point.name}</b><br>{point.percentage:.1f}%',
                         distance: 20
                     }
                 }
@@ -212,23 +212,20 @@
                 },
                 colorByPoint: true,
                 data: [{
-                    name: '18-25',
-                    y: 21.3
+                    name: '0-5',
+                    y: @Html.Raw(ViewBag.Scores[0])
                 }, {
-                    name: '26-33',
-                    y: 18.7
+                    name: '6-10',
+                    y: @Html.Raw(ViewBag.Scores[1])
                 }, {
-                    name: '34-41',
-                    y: 20.2
+                    name: '11-15',
+                    y: @Html.Raw(ViewBag.Scores[2])
                 }, {
-                    name: '42-49',
-                    y: 14.2
+                    name: '16-20',
+                    y: @Html.Raw(ViewBag.Scores[3])
                 }, {
-                    name: '50-55',
-                    y: 15.6
-                }, {
-                    name: '55+',
-                    y: 10
+                    name: '21-25',
+                    y: @Html.Raw(ViewBag.Scores[4])
                 }
                 ]
             }]
@@ -266,10 +263,10 @@
             },
             series: [{
                 name: 'Passed',
-                data: [15, 20, 18, 25, 30]
+                data: @Html.Raw(ViewBag.Passes)
             }, {
                 name: 'Failed',
-                data: [5, 10, 8, 15, 20]
+                data: @Html.Raw(ViewBag.Retakes)
             }]
         });
     </script>
@@ -298,12 +295,12 @@
             series: [
                 {
                     name: 'Test Passes',
-                    data: [85, 65],
+                    data: @Html.Raw(ViewBag.MaleData),
                     color: '#9cd108'
                 },
                 {
                     name: 'Test Retake',
-                    data: [45, 25],
+                    data: @Html.Raw(ViewBag.FemaleData),
                     color: '#ff3133'
                 }
             ]

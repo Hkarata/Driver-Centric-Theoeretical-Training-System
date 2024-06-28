@@ -109,11 +109,11 @@ namespace RSAllies.Analytics
         /// Retrieves the gender test analysis.
         /// </summary>
         /// <returns>A task that represents the asynchronous operation. The task result contains the gender test analysis.</returns>
-        public async Task<Result<GenderTestDto>> GetGenderTestAnalysis()
+        public async Task<Result<List<GenderTestDto>>> GetGenderTestAnalysis()
         {
             var response = await httpClient.GetAsync("/api/gender-test-analysis");
             var content = await response.Content.ReadAsStringAsync();
-            var genderTestAnalysis = JsonConvert.DeserializeObject<Result<GenderTestDto>>(content)!;
+            var genderTestAnalysis = JsonConvert.DeserializeObject<Result<List<GenderTestDto>>>(content)!;
             return genderTestAnalysis;
         }
 
@@ -205,9 +205,9 @@ namespace RSAllies.Analytics
         /// Retrieves the question age group analysis.
         /// </summary>
         /// <returns>A task that represents the asynchronous operation. The task result contains the question age group analysis.</returns>
-        public async Task<Result<List<QuestionAgeGroupDto>>> GetQuestionAgeGroupAnalysis()
+        public async Task<Result<List<QuestionAgeGroupDto>>> GetTestAgeGroupAnalysis()
         {
-            var response = await httpClient.GetAsync("/api/question-age-group-analysis");
+            var response = await httpClient.GetAsync("/api/test-age-group-analysis");
             var content = await response.Content.ReadAsStringAsync();
             var questionAgeGroupAnalysis = JsonConvert.DeserializeObject<Result<List<QuestionAgeGroupDto>>>(content)!;
             return questionAgeGroupAnalysis;
