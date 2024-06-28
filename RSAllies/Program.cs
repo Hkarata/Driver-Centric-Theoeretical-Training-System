@@ -16,13 +16,13 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<SessionService>();
 
 builder.Services.AddHttpClient<ApiClient>(client =>
-{
-    client.BaseAddress = new Uri("http://localhost:5000");
+{ 
+    client.BaseAddress = new Uri("https://rsallies.azurewebsites.net");
 });
 
 builder.Services.AddHttpClient<ApiService>(client =>
 {
-    client.BaseAddress = new Uri("http://localhost:5000");
+    client.BaseAddress = new Uri("https://rsallies.azurewebsites.net");
 });     
 
 builder.Services.AddCors(options =>
