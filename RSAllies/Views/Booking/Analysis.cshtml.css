@@ -69,7 +69,7 @@
     #left, #right {
         width: 100%;
     }
-    #second{
+    #second, #third{
         grid-template-columns: 1fr;
     }
 }
