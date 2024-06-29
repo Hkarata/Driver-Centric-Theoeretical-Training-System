@@ -17,12 +17,12 @@ builder.Services.AddScoped<SessionService>();
 
 builder.Services.AddHttpClient<ApiClient>(client =>
 {                                         
-    client.BaseAddress = new Uri("https://rsallies.azurewebsites.net");
+    client.BaseAddress = new Uri("http://localhost:5031");
 });
 
 builder.Services.AddHttpClient<ApiService>(client =>
 {
-    client.BaseAddress = new Uri("https://rsallies.azurewebsites.net");
+    client.BaseAddress = new Uri("http://localhost:5031");
 });     
 
 builder.Services.AddCors(options =>
