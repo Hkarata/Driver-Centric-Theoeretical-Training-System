@@ -9,7 +9,7 @@ namespace RSAllies.Services
         {
             var data = new List<Data>();
 
-            using (var stream = new FileStream(@"Data\Districts.json", FileMode.Open))
+            using (var stream = new FileStream(@"Data/Districts.json", FileMode.Open))
             {
                 var reader = new StreamReader(stream);
                 var json = reader.ReadToEnd();
@@ -23,7 +23,7 @@ namespace RSAllies.Services
         {
             var data = new List<Data>();
 
-            using (var stream = new FileStream(@"Data\Regions.json", FileMode.Open))
+            using (var stream = new FileStream(@"Data/Regions.json", FileMode.Open))
             {
                 var reader = new StreamReader(stream);
                 var json = reader.ReadToEnd();
