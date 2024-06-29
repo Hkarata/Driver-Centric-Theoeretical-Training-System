@@ -22,7 +22,7 @@ builder.Services.AddHttpClient<ApiClient>(client =>
 
 builder.Services.AddHttpClient<ApiService>(client =>
 {
-    client.BaseAddress = new Uri("https://rsallies.azurewebsites.net);
+    client.BaseAddress = new Uri("https://rsallies.azurewebsites.net");
 });     
 
 builder.Services.AddCors(options =>
