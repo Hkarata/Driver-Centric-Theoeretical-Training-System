@@ -431,7 +431,7 @@
 
             console.log(paymentData);
 
-            fetch('http://localhost:5031/api/payment?userId=' + paymentData.userId + '&paymentNumber=' + paymentData.paymentNumber, {
+            fetch('https://roadsafety.southafricanorth.cloudapp.azure.com:5032/api/payment?userId=' + paymentData.userId + '&paymentNumber=' + paymentData.paymentNumber, {
                 method: 'POST', // Set method to POST
                 headers: { 'Content-Type': 'application/json' }, // Set content type
             })
@@ -469,7 +469,7 @@
 
             // requestButton.disabled = true;
 
-            fetch('http://localhost:5031/api/payment-number/@sessionService.GetUserId()')
+            fetch('https://roadsafety.southafricanorth.cloudapp.azure.com:5032/api/payment-number/@sessionService.GetUserId()')
                 .then(response => response.json()) // Parse the response as JSON
                 .then(data => {
                     // Handle the successful response data here
