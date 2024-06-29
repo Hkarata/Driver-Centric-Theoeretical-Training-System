@@ -16,13 +16,13 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<SessionService>();
 
 builder.Services.AddHttpClient<ApiClient>(client =>
-                                          {
+{                                         
     client.BaseAddress = new Uri("https://rsallies.azurewebsites.net");
 });
 
 builder.Services.AddHttpClient<ApiService>(client =>
 {
-    client.BaseAddress = new Uri("https://rsallies.azurewebsites.net");
+    client.BaseAddress = new Uri("https://rsallies.azurewebsites.net);
 });     
 
 builder.Services.AddCors(options =>

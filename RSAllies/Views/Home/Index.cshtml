@@ -1,4 +1,6 @@
 ﻿@using RSAllies.Contracts.Responses
+@using RSAllies.Services
+@inject SessionService sessionService
 @model BookingDto
 
 @{
@@ -86,11 +88,18 @@
 
                             <div id="BDiv">
 
-                                @if (Model.Status != BookingStatus.Confirmed)
+                                @if (Model.Status != BookingStatus.Confirmed && Model.Status == BookingStatus.Paid)
                                 {
                                     <button id="confirm" data-bookingId="@Model!.Id" class="myButtons" style="background-color:#356dca" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                         <span class="english">Confirm</span>
                                         <span class="swahili">Hakikisha</span>
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button id="confirm" data-bookingId="@Model!.Id" class="myButtons" style="background-color:#356dca" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                                        <span class="english">Pay</span>
+                                        <span class="swahili">Lipia</span>
                                     </button>
                                 }
 
@@ -206,6 +215,84 @@
         </div>
     </div>
 
+    <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="" style="font-family:'Fira Code VF';font-weight:900;color:#356dca;" id="staticBackdropLabel">
+                        <span class="english">Booking Payment</span>
+                        <span class="swahili">Lipia nafasi yako</span>
+                    </span>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div style="font-family:'Fira Code VF'" class="modal-body">
+
+                    <div id="payment">
+                        <div>
+                            <span class="english">Enter payment number</span>
+                            <span class="swahili">Ingiza namba ya malipo</span>
+                        </div>
+
+                        <div>
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon1">#</span>
+                                <input type="text" id="paymentNumber" class="form-control" placeholder="PN-0000000">
+                            </div>
+
+                            <span id="paymentValidation" class="text-danger"></span>
+                        </div>
+
+                        <div class="mt-2 w-100 d-flex flex-row justify-content-between align-items-center">
+                            <div id="spinner2" class="spinner-border" style="color:#356dca" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <button class="myButtons " id="payButton" style="background-color:#356dca;margin-left:auto">
+                                <span class="english">Pay</span>
+                                <span class="swahili">Lipia</span>
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <div id="request">
+                        <div>
+                            <span class="english">Click the button below to request payment number.</span>
+                            <span class="swahili">Bofya kitufe kuomba namba ya malipo.</span>
+                        </div>
+
+                        <div class="mt-2 w-100 d-flex flex-row" style="font-size:15px">
+
+                            <div class="text-info" style="width: 20%;font-weight:550">
+                                <span class="english">Info:</span>
+                                <span class="swahili">Muhimu:</span>
+                            </div>
+
+                            <div class="text-danger" style="width: 80%;font-weight:900">
+                                <span class="english">You will receive the payment number via SMS or Mail, use it to confirm your payment</span>
+                                <span class="swahili">Utapokea namba ya malipo aidha kwa sms au barua pepe, tumia hio namba kuhakikisha malipo yako.</span>
+                            </div>
+
+                        </div>
+
+                        <div class="w-100 d-flex flex-row justify-content-between align-items-center">
+                            <div id="spinner" class="spinner-border" style="color:#356dca" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+
+                            <button class="myButtons mt-2" id="requestButton" style="background-color:#356dca;margin-left:auto">
+                                <span class="english">Request Payment Number</span>
+                                <span class="swahili">Omba namba ya malipo</span>
+                            </button>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 }
 
 @section Scripts {
@@ -234,6 +321,171 @@
 
         });
 
+    </script>
+
+    <script type="text/javascript">
+
+        function checkRequestCookie() {
+            // Get all cookies as a string
+            const cookiesString = document.cookie;
+
+            // Split the string into key-value pairs
+            const cookies = cookiesString.split(';');
+
+            // Loop through each cookie pair
+            for (let i = 0; i < cookies.length; i++) {
+                const currentCookie = cookies[i].trim();
+                // Split the current cookie pair into key and value
+                const [key, value] = currentCookie.split('=');
+
+                if (key === "paymentRequest" && value === "true") {
+
+                    // You can also disable the request button here
+                    document.getElementById("requestButton").disabled = true;
+
+                    return true; // Exit the function if found
+                }
+            }
+
+            // Cookie not found or value is not "true"
+            return false;
+        }
+
+        // Call the function on page load (assuming window.onload event)
+        document.addEventListener("DOMContentLoaded", function () {
+            let result = checkRequestCookie();
+            const requestDiv = document.getElementById("request");
+            const paymentDiv = document.getElementById("payment")
+
+            if (result) {
+                requestDiv.style.display = "none";
+            }else{
+                paymentDiv.style.display = "none";
+            }
+
+            const spinner2 = document.getElementById("spinner2");
+
+            spinner2.style.display = "none";
+
+
+        });
+
+
+        const paymentNumberInput = document.getElementById("paymentNumber");
+        const paymentValidation = document.getElementById("paymentValidation");
+        const payButton = document.getElementById("payButton");
+
+
+        paymentNumberInput.addEventListener("input", function () {
+
+
+
+            // Get the entered payment number
+            const paymentNumber = this.value.trim();
+
+            // Clear any previous validation message
+            paymentValidation.textContent = "";
+
+            // Validation checks and message updates
+            if (paymentNumber.length === 0) {
+                paymentValidation.textContent = ""; // Clear message if empty
+            } else if (!paymentNumber.startsWith("PN-")) {
+                paymentValidation.textContent = "Payment number must start with PN-.";
+            } else if (paymentNumber.length > 3 && isNaN(paymentNumber.substring(3))) {
+                paymentValidation.textContent = "Payment number can only contain numbers after PN-.";
+            } else {
+                // Validation seems OK (can be further enhanced)
+                paymentValidation.textContent = "";
+            }
+        });
+
+        payButton.addEventListener("click", function () {
+            // Get the entered payment number
+            const paymentNumber = paymentNumberInput.value.trim();
+
+            // Clear any previous validation message
+            paymentValidation.textContent = "";
+
+            // Validation checks
+            if (paymentNumber === "") {
+                paymentValidation.textContent = "Please enter your payment number.";
+                return false; // Prevent form submission (if applicable)
+            } else if (!paymentNumber.startsWith("PN-")) {
+                paymentValidation.textContent = "Payment number must start with PN-.";
+                return false;
+            } else if (isNaN(paymentNumber.substring(3))) { // Check if remaining characters are numbers
+                paymentValidation.textContent = "Payment number can only contain numbers after PN-.";
+                return false;
+            }
+
+            // If validation passes, submit the form (or perform your desired action)
+            // You might need to modify this part based on your form setup
+            const spinner2 = document.getElementById("spinner2");
+
+            spinner2.style.display = "";
+
+            const paymentData = {
+                userId: '@sessionService.GetUserId()', // Include user ID
+                paymentNumber: paymentNumberInput.value.trim()
+            };
+
+            console.log(paymentData);
+
+            fetch('http://localhost:5000/api/payment?userId=' + paymentData.userId + '&paymentNumber=' + paymentData.paymentNumber, {
+                method: 'POST', // Set method to POST
+                headers: { 'Content-Type': 'application/json' }, // Set content type
+            })
+                .then(response => response.json()) // Parse response as JSON
+                .then(data => {
+
+                    spinner2.style.display = "none;"
+
+                    if (data.isSuccess) {
+                        window.location.reload();
+                    } else{
+                        paymentValidation.textContent = "An error occurred during payment processing, try again later.";
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    paymentValidation.textContent = "An error occurred during payment processing.";
+
+                    spinner2.style.display = "none;"
+                    // Handle any errors during the request
+                });
+
+        });
+
+
+        const spinner = document.getElementById("spinner");
+
+        spinner.style.display = "none";
+
+        const requestButton = document.getElementById("requestButton");
+
+        requestButton.addEventListener("click", function () {
+
+            spinner.style.display = "";
+
+            // requestButton.disabled = true;
+
+            fetch('http://localhost:5000/api/payment-number/@sessionService.GetUserId()')
+                .then(response => response.json()) // Parse the response as JSON
+                .then(data => {
+                    // Handle the successful response data here
+                    console.log(data); // Example: log the data to the console
+                    // You can also update the UI based on the data (e.g., populate the payment number field)
+
+                    const expires = new Date(Date.now() + 24 * 60 * 60 * 1000); // One day from now
+                    document.cookie = "paymentRequest=true; expires=" + expires.toUTCString() + "; path=/";
+
+                })
+                .catch(error => {
+                    // Handle any errors during the request
+                    console.error('Error:', error);
+                    // You can display an error message to the user
+                });
+        });
     </script>
 
 }
