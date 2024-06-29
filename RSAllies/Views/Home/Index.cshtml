@@ -478,7 +478,7 @@
 
                     const expires = new Date(Date.now() + 24 * 60 * 60 * 1000); // One day from now
                     document.cookie = "paymentRequest=true; expires=" + expires.toUTCString() + "; path=/";
-
+                    window.location.reload();
                 })
                 .catch(error => {
                     // Handle any errors during the request
