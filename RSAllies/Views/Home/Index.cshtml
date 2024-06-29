@@ -95,7 +95,7 @@
                                         <span class="swahili">Hakikisha</span>
                                     </button>
                                 }
-                                else
+                                else if (Model.Status == BookingStatus.Booked && Model.Status != BookingStatus.Confirmed)
                                 {
                                     <button id="confirm" data-bookingId="@Model!.Id" class="myButtons" style="background-color:#356dca" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
                                         <span class="english">Pay</span>
