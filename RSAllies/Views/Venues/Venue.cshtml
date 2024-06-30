@@ -83,7 +83,7 @@
 
                     @if (sessionService.Check())
                     {
-                        <button id="myButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-userId="@sessionService.GetUserId()" data-sessionId="@session.Id" data-sessionDate="@session.Date.ToString("dd/MM/yyyy")">
+                        <button class="myButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-userId="@sessionService.GetUserId()" data-sessionId="@session.Id" data-sessionDate="@session.Date.ToString("dd/MM/yyyy")">
                             Book
                         </button>
                     }
@@ -187,7 +187,7 @@
             $('#dateField').attr('min', today);
 
 
-            $("#myButton").on("click", function () {
+            $(".myButton").on("click", function () {
                 // Get the values from data attributes
                 var userId = $(this).data("userid");
                 var sessionId = $(this).data("sessionid");

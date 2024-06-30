@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Bookings";
+}
+
+<div id="TheContainer">
+
+    <div id="left">
+       
+        <img src="/Images/building.png" class="img-fluid rounded" />
+
+    </div>
+
+    <div id="right">
+        
+        @foreach(var i in Enumerable.Range(1, 15))
+        {
+
+            <div class="Card">
+                
+                <div class="first">
+
+                    <span style="font-size:15px;font-weight:900;">Julius Nyerere International Conference Centre</span>
+
+                    <div class="d-flex flex-row">
+
+                        <i class="bi bi-calendar-check"></i>
+                        <span>12/03/2024</span>
+
+                    </div>
+
+
+                </div>
+                <div class="second">
+                    <i class="bi bi-trash3-fill" style="font-size: 20px;"></i>
+                </div>
+
+
+            </div>
+        }
+
+
+    </div>
+
+</div>

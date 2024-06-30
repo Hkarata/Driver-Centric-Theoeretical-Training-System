@@ -12,6 +12,31 @@ namespace RSAllies.Controllers
     {
         public async Task<IActionResult> Index(string userId, string sessionId, string date)
         {
+            // let's check if the user has already booked a session
+            var checkBooking = await apiClient.CheckBooking(userId);
+
+            if (checkBooking.IsSuccess)
+            {
+                // check if a cookie with the name "HasBooked" exists
+                var hasBookedCookieExists = httpContextAccessor.HttpContext!.Request.Cookies.ContainsKey("HasBooked");
+
+                if(!hasBookedCookieExists)
+                {
+                    var cookieBuilder = new CookieBuilder
+                    {
+                        Name = "hasBooked",
+                        HttpOnly = false,
+                        SameSite = SameSiteMode.Lax,
+                        Expiration = checkBooking.Value
+                    };
+
+                    var cookie = cookieBuilder.Build(httpContextAccessor.HttpContext!);
+
+                    httpContextAccessor.HttpContext!
+                        .Response.Cookies.Append("HasBooked", "true", cookie);
+                }
+            }
+
             var request = new CreateBookingDto
             {
                 UserId = Guid.Parse(userId),
@@ -35,9 +60,16 @@ namespace RSAllies.Controllers
                 httpContextAccessor.HttpContext!
                     .Response.Cookies.Append("HasBooked", "true", cookie);
 
+                // lets check for a cookie with the name "paymentRequest", if it exists, we remove it
+                var paymentRequestCookieExists = httpContextAccessor.HttpContext!.Request.Cookies.ContainsKey("paymentRequest");
+
+                if (paymentRequestCookieExists)
+                { 
+                    httpContextAccessor.HttpContext!.Response.Cookies.Delete("paymentRequest"); 
+                }
+
                 return RedirectToAction("Index", "Home");
             }
-
 
             return View();
         }
@@ -228,6 +260,11 @@ namespace RSAllies.Controllers
             ViewBag.Paid = c;
             ViewBag.Confirmed = d;
             ViewBag.Cancelled = e;
+        }
+
+        public IActionResult Bookings()
+        {
+            return View();
         }
     }
 }

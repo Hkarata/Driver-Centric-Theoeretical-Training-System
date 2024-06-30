@@ -204,5 +204,14 @@ namespace RSAllies.Services
             var result = JsonConvert.DeserializeObject<Result<List<QuestionDto>>>(content)!;
             return result;
         }
+
+        public async Task<Result<TimeSpan>> CheckBooking(string userId)
+        {
+            var response = await httpClient.GetAsync($"/api/check-booking/{userId}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<TimeSpan>>(content)!;
+            return result;
+        }
     }
+    
 }

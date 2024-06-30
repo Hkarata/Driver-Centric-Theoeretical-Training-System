@@ -89,7 +89,7 @@
                         <div class="progress-bar" style="@(() => (item.Capacity * 100)/item.VenueCapacity)%"></div>
                     </div>
 
-                    <button id="myButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-userId="@SessionService.GetUserId()" data-sessionId="@item.Id" data-sessionDate="@item.Date.ToString("dd/MM/yyyy")">
+                    <button class="myButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-userId="@SessionService.GetUserId()" data-sessionId="@item.Id" data-sessionDate="@item.Date.ToString("dd/MM/yyyy")">
                         <span class="english">Book</span>
                         <span class="swahili">Hifadhi</span>
                     </button>
@@ -197,7 +197,7 @@
             $('#dateField').attr('min', today);
 
 
-            $("#myButton").on("click", function () {
+            $(".myButton").on("click", function () {
                 // Get the values from data attributes
                 var userId = $(this).data("userid");
                 var sessionId = $(this).data("sessionid");
