@@ -212,6 +212,21 @@ namespace RSAllies.Services
             var result = JsonConvert.DeserializeObject<Result<TimeSpan>>(content)!;
             return result;
         }
+
+        public async Task<Result<List<BookingDto>>> GetUserBookings(Guid userId)
+        {
+            var response = await httpClient.GetAsync($"/api/user-bookings/{userId}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<List<BookingDto>>>(content)!;
+            return result;
+        }
+
+        public async Task<Result> DeleteBooking(string bookingId)
+        {
+            var response = await httpClient.DeleteAsync($"/api/booking/{bookingId}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<object>>(content)!;
+            return result;
+        }
     }
-    
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Humanizer;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RSAllies.Analytics;
 using RSAllies.Contracts.Requests;
@@ -8,6 +9,7 @@ namespace RSAllies.Controllers
 {
     public class BookingController(ApiClient apiClient,
         ApiService apiService,
+        SessionService sessionService,
         IHttpContextAccessor httpContextAccessor) : Controller
     {
         public async Task<IActionResult> Index(string userId, string sessionId, string date)
@@ -34,7 +36,16 @@ namespace RSAllies.Controllers
 
                     httpContextAccessor.HttpContext!
                         .Response.Cookies.Append("HasBooked", "true", cookie);
+
+                    
                 }
+
+                var englishMessage = "You already have an existing booking, however you can choose to delete your existing booking then book another.";
+                var swahiliMessage = "Tayari ushahifadhi nafasi, ila unaweza sitisha nafasi hii na kuhifadhi nyengine";
+
+                TempData["StatusMessage"] = englishMessage + " " + swahiliMessage;
+
+                return RedirectToAction("Index", "Home");
             }
 
             var request = new CreateBookingDto
@@ -262,9 +273,34 @@ namespace RSAllies.Controllers
             ViewBag.Cancelled = e;
         }
 
-        public IActionResult Bookings()
+        public async Task<IActionResult> Bookings()
         {
+            if (!sessionService.Check())
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            var userId = sessionService.GetUserId();
+
+            var result = await apiClient.GetUserBookings(userId);
+
+            if (result.IsSuccess)
+            {
+                return View(result.Value);
+            }
+
             return View();
+        }
+
+        public async Task<IActionResult> Delete(string bookingId)
+        {
+            var result = await apiClient.DeleteBooking(bookingId);
+
+            if (result.IsSuccess)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return RedirectToAction("Bookings");
         }
     }
 }

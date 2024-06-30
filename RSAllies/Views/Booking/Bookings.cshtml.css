@@ -22,6 +22,8 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+    overflow-y:auto;
+    scrollbar-width:none;
 }
 
 .Card {
@@ -31,10 +33,9 @@
     box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
     transition: 0.3s ease-in-out;
     font-family: 'Fira Code VF';
-    cursor: pointer;
     display: flex;
     flex-direction:row;
-    gap: 5px;
+    gap: 10px;
 }
 
     .Card:hover{
@@ -43,6 +44,9 @@
 
 .first{
     width: 93%;
+    display:flex;
+    flex-direction:column;
+    gap: 10px;
 }
 
 .second {
@@ -50,7 +54,58 @@
     width: 7%;
     padding: 5px;
     border-radius: 5px;
-    display:flex;
-    justify-content:center;
+    display: flex;
+    justify-content: center;
     align-items: center;
+    cursor: pointer;
+}
+
+.success, .success1, .success2{
+    font-size: 20px;
+}
+
+.success {
+    color: #f2c94c;
+}
+
+.success1 {
+    color: #356dca;
+}
+
+.success2{
+    color: #b9e500;
+}
+
+.deleteColor{
+    color: #e90202;
+}
+
+#smaller {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+}
+
+@media (max-width: 768px){
+    #TheContainer {
+        flex-direction:column;
+    }
+
+    #left, #right{
+        width: 100%;
+    }
+
+    .Card{
+        flex-direction:column;
+    }
+
+    .first, .second{
+        width: 100%;
+    }
+
+    #smaller{
+        display:flex;
+        flex-direction:column;
+        gap: 8px;
+    }
 }

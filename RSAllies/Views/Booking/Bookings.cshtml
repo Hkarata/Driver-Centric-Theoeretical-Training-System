@@ -1,6 +1,10 @@
-﻿@{
+﻿@using RSAllies.Contracts.Responses
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
     ViewBag.Title = "Bookings";
 }
+
+@model IEnumerable<BookingDto>
 
 <div id="TheContainer">
 
@@ -12,33 +16,180 @@
 
     <div id="right">
         
-        @foreach(var i in Enumerable.Range(1, 15))
+        @if(Model is null)
         {
+            <div class="d-flex justify-content-center align-items-center" style="height:100vh;">
+                <div class="text-center">
+                    <span style="font-size:20px;font-family:'Fira Code VF';font-weight:900;">
 
-            <div class="Card">
-                
-                <div class="first">
+                        <span class="english">No bookings available</span>
+                        <span class="swahili">Hamna nafasi ulizohifadhi</span>
 
-                    <span style="font-size:15px;font-weight:900;">Julius Nyerere International Conference Centre</span>
+                    </span>
+                </div>
+            </div>
+        }
+        else
+        {
+            @foreach (var booking in Model)
+            {
 
-                    <div class="d-flex flex-row">
+                <div class="Card">
 
-                        <i class="bi bi-calendar-check"></i>
-                        <span>12/03/2024</span>
+                    <div class="first">
 
+                        <span style="font-size:15px;font-weight:900;">@booking.VenueName</span>
+
+
+                        <div id="smaller">
+
+                            <div>
+                                <i class="bi bi-calendar-check-fill success"></i>
+                                <span>@booking.BookedAt.ToString("dd/MM/yyyy")</span>
+                            </div>
+
+
+                            <div>
+                                <i class="bi bi-stopwatch-fill success1"></i>
+                                <span>@booking.StartTime - @booking.EndTime</span>
+                            </div>
+
+                            @if (booking.Status == BookingStatus.Booked)
+                            {
+                                <div>
+                                    <span style="font-size:15px" class="badge text-bg-success d-flex justify-content-center align-items-center">@booking.Status</span>
+                                </div>
+                            }
+                            else if (booking.Status == BookingStatus.Paid)
+                            {
+                                <div>
+                                    <span style="background-color:#356dca;font-size:15px" class="badge d-flex justify-content-center align-items-center">@booking.Status</span>
+                                </div>
+                            }
+                            else if (booking.Status == BookingStatus.Confirmed)
+                            {
+                                <div>
+                                    <span style="background-color:#f2c94c;font-size:15px" class="badge d-flex justify-content-center align-items-center">@booking.Status</span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div>
+                                    <span style="background-color:#e90202;font-size:15px" class="badge d-flex justify-content-center align-items-center">@booking.Status</span>
+                                </div>
+                            }
+
+
+                        </div>
+
+
+                    </div>
+                    <div class="second delete" data-bookingId="@booking.Id" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <i class="bi bi-trash3-fill deleteColor" style="font-size: 20px;"></i>
                     </div>
 
 
                 </div>
-                <div class="second">
-                    <i class="bi bi-trash3-fill" style="font-size: 20px;"></i>
-                </div>
-
-
-            </div>
+            }
         }
 
 
     </div>
 
 </div>
+
+<div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div style="font-family: 'Fira Code VF';font-weight:900;color:#e90202" id="exampleModalLabel">
+                    <span class="english">Delete booking</span>
+                    <span class="swahili">Futa hifadhi yako</span>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="font-family:'Fira Code VF'">
+                <span class="english">You are about to delete the selected booking</span>
+                <span class="swahili">Unakaribia kifuta hifadhi uliochagua</span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" style="font-weight:600;font-family:'Fira Code VF'" class="close btn btn-success" data-bs-dismiss="modal">
+                    <span class="english">Close</span>
+                    <span class="swahili">Ghairi</span>
+                </button>
+                <button data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" type="button" style="font-weight:600;font-family:'Fira Code VF';background-color:#e90202;color:white;" class="btn">
+                    <span class="english">Delete</span>
+                    <span class="swahili">Futa</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModalToggle2" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div style="font-family: 'Fira Code VF';font-weight:900;color:#e90202" id="exampleModalLabel">
+                    <span class="english">Confirm booking deletion</span>
+                    <span class="swahili">Futa hifadhi yako</span>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="font-family:'Fira Code VF'">
+                <span class="english">Are you sure you want to delete this booking?</span>
+                <span class="swahili">Je, bado unadhamiria kufuta hifadhi yako?</span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" style="font-weight:600;font-family:'Fira Code VF'" class="close2 btn btn-success" data-bs-dismiss="modal">
+                    <span class="english">Close</span>
+                    <span class="swahili">Ghairi</span>
+                </button>
+                <button type="button" id="proceed" style="font-weight:600;font-family:'Fira Code VF';background-color:#e90202;color:white;" class="btn">
+                    <span class="english">Proceed</span>
+                    <span class="swahili">Endelea</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script>
+
+        $(document).ready(function () {
+
+            $('.delete').click(function () {
+                var bookingId = $(this).data("bookingid");
+                
+
+                // set booking Id in session storage
+                sessionStorage.setItem("bookingId", bookingId);
+
+            });
+
+            $('.close').click(function () {
+                sessionStorage.removeItem("bookingId");
+            });
+
+            $('.close2').click(function () {
+                sessionStorage.removeItem("bookingId");
+            });
+
+            $('#proceed').click(function () {
+                var bookingId = sessionStorage.getItem("bookingId");
+                
+                var url = `/Booking/Delete?bookingid=${bookingId}`;
+
+                sessionStorage.removeItem("bookingId");
+
+                window.location.href = url;
+            });
+
+        });
+
+    </script>
+   
+
+}
