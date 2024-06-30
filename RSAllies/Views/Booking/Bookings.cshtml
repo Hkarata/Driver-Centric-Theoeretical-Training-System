@@ -184,6 +184,13 @@
 
                 sessionStorage.removeItem("bookingId");
 
+                let hasBookedCookie = document.cookie.split('; ').find(row => row.startsWith('HasBooked'));
+
+                if (hasBookedCookie) {
+                    $.removeCookie('HasBooked');
+                }
+
+
                 window.location.href = url;
             });
 
