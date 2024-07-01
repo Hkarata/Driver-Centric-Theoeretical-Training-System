@@ -9,7 +9,7 @@ using RSAllies.Services;
 
 namespace RSAllies.Controllers
 {
-    public class TestController(ApiClient apiClient, ApiService apiService) : Controller
+    public class TestController(ApiClient apiClient, SessionService sessionService, ApiService apiService) : Controller
     {
         public IActionResult Index()
         {
@@ -21,6 +21,11 @@ namespace RSAllies.Controllers
         [ActionName("Create-Question")]
         public IActionResult CreateQuestion()
         {
+            if (!sessionService.CheckAdmin())
+            {
+                return RedirectToAction("Admin", "Account", new { accessKey = "admin" });
+            }
+
             return View("CreateQuestion");
         }
 
@@ -52,8 +57,13 @@ namespace RSAllies.Controllers
                 return View("CreateQuestion", model);
             }
 
-            // Upload the image
-            var fileName = await StorageService.UploadFileAsync(Guid.NewGuid(), model.Image.OpenReadStream());
+            string fileName = string.Empty;
+
+            if (model.Image is not null)
+            {
+                // Upload the image
+                fileName = await StorageService.UploadFileAsync(Guid.NewGuid(), model.Image.OpenReadStream());
+            }
 
             // Add the question to the database
             var question = new CreateQuestionDto(
@@ -74,7 +84,7 @@ namespace RSAllies.Controllers
 
             if (result.IsSuccess)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Create-Question");
             }
 
 
@@ -85,6 +95,11 @@ namespace RSAllies.Controllers
 
         public async Task<IActionResult> Analysis()
         {
+            if (!sessionService.CheckAdmin())
+            {
+                return RedirectToAction("Admin", "Account", new { accessKey = "admin" });
+            }
+
             await SeedScores();
             await SeedTestAgeGroupAnalysis();
             await SeedTestGenderData();

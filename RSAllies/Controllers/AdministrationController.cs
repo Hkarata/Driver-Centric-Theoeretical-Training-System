@@ -6,10 +6,15 @@ using RSAllies.Services;
 
 namespace RSAllies.Controllers
 {
-    public class AdministrationController(ApiClient apiClient, ApiService apiService) : Controller
+    public class AdministrationController(ApiClient apiClient, SessionService sessionService, ApiService apiService) : Controller
     {
         public async Task<IActionResult> Index()
         {
+            if (!sessionService.CheckAdmin())
+            {
+                return RedirectToAction("Admin", "Account", new { accessKey = "admin" });
+            }
+
             await SeedGenderCount();
             await SeedAgeGroupCounts();
             await SeedEducationLevelData();
@@ -191,6 +196,11 @@ namespace RSAllies.Controllers
         [ActionName("Create-Admin")]
         public IActionResult CreateAdmin()
         {
+            if (!sessionService.CheckAdmin())
+            {
+                return RedirectToAction("Admin", "Account", new { accessKey = "admin" });
+            }
+
             return View("CreateAdmin");
         }
 
@@ -218,7 +228,7 @@ namespace RSAllies.Controllers
 
             if (result.IsSuccess)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Admins");
             }
 
             return View("CreateAdmin", model);
@@ -226,6 +236,13 @@ namespace RSAllies.Controllers
 
         public async Task<IActionResult> Admins()
         {
+            if (!sessionService.CheckAdmin())
+            {
+                return RedirectToAction("Admin", "Account", new { accessKey = "admin" });
+            }
+
+            await SeedCaseData();
+
             var result = await apiClient.GetAdmins();
 
             return result.IsSuccess ? View(result.Value) : View(null);
@@ -233,9 +250,31 @@ namespace RSAllies.Controllers
 
         public async Task<IActionResult> Admin(string id)
         {
+            if (!sessionService.CheckAdmin())
+            {
+                return RedirectToAction("Admin", "Account", new { accessKey = "admin" });
+            }
+
             var result = await apiClient.GetAdmin(Guid.Parse(id));
 
             return View(result.Value ?? null);
+        }
+
+        public async Task SeedCaseData()
+        {
+            var result = await apiService.GetCaseAnalysis();
+
+            int closedCases = 0;
+            int openCases = 0;
+
+            if (result.IsSuccess)
+            {
+                closedCases = result.Value.ClosedCases;
+                openCases = result.Value.OpenCases;
+            }
+
+            ViewBag.ClosedCases = closedCases;
+            ViewBag.OpenCases = openCases;
         }
     }
 }

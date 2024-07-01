@@ -7,8 +7,7 @@ namespace RSAllies.Models
         [Required(ErrorMessage = "Please provide the question scenario")]
         public string Scenario { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Please provide an image")]
-        public IFormFile Image { get; set; } = default!;
+        public IFormFile? Image { get; set; } = default!;
 
         [Required(ErrorMessage = "Please provide a question")]
         public string Question { get; set; } = string.Empty;

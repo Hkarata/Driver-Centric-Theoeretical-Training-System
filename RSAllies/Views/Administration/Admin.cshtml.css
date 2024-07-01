@@ -1,0 +1,80 @@
+﻿#TheContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#Main{
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+    font-family:'Fira Code VF';
+    width: 700px;
+    gap: 10px;
+    display:flex;
+    flex-direction:column;
+}
+
+#top{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items:center;
+}
+
+#topLeft {
+    background-color: white;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size: 40px;
+    font-family:'Segoe Script';
+}
+
+#topRight {
+    height: 150px;
+    background-color: white;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+    border-radius: 5px;
+    flex-grow: 1;
+    padding: 10px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+#RoleDiv {
+    background-color: white;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+}
+
+#buttons{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+    #buttons button {
+        border: none;
+        border-radius: 5px;
+        padding: 5px 8px;
+        transition: 0.3s ease-in-out;
+    }
+
+        #buttons button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+        }

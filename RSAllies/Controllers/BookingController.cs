@@ -87,6 +87,11 @@ namespace RSAllies.Controllers
 
         public async Task<IActionResult> Analysis()
         {
+            if (!sessionService.CheckAdmin())
+            {
+                return RedirectToAction("Admin", "Account", new { accessKey = "admin" });
+            }
+
             await SeedBookingRate();
             await SeedRates();
             await SeedTimes();

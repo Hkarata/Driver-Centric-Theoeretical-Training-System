@@ -4,3 +4,86 @@
 }
 
 @model Admin
+
+<div id="TheContainer">
+
+    <div id="Main">
+
+        <div id="top">
+
+            <div id="topLeft">
+                @Model.FirstName.FirstOrDefault()@Model.LastName.FirstOrDefault()
+            </div>
+
+            <div id="topRight">
+                
+                <div class="d-flex flex-row justify-content-between align-items-center">
+                    <section>
+                        <span class="english">Name:</span>
+                        <span class="swahili">Jina:</span>
+                    </section>
+
+                    <section><i class="bi bi-person-fill-check"></i> @Model.FirstName @Model.LastName</section>
+                </div>
+
+                <div class="d-flex flex-row justify-content-between align-items-center">
+                    <section>
+                        <span class="english">Phone:</span>
+                        <span class="swahili">Namba ya simu:</span>
+                    </section>
+
+                    <section><i class="bi bi-telephone-fill"></i> @Model.Phone</section>
+                </div>
+
+                <div class="d-flex flex-row justify-content-between align-items-center">
+                    <section>
+                        <span class="english">Email:</span>
+                        <span class="swahili">Barua pepe:</span>
+                    </section>
+
+                    <section><i class="bi bi-envelope-at-fill"></i> @Model.Email</section>
+                </div>
+
+                <div class="d-flex flex-row justify-content-between align-items-center">
+                    <section>
+                        <span class="english">Username:</span>
+                        <span class="swahili">Jina la Akaunti:</span>
+                    </section>
+
+                    <section><i class="bi bi-person-circle"></i> @Model.Username</section>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="RoleDiv">
+            <span>Role</span>
+            <span>@Model.Role</span>
+        </div>
+
+        <div id="buttons">
+
+            <button>
+                <span>Update account</span>
+            </button>
+
+            @if (!Model.IsActive)
+            {
+                <button style="background-color: darkred;color:white">
+                    <span>Deactivate</span>
+                </button>
+            }
+            else
+            {
+                <button style="background-color: green;color:white">
+                    <span>Activate</span>
+                </button>
+            }
+
+
+        </div>
+
+    </div>
+
+</div>

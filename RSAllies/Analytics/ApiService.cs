@@ -345,5 +345,13 @@ namespace RSAllies.Analytics
             var venueBookingStatusCounts = JsonConvert.DeserializeObject<Result<List<VenueBookingStatusCount>>>(content)!;
             return venueBookingStatusCounts;
         }
+
+        public async Task<Result<CaseDto>> GetCaseAnalysis()
+        {
+            var response = await httpClient.GetAsync("/api/case-analysis");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<CaseDto>>(content)!;
+            return result;
+        }
     }
 }

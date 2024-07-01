@@ -11,15 +11,18 @@
     <div id="firstDiv">
         
         <div class="Card">
-            aa
+            <span style="color:#356dca;font-weight:900">Recent Activity</span>
         </div>
 
         <div class="Card">
-            aa
+            <span style="color:#356dca;font-weight:900">Support Cases</span>
+            <figure class="highcharts-figure">
+                <div id="container2"></div>
+            </figure>
         </div>
 
         <div class="Card">
-            
+            <span style="color:#356dca;font-weight:900">Roles</span>
             <figure class="highcharts-figure">
                 <div id="container"></div>
             </figure>
@@ -49,7 +52,9 @@
                     <a asp-action="Admin" asp-route-id="@admin.Id" class="Cards" style="font-family:'Fira Code VF'">
 
                         <div id="myDiv">
-                            <span style="font-size:25px;font-family: 'Fira Code VF'">HK</span>
+                            <span style="font-size:25px;font-family: 'Fira Code VF'">
+                                @admin.FirstName.FirstOrDefault()@admin.LastName.FirstOrDefault()
+                            </span>
                         </div>
 
                         <span style="align-self:center">@admin.Username</span>
@@ -208,5 +213,45 @@
 
     </script>
 
+    <script type="text/javascript">
+
+        Highcharts.chart('container2', {
+            chart: {
+                type: 'pie',
+                style: {
+                    fontFamily: 'Fira Code VF'
+                }
+            },
+            title: {
+                text: ''
+            },
+            plotOptions: {
+                pie: {
+                    innerSize: '50%',
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                name: 'Cases',
+                colorByPoint: true,
+                colors: ['#356dca', '#e90202'], // Custom colors for the slices
+                data: [{
+                    name: 'Solved',
+                    y: @Html.Raw(ViewBag.ClosedCases),
+                    sliced: true,
+                    selected: true
+                }, {
+                    name: 'Unsolved',
+                    y: @Html.Raw(ViewBag.OpenCases)
+                }]
+            }]
+        });
+
+    </script>
 
 }
