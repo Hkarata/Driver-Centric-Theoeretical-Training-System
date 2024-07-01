@@ -15,25 +15,25 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddScoped<SessionService>();
 
-builder.Services.AddHttpClient<ApiClient>(client =>
-{
-    client.BaseAddress = new Uri("https://roadsafety.southafricanorth.cloudapp.azure.com:5032");
-});
-
-builder.Services.AddHttpClient<ApiService>(client =>
-{
-    client.BaseAddress = new Uri("https://roadsafety.southafricanorth.cloudapp.azure.com:5032");
-});
-
 //builder.Services.AddHttpClient<ApiClient>(client =>
 //{
-//    client.BaseAddress = new Uri("http://localhost:5031");
+//    client.BaseAddress = new Uri("https://roadsafety.southafricanorth.cloudapp.azure.com:5032");
 //});
 
 //builder.Services.AddHttpClient<ApiService>(client =>
 //{
-//    client.BaseAddress = new Uri("http://localhost:5031");
+//    client.BaseAddress = new Uri("https://roadsafety.southafricanorth.cloudapp.azure.com:5032");
 //});
+
+builder.Services.AddHttpClient<ApiClient>(client =>
+{
+    client.BaseAddress = new Uri("http://localhost:5031");
+});
+
+builder.Services.AddHttpClient<ApiService>(client =>
+{
+    client.BaseAddress = new Uri("http://localhost:5031");
+});
 
 builder.Services.AddCors(options =>
 {
