@@ -13,7 +13,7 @@
     box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
     font-family:'Fira Code VF';
     width: 700px;
-    gap: 10px;
+    gap: 20px;
     display:flex;
     flex-direction:column;
 }
@@ -31,11 +31,12 @@
     width: 150px;
     border-radius: 50%;
     box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 40px;
-    font-family:'Segoe Script';
+    font-family: 'Segoe Script';
+    color: green;
 }
 
 #topRight {
@@ -62,8 +63,8 @@
 }
 
 #buttons{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction:row;
     gap: 10px;
 }
 
@@ -72,9 +73,41 @@
         border-radius: 5px;
         padding: 5px 8px;
         transition: 0.3s ease-in-out;
+        width: 50%;
     }
 
         #buttons button:hover {
             transform: scale(1.02);
             box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
         }
+.myThing{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center
+}
+
+@media (max-width: 768px){
+
+    #top{
+        flex-direction : column;
+    }
+
+    #topRight{
+        height: max-content;
+        width: 100%;
+        gap: 20px;
+
+    }
+
+    .myThing {
+        flex-direction: column;
+        width: 100%;
+        gap: 5px;
+        background-color: #f5f9fd;
+        box-shadow: 0 0 10px 0 rgba(0,0,0,0.15);
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+}

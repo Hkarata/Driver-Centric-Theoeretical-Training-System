@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RSAllies.Analytics;
+using RSAllies.Contracts.Requests;
 using RSAllies.Models;
 using RSAllies.Services;
 
@@ -275,6 +276,33 @@ namespace RSAllies.Controllers
 
             ViewBag.ClosedCases = closedCases;
             ViewBag.OpenCases = openCases;
+        }
+
+        public async Task<IActionResult> UpdatePassword(string userId, string password)
+        {
+            var request = new UpdatePasswordDto
+            {
+                UserId = Guid.Parse(userId),
+                Password = password
+            };
+
+            var result = await apiClient.UpdatePassword(request);
+
+            return RedirectToAction("Admin", "Administration", new { id = userId });
+        }
+
+        public async Task<IActionResult> DeactivateAdmin(string userId)
+        {
+            var result = await apiClient.DeactivateAdmin(userId);
+
+            return RedirectToAction("Admin", "Administration", new { id = userId });
+        }
+
+        public async Task<IActionResult> ActivateAdmin(string userId)
+        {
+            var result = await apiClient.ActivateAdmin(userId);
+
+            return RedirectToAction("Admin", "Administration", new { id = userId });
         }
     }
 }

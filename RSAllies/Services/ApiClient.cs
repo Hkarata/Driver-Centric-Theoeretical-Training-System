@@ -228,5 +228,29 @@ namespace RSAllies.Services
             var result = JsonConvert.DeserializeObject<Result<object>>(content)!;
             return result;
         }
+
+        public async Task<Result> UpdatePassword(UpdatePasswordDto request)
+        {
+            var response = await httpClient.PostAsJsonAsync<UpdatePasswordDto>("/api/admin/update-password", request);
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<object>>(content)!;
+            return result;
+        }
+
+        public async Task<Result> ActivateAdmin(string userId)
+        {
+            var response = await httpClient.GetAsync($"/api/admin/activate/{userId}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<object>>(content)!;
+            return result;
+        }
+
+        public async Task<Result> DeactivateAdmin(string userId)
+        {
+            var response = await httpClient.GetAsync($"/api/admin/deactivate/{userId}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<object>>(content)!;
+            return result;
+        }
     }
 }

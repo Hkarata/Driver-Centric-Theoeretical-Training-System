@@ -1,4 +1,6 @@
 ﻿@using RSAllies.Contracts.Responses
+@using RSAllies.Services
+@inject SessionService sessionService
 @{
     ViewData["Title"] = Model.Username;
 }
@@ -17,40 +19,40 @@
 
             <div id="topRight">
                 
-                <div class="d-flex flex-row justify-content-between align-items-center">
+                <div class="myThing">
                     <section>
                         <span class="english">Name:</span>
                         <span class="swahili">Jina:</span>
                     </section>
 
-                    <section><i class="bi bi-person-fill-check"></i> @Model.FirstName @Model.LastName</section>
+                    <section><i style="color: green;font-size:20px" class="bi bi-person-fill-check"></i> @Model.FirstName @Model.LastName</section>
                 </div>
 
-                <div class="d-flex flex-row justify-content-between align-items-center">
+                <div class="myThing">
                     <section>
                         <span class="english">Phone:</span>
                         <span class="swahili">Namba ya simu:</span>
                     </section>
 
-                    <section><i class="bi bi-telephone-fill"></i> @Model.Phone</section>
+                    <section><i style="color: green;font-size:20px" class="bi bi-telephone-fill"></i> @Model.Phone</section>
                 </div>
 
-                <div class="d-flex flex-row justify-content-between align-items-center">
+                <div class="myThing">
                     <section>
                         <span class="english">Email:</span>
                         <span class="swahili">Barua pepe:</span>
                     </section>
 
-                    <section><i class="bi bi-envelope-at-fill"></i> @Model.Email</section>
+                    <section><i style="color: green;font-size:20px" class="bi bi-envelope-at-fill"></i> @Model.Email</section>
                 </div>
 
-                <div class="d-flex flex-row justify-content-between align-items-center">
+                <div class="myThing">
                     <section>
                         <span class="english">Username:</span>
                         <span class="swahili">Jina la Akaunti:</span>
                     </section>
 
-                    <section><i class="bi bi-person-circle"></i> @Model.Username</section>
+                    <section><i style="color: green;font-size:20px" class="bi bi-person-circle"></i> @Model.Username</section>
                 </div>
 
             </div>
@@ -59,25 +61,37 @@
 
         <div id="RoleDiv">
             <span>Role</span>
-            <span>@Model.Role</span>
+            <span style="color:green;font-weight:550;">@Model.Role</span>
         </div>
 
         <div id="buttons">
 
-            <button>
-                <span>Update account</span>
-            </button>
+            
 
-            @if (!Model.IsActive)
+            @if (sessionService.IsSuperUser() )
             {
-                <button style="background-color: darkred;color:white">
-                    <span>Deactivate</span>
+                <button data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="background-color: #356dca;font-weight:500;color:white">
+                    <span>Update account</span>
                 </button>
+
+                @if (Model.IsActive)
+                {
+                    <button data-bs-toggle="modal" data-bs-target="#staticBackdrop2" style="background-color: #e90202;color:white">
+                        <span>Deactivate</span>
+                    </button>
+                }
+                else
+                {
+                    <button data-bs-toggle="modal" data-bs-target="#staticBackdrop3" style="background-color: green;color:white">
+                        <span>Activate</span>
+                    </button>
+                }
+
             }
-            else
+            else if(sessionService.GetAdminId() == Model.Id)
             {
-                <button style="background-color: green;color:white">
-                    <span>Activate</span>
+                <button data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="background-color: #356dca;font-weight:500;color:white">
+                    <span>Update account</span>
                 </button>
             }
 
@@ -87,3 +101,157 @@
     </div>
 
 </div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <div id="staticBackdropLabel" style="font-family:'Fira Code VF';color:#356dca;font-weight:900">
+                    <span class="english">Update account</span>
+                    <span class="swahili">Sasisha akaunti</span>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="font-family:'Fira Code VF'">
+                <label>
+                    <span class="english">Password</span>
+                    <span class="swahili">Nywila</span>
+                </label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-key-fill"></i></span>
+                    <input id="passwd" type="password" class="form-control" placeholder="**********">
+                </div>
+            </div>
+            <div class="modal-footer" style="font-family:'Fira Code VF';font-weight:900;color:white">
+                <div id="spinner1" class="spinner-border text-primary" style="margin-right:auto;" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <button type="button" style="font-weight:550;background-color:#e90202;color:white;" class="btn" data-bs-dismiss="modal">Close</button>
+                <button id="updateButton" type="button" style="font-weight:550;background-color: green;color:white" class="btn">
+                    <span class="english">Update</span>
+                    <span class="swahili">Sasisha</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <div id="staticBackdropLabel" style="font-family:'Fira Code VF';color:#356dca;font-weight:900">
+                    <span class="english">Deactivate account</span>
+                    <span class="swahili">Sitisha akaunti</span>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="font-family:'Fira Code VF'">
+                <span class="english">Do you want to activate this account?</span>
+                <span class="swahili">Je, unataka kusitisha hii akaunti?</span>
+            </div>
+            <div class="modal-footer" style="font-family:'Fira Code VF';font-weight:900;color:white">
+                <div id="spinner2" class="spinner-border text-primary" style="margin-right:auto;" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <button type="button" style="font-weight:550;background-color:#e90202;color:white;" class="btn" data-bs-dismiss="modal">
+                    <span class="english">Close</span>
+                    <span class="swahili">Ghairi</span>
+                </button>
+                <button id="deaButton" type="button" style="font-weight:550;background-color: green;color:white" class="btn">
+                    <span class="english">Deactivate</span>
+                    <span class="swahili">Sitisha</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <div id="staticBackdropLabel" style="font-family:'Fira Code VF';color:#356dca;font-weight:900">
+                    <span class="english">Activate account</span>
+                    <span class="swahili">Wezesha akaunti</span>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="font-family:'Fira Code VF'">
+                <span class="english">Do you want to activate this account?</span>
+                <span class="swahili">Je, unataka kusitisha hii akaunti?</span>
+            </div>
+            <div class="modal-footer" style="font-family:'Fira Code VF';font-weight:900;color:white">
+                <div id="spinner3" class="spinner-border text-primary" style="margin-right:auto;" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <button type="button" style="font-weight:550;background-color:#e90202;color:white;" class="btn" data-bs-dismiss="modal">
+                    <span class="english">Close</span>
+                    <span class="swahili">Ghairi</span>
+                </button>
+                <button id="activateButton" type="button" style="font-weight:550;background-color: green;color:white" class="btn">
+                    <span class="english">Activate</span>
+                    <span class="swahili">Wezesha</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#spinner1").hide()
+            $("#spinner2").hide()
+            $("#spinner3").hide()
+
+            $('#updateButton').click(function () {
+                var passwd = $('#passwd').val();
+                console.log(passwd);
+                $("#spinner1").show()
+
+                let request = {
+                    userId: "@Html.Raw(Model.Id)",
+                    password : passwd
+                }
+
+                var url = "/Administration/UpdatePassword?userId="+request.userId+"&password="+request.password;
+
+                window.location.href = url;
+
+                $("#spinner1").hide()
+            });
+
+            $('#activateButton').click(function () {
+                $("#spinner2").show()
+                let userId = "@Html.Raw(Model.Id)";
+
+                var url = "/Administration/ActivateAdmin?userId=" + userId;
+
+                window.location.href = url;
+
+                $("#spinner2").hide()
+            });
+
+            $('#deaButton').click(function () {
+
+                $("#spinner3").show()
+
+                let userId = "@Html.Raw(Model.Id)";
+
+                var url = "/Administration/DeactivateAdmin?userId=" + userId;
+
+                window.location.href = url;
+
+                $("#spinner3").hide()
+            });
+
+
+
+        });
+
+   </script>
+
+}

@@ -112,4 +112,26 @@ public class SessionService
         var data = JsonConvert.DeserializeObject<UserDto>(session!);
         return data!.Id;
     }
+
+    public Guid GetAdminId()
+    {
+        var session = httpContextAccessor.HttpContext?.Session.GetString("AdminSession");
+        if (session is null)
+        {
+            return Guid.Empty;
+        }
+        var data = JsonConvert.DeserializeObject<AdminDto>(session!);
+        return data!.Id;
+    }
+
+    public bool IsSuperUser()
+    {
+        var session = httpContextAccessor.HttpContext?.Session.GetString("AdminSession");
+        if (session is null)
+        {
+            return false;
+        }
+        var data = JsonConvert.DeserializeObject<AdminDto>(session!);
+        return data!.Role == "SuperUser";
+    }
 }
