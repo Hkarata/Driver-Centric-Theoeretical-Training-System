@@ -1,3 +1,5 @@
+using Polly;
+using Polly.Extensions.Http;
 using RSAllies.Analytics;
 using RSAllies.Services;
 
@@ -15,25 +17,49 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddScoped<SessionService>();
 
-builder.Services.AddHttpClient<ApiClient>(client =>
-{
-    client.BaseAddress = new Uri("https://roadsafety.southafricanorth.cloudapp.azure.com:5032");
-});
-
-builder.Services.AddHttpClient<ApiService>(client =>
-{
-    client.BaseAddress = new Uri("https://roadsafety.southafricanorth.cloudapp.azure.com:5032");
-});
-
 //builder.Services.AddHttpClient<ApiClient>(client =>
 //{
-//    client.BaseAddress = new Uri("http://localhost:5031");
-//});
+//    client.BaseAddress = new Uri("https://roadsafety.southafricanorth.cloudapp.azure.com:5032");
+//})
+//    .AddPolicyHandler((services, request) =>
+//    {
+//        return HttpPolicyExtensions
+//        .HandleTransientHttpError()
+//        .WaitAndRetryAsync(3, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
+//    });
 
 //builder.Services.AddHttpClient<ApiService>(client =>
 //{
-//    client.BaseAddress = new Uri("http://localhost:5031");
-//});
+//    client.BaseAddress = new Uri("https://roadsafety.southafricanorth.cloudapp.azure.com:5032");
+//})
+//    .AddPolicyHandler((services, request) =>
+//    {
+//        return HttpPolicyExtensions
+//        .HandleTransientHttpError()
+//        .WaitAndRetryAsync(3, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
+//    });
+
+builder.Services.AddHttpClient<ApiClient>(client =>
+{
+    client.BaseAddress = new Uri("http://localhost:5031");
+})
+    .AddPolicyHandler((services, request) =>
+    {
+        return HttpPolicyExtensions
+        .HandleTransientHttpError()
+        .WaitAndRetryAsync(3, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
+    });
+
+builder.Services.AddHttpClient<ApiService>(client =>
+{
+    client.BaseAddress = new Uri("http://localhost:5031");
+})
+    .AddPolicyHandler((services, request) =>
+    {
+        return HttpPolicyExtensions
+        .HandleTransientHttpError()
+        .WaitAndRetryAsync(3, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
+    });
 
 builder.Services.AddCors(options =>
 {
@@ -46,6 +72,7 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
