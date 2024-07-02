@@ -2,6 +2,8 @@
 @{
     ViewData["Title"] = "Edit Question";
     var i = 1;
+    var sasToken = "?sv=2022-11-02&ss=b&srt=sco&sp=rwdlaciytfx&se=2024-07-30T18:05:10Z&st=2024-06-25T10:05:10Z&spr=https,http&sig=uKay28N0zByr8tUiGDPIOZflPIJoWcWO8xtQg8WMpEI%3D";
+
 }
 
 @model Question
@@ -52,7 +54,7 @@
                 <div id="right">
                     
                     <span>Current Image</span>
-                    <img src="/Images/building.png" class="img-fluid rounded"/>
+                    <img src="@(Model.ImageUrl+sasToken)" class="img-fluid rounded" />
 
                     <div class="input-group" style="margin-top:auto;">
                         <input type="file" name="Image" class="form-control">
