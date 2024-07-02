@@ -87,25 +87,20 @@
                         <span class="english">Are you a Tanzanian?</span>
                         <span class="swahili">Je, Wewe ni raia wa Tanzania?</span>
                     </label>
-                    <select class="form-control myInput2" asp-for="IsForeigner">
+                    <select id="Nationality" class="form-control myInput2" asp-for="IsForeigner">
                         <option value=""></option>
                         <option value="true">
-                            <span class="english">Yes</span>
-                            <span class="swahili">Ndio</span>
+                            Yes/Ndio
                         </option>
                         <option value="false">
-                            <span class="english">No</span>
-                            <span class="swahili">Hapana</span>
+                            No/Hapana
                         </option>
                     </select>
                     <span asp-validation-for="IsForeigner" class="text-danger"></span>
                 </div>
 
                 <div>
-                    <label asp-for="Identification">
-                        <span class="english">Identification Number</span>
-                        <span class="swahili">Kitambulisho</span>
-                    </label>
+                    <label asp-for="Identification">NIDA/Passport Number</label>
                     <input asp-for="Identification" class="form-control myInput2" />
                     <span asp-validation-for="Identification" class="text-danger"></span>
                 </div>
@@ -189,14 +184,5 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 
-    <script>
-
-        $('select').change(function () {
-            var optionSelected = $(this).find("option:selected");
-            var valueSelected = optionSelected.val();
-            var textSelected = optionSelected.text();
-            // Your logic here based on the selected value and text
-        });
-
-    </script>
+ 
 }

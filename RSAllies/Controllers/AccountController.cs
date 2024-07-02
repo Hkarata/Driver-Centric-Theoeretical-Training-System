@@ -205,5 +205,17 @@ namespace RSAllies.Controllers
 
             return RedirectToAction("Index", "Administration");
         }
+
+        public IActionResult Logout()
+        {
+            sessionService.Clear();
+            return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult LogoutAdmin()
+        {
+            sessionService.ClearAdmin();
+            return RedirectToAction("Admin", "Account", new { accessKey = "admin" });
+        }
     }
 }

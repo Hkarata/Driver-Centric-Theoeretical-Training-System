@@ -101,6 +101,22 @@
                     <a asp-controller="Booking" asp-action="Bookings" class="btn btn-primary w-100 btn text-start">Bookings</a>
                 }
 
+                @if (SessionService.Check())
+                {
+                    <a asp-controller="Account" asp-action="Logout" style="margin-top:auto;background-color:#e90202;font-weight:550" class="btn text-white w-100 btn text-start">
+                        <i style="font-size:16px" class="bi bi-power"></i>
+                        Logout
+                    </a>
+                }
+                else
+                {
+                    <a asp-controller="Account" asp-action="LogoutAdmin" style="margin-top:auto;background-color:#e90202;font-weight:550" class="btn text-white w-100 btn text-start">
+                        <i style="font-size:20px" class="bi bi-power"></i>
+                        Logout
+                    </a>
+                }
+
+
             </div>
         </div>
 
