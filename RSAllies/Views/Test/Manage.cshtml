@@ -1,6 +1,10 @@
-﻿@{
+﻿@using RSAllies.Models
+@{
     ViewData["Title"] = "Manage";
+    var sasToken = "?sv=2022-11-02&ss=b&srt=sco&sp=rwdlaciytfx&se=2024-07-30T18:05:10Z&st=2024-06-25T10:05:10Z&spr=https,http&sig=uKay28N0zByr8tUiGDPIOZflPIJoWcWO8xtQg8WMpEI%3D";
 }
+
+@model IEnumerable<Question>
 
 <div id="Container">
     
@@ -9,13 +13,45 @@
         <img src="/Images/exam-results.jpg" class="w-100 rounded img-fluid" />
 
         <div style="font-family:'Fira Code Regular'" class="d-flex flex-row justify-content-between align-items-center">
-            <span class="english">Languages</span>
-            <span class="swahili">Lugha</span>
-            <span class="english">English, Swahili</span>
-            <span class="swahili">Kiingereza, Kiswahili</span>
+            <span style="font-weight:650;color:#356dca" class="english">Languages</span>
+            <span style="font-weight:650;color:#356dca" class="swahili">Lugha</span>
+            <span class="english">
+                <i style="color:#356dca;font-weight:650;" class="bi bi-translate"></i>
+                English, Swahili
+            </span>
+            <span class="swahili">
+
+                <i style="color:#356dca;font-weight:650;" class="bi bi-translate"></i>
+                Kiingereza, Kiswahili
+            </span>
         </div>
 
-        <a id="TA">
+        <div style="font-family:'Fira Code Regular'" class="d-flex flex-row justify-content-between align-items-center">
+            <span style="font-weight:650;color:#356dca" class="english">Total Number of questions</span>
+            <span style="font-weight:650;color:#356dca" class="swahili">Idadi ya maswali</span>
+            <span style="font-weight:650;">
+                
+                @(Model.Count())
+            </span>
+        </div>
+
+        <div style="font-family:'Fira Code Regular'" class="d-flex flex-row justify-content-between align-items-center">
+            <span style="font-weight:650;color:#356dca" class="english">English Questions</span>
+            <span style="font-weight:650;color:#356dca" class="swahili">Maswali kwa lugha ya Kiiengereza</span>
+            <span style="font-weight:650;">
+                @(Model.Count(q => q.IsEnglish))
+            </span>
+        </div>
+
+        <div style="font-family:'Fira Code Regular'" class="d-flex flex-row justify-content-between align-items-center">
+            <span style="font-weight:650;color:#356dca" class="english">Swahili Questions</span>
+            <span style="font-weight:650;color:#356dca" class="swahili">Maswali kwa lugha ya Kiswahili</span>
+            <span style="font-weight:650;">
+                @(Model.Count(q => !q.IsEnglish))
+            </span>
+        </div>
+
+        <a id="TA" asp-controller="Test" asp-action="Analysis">
             <i style="font-weight:550;" class="bi bi-bezier2"></i>
             <span class="english">Test Analysis</span>
             <span class="swahili">Uchambuzi wa mtihani</span>
@@ -23,7 +59,317 @@
     </div>
 
     <div id="Second">
-        ss
+       
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" style="font-weight:600" data-bs-toggle="tab" href="#englishQuestion">English Questions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="font-weight:600" data-bs-toggle="tab" href="#swahiliQuestion">Swahili Questions</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="englishQuestion" class="tab-pane fade show active">
+                
+                <div class="holder">
+
+                    @if(Model is not null)
+                    {
+                        @foreach (var question in Model.Where(q => q.IsEnglish))
+                        {
+                            <div class="question">
+                                <span>@question.Scenario</span>
+
+                                @if (!string.IsNullOrEmpty(question.ImageUrl))
+                                {
+                                    <img style="align-self:center;" src="@(question.ImageUrl+sasToken)" class="img-fluid" width="350px" />
+                                }
+                                <span>@question.QuestionText</span>
+
+                                @foreach(var choice in question.Choices!)
+                                {
+                                    <div class="form-check">
+
+                                        @if (choice.IsCorrect)
+                                        {
+                                            <input class="form-check-input" type="radio" checked>
+                                        }
+                                        else
+                                        {
+                                            <input class="form-check-input" type="radio" disabled>
+                                        }
+
+                                        
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            @choice.ChoiceText
+                                        </label>
+                                    </div>
+                                }
+
+                                <div class="Buttons">
+
+                                    <a class="myButton1" style="background-color: #e90202;color:white;font-weight:550" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-questionId="@question.Id">
+                                        <i class="bi bi-trash3-fill"></i>
+                                        <span class="english">Delete</span>
+                                        <span class="swahili">Futa</span>
+                                    </a>
+
+                                    <a class="myButton2" style="background-color:#356dca;color:white" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" data-questionId="@question.Id">
+                                        <i class="bi bi-pen-fill"></i>
+                                        <span class="english">Edit</span>
+                                        <span class="swahili">Sasisha</span>
+                                    </a>
+
+                                </div>
+
+                            </div>
+                        }
+                    }
+
+
+                </div>
+
+            </div>
+            <div id="swahiliQuestion" class="tab-pane fade">
+                
+                <div class="holder">
+
+                    @if (Model is not null)
+                    {
+                        @foreach (var question in Model.Where(q => !q.IsEnglish))
+                        {
+                            <div class="question">
+                                <span>@question.Scenario</span>
+
+                                @if (!string.IsNullOrEmpty(question.ImageUrl))
+                                {
+                                    <img style="align-self:center;" src="question.ImageUrl" class="img-fluid" width="350px" />
+                                }
+
+
+                                <span>@question.QuestionText</span>
+
+                                @foreach (var choice in question.Choices!)
+                                {
+                                    <div class="form-check">
+
+                                        @if (choice.IsCorrect)
+                                        {
+                                            <input class="form-check-input" type="radio" checked>
+                                        }
+                                        else
+                                        {
+                                            <input class="form-check-input" type="radio" disabled>
+                                        }
+
+
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            @choice.ChoiceText
+                                        </label>
+                                    </div>
+                                }
+
+                                <div class="Buttons">
+
+                                    <a class="myButton1" style="background-color: #e90202;color:white;font-weight:550" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-questionId="@question.Id">
+                                        <i class="bi bi-trash3-fill"></i>
+                                        Delete
+                                    </a>
+
+                                    <a class="myButton2" style="background-color:#356dca;color:white" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" data-questionId="@question.Id">
+                                        <i class="bi bi-pen-fill"></i>
+                                        Edit
+                                    </a>
+
+                                </div>
+
+                            </div>
+                        }
+                    }
+
+
+                </div>
+
+            </div>
+        </div>
+
+
     </div>
 
 </div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="" style="font-size:18px;color:#e90202;font-weight:650;font-family:'Fira Code VF'" id="staticBackdropLabel">
+                    <span class="english">Edit Question</span>
+                    <span class="swahili">Sasisha Swali</span>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="font-family:'Fira Code VF'">
+                <span class="english">Do you want to delete the selected question?</span>
+                <span class="swahili">Je, unataka kufuta swali ulilochagua?</span>
+            </div>
+            <div class="modal-footer">
+                <button style="font-family:'Fira Code VF'" type="button" class="btn btn-success" data-bs-dismiss="modal">
+                    <span class="english">Close</span>
+                    <span class="swahili">Ghairi</span>
+                </button>
+                <button id="deleteBtn" style="font-family:'Fira Code VF';background-color:#e90202;color:white;font-weight:650" type="button" class="btn">
+                    <span class="english">Delete</span>
+                    <span class="swahili">Futa</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="" style="font-size:18px;color:#356dca;font-weight:650;font-family:'Fira Code VF'" id="staticBackdropLabel">
+                    <span class="english">Delete Question</span>
+                    <span class="swahili">Futa Swali</span>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div  class="modal-body" style="font-family:'Fira Code VF'">
+                <span class="english">Do you want to edit the selected question?</span>
+                <span class="swahili">Je, unataka sasisha swali ulilochagua?</span>
+            </div>
+            <div class="modal-footer">
+                <button style="font-family:'Fira Code VF';background-color:green;color:white;font-weight:650" type="button" class="btn btn-success" data-bs-dismiss="modal">
+                    <span class="english">Close</span>
+                    <span class="swahili">Ghairi</span>
+                </button>
+                <button id="editBtn" style="font-family:'Fira Code VF';background-color:#356dca ;color:white;font-weight:650" type="button" class="btn">
+                    <span class="english">Edit</span>
+                    <span class="swahili">Sasisha</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #TA {
+        margin-top: auto;
+        background-color: #f2c444;
+        padding: 5px;
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        font-family: 'Fira Code VF';
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        font-weight: 550;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+        text-decoration:none;
+        color:black;
+    }
+
+        #TA:hover {
+            box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+            transform: scale(1.01);
+        }
+
+    .Buttons{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px;
+    }
+
+    .myButton1{
+        margin-top: auto;
+        background-color: #f2c444;
+        padding: 5px;
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        font-family: 'Fira Code VF';
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        font-weight: 550;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+        text-decoration: none;
+        color: black;
+    }
+
+    .myButton1:hover{
+            box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+            transform: scale(1.01);
+    }
+
+    .myButton2 {
+        margin-top: auto;
+        background-color: #356dca;
+        padding: 5px;
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        font-family: 'Fira Code VF';
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        font-weight: 550;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+        text-decoration: none;
+        color: white;
+    }
+
+    .myButton2:hover{
+        box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+        transform: scale(1.01);
+    }
+</style>
+
+@section Scripts{
+
+    <script>
+
+        $(document).ready(function () {
+
+            $(".myButton1").click(function () {
+                var questionId = $(this).data("questionid");
+                sessionStorage.setItem("questionId", questionId);
+            });
+
+            $(".myButton2").click(function () {
+                var questionId = $(this).data("questionid");
+                sessionStorage.setItem("questionId", questionId);
+            });
+
+            $("#editBtn").click(function () {
+                var questionId = sessionStorage.getItem("questionId");
+
+                var url = '/test/editquestion?questionId=' + questionId;
+
+                window.location.href = url;
+
+            });
+
+            $("#deleteBtn").click(function () {
+                var questionId = sessionStorage.getItem("questionId");
+                
+                var url = '/test/deletequestion?questionId='+questionId;
+
+                window.location.href = url;
+
+            });
+
+        });
+
+
+
+    </script>
+
+}

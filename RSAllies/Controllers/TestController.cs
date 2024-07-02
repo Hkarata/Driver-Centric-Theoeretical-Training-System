@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RSAllies.Analytics;
-using RSAllies.Analytics.Contracts;
 using RSAllies.AzureStorage;
 using RSAllies.Contracts.Requests;
 using RSAllies.Models;
@@ -16,7 +15,116 @@ namespace RSAllies.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Manage()
+        {
+            var result = await apiClient.GetAllQuestions();
 
+            if (result.IsSuccess)
+            {
+                return View(result.Value);
+            }
+
+            return View();
+        }
+
+        public async Task<IActionResult> EditQuestion(string questionId)
+        {
+            var result = await apiClient.GetQuestion(questionId);
+
+            if (result.IsSuccess)
+            {
+                return View(result.Value);
+            }
+
+            return RedirectToAction("Manage", "Test");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditQuestion(string questionId, string oldImage = "")
+        {
+            var form = Request.Form;
+
+            var scenario = form["Scenario"];
+            var question = form["QuestionText"];
+            var isEnglish = form["IsEnglish"];
+            var imageFile = Request.Form.Files["Image"];
+            var choiceA = form["Choice-1"];
+            var choiceB = form["Choice-2"];
+            var choiceC = form["Choice-3"];
+            var choiceD = form["Choice-4"];
+            bool isAnswerA = false;
+            bool isAnswerB = false;
+            bool isAnswerC = false;
+            bool isAnswerD = false;
+
+            int i = 1; // start
+            int max = 4; // end
+
+            while (i <= max)
+            {
+                var choice = form[$"Choice-{i}"];
+                var isAnswer = form[$"IsAnswer-{i}"];
+
+                if (isAnswer == "on")
+                {
+                    if (i == 1)
+                    {
+                        isAnswerA = true;
+                    }
+                    else if (i == 2)
+                    {
+                        isAnswerB = true;
+                    }
+                    else if (i == 3)
+                    {
+                        isAnswerC = true;
+                    }
+                    else if (i == 4)
+                    {
+                        isAnswerD = true;
+                    }
+                }
+
+                i++;
+            }
+
+            string imageUrl = string.Empty;
+
+            if (imageFile is not null)
+            {
+                imageUrl = StorageService.UploadFileAsync(Guid.NewGuid(), imageFile.OpenReadStream()).Result;
+            }
+            else
+            {
+                imageUrl = oldImage;
+            }
+
+            var questionDto = new CreateQuestionDto(
+                scenario,
+                imageUrl,
+                question!,
+                isEnglish == "on",
+                new List<CreateChoiceDto>
+                {
+                    new CreateChoiceDto(choiceA!, isAnswerA),
+                    new CreateChoiceDto(choiceB!, isAnswerB),
+                    new CreateChoiceDto(choiceC!, isAnswerC),
+                    new CreateChoiceDto(choiceD!, isAnswerD)
+                }
+            );
+
+            await apiClient.EditQuestion(questionId, questionDto);
+
+            return RedirectToAction("Manage", "Test");
+        }
+
+        public async Task<IActionResult> DeleteQuestion(string questionId)
+        {
+            var result = await apiClient.DeleteQuestion(questionId);
+
+            return RedirectToAction("Manage", "Test");
+        }
 
         [ActionName("Create-Question")]
         public IActionResult CreateQuestion()

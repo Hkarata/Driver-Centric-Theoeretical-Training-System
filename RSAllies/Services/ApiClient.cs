@@ -2,6 +2,7 @@
 using RSAllies.Contracts.Requests;
 using RSAllies.Contracts.Responses;
 using RSAllies.HelperTypes;
+using RSAllies.Models;
 using RSAllies.Requests;
 using RSAllies.Responses;
 
@@ -248,6 +249,38 @@ namespace RSAllies.Services
         public async Task<Result> DeactivateAdmin(string userId)
         {
             var response = await httpClient.GetAsync($"/api/admin/deactivate/{userId}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<object>>(content)!;
+            return result;
+        }
+
+        public async Task<Result> DeleteQuestion(string questionId)
+        {
+            var response = await httpClient.DeleteAsync($"/api/question/{questionId}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<object>>(content)!;
+            return result;
+        }
+
+        public async Task<Result<Question>> GetQuestion(string questionId)
+        {
+            var response = await httpClient.GetAsync($"/api/question/{questionId}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<Question>>(content)!;
+            return result;
+        }
+
+        public async Task<Result<List<Question>>> GetAllQuestions()
+        {
+            var response = await httpClient.GetAsync("/api/questions");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<List<Question>>>(content)!;
+            return result;
+        }
+
+        public async Task<Result> EditQuestion(string questionId, CreateQuestionDto questionDto)
+        {
+            var response = await httpClient.PutAsJsonAsync<CreateQuestionDto>($"/api/question/{questionId}", questionDto);
             var content = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<Result<object>>(content)!;
             return result;

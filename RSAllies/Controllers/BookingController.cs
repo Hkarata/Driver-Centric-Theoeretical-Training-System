@@ -1,5 +1,4 @@
-﻿using Humanizer;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RSAllies.Analytics;
 using RSAllies.Contracts.Requests;
@@ -22,7 +21,7 @@ namespace RSAllies.Controllers
                 // check if a cookie with the name "HasBooked" exists
                 var hasBookedCookieExists = httpContextAccessor.HttpContext!.Request.Cookies.ContainsKey("HasBooked");
 
-                if(!hasBookedCookieExists)
+                if (!hasBookedCookieExists)
                 {
                     var cookieBuilder = new CookieBuilder
                     {
@@ -37,7 +36,7 @@ namespace RSAllies.Controllers
                     httpContextAccessor.HttpContext!
                         .Response.Cookies.Append("HasBooked", "true", cookie);
 
-                    
+
                 }
 
                 var englishMessage = "You already have an existing booking, however you can choose to delete your existing booking then book another.";
@@ -75,8 +74,8 @@ namespace RSAllies.Controllers
                 var paymentRequestCookieExists = httpContextAccessor.HttpContext!.Request.Cookies.ContainsKey("paymentRequest");
 
                 if (paymentRequestCookieExists)
-                { 
-                    httpContextAccessor.HttpContext!.Response.Cookies.Delete("paymentRequest"); 
+                {
+                    httpContextAccessor.HttpContext!.Response.Cookies.Delete("paymentRequest");
                 }
 
                 return RedirectToAction("Index", "Home");

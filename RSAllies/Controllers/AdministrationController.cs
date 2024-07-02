@@ -98,7 +98,7 @@ namespace RSAllies.Controllers
             int[] educationLevelCounts = new int[] { 0, 0, 0, 0, 0, 0, 0 };
             int[] degreeCounts = new int[] { 0, 0, 0 };
 
-            if(result.IsSuccess)
+            if (result.IsSuccess)
             {
                 var dataset = result.Value;
 

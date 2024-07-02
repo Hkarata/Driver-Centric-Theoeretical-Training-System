@@ -58,7 +58,7 @@ namespace RSAllies.Controllers
                 DistrictId = model.DistrictId,
                 RegionId = model.RegionId,
                 Capacity = model.Capacity,
-                ImageUrl = imageUrl+sasToken,
+                ImageUrl = imageUrl + sasToken,
                 Address = model.Address
             };
 

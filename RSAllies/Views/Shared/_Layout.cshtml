@@ -73,9 +73,10 @@
                 @if(SessionService.CheckAdmin())
                 {
                     <a asp-controller="Administration" asp-action="Index" class="btn btn-primary w-100 btn text-start">Dashboard</a>
+                    <a asp-controller="Administration" asp-action="Admins" class="btn btn-primary w-100 btn text-start">Administration</a>
                     <a asp-controller="Booking" asp-action="Analysis" class="btn btn-primary w-100 btn text-start">Booking Analysis</a>
                     <a asp-controller="Test" asp-action="Analysis" class="btn btn-primary w-100 btn text-start">Test Analysis</a>
-
+                    <a asp-controller="Test" asp-action="Manage" class="btn btn-primary w-100 btn text-start">Test Management</a>
                 }
                 else
                 {
@@ -87,18 +88,9 @@
 
                 <a asp-controller="Sessions" asp-action="Index" class="btn btn-primary w-100 text-start">Sessions</a>
 
-                @if (SessionService.CheckAdmin())
+                @if (!SessionService.CheckAdmin())
                 {
-                    <a asp-controller="Administration" asp-action="Admins" class="btn btn-primary w-100 btn text-start">Administration</a>
-
-                    <a asp-controller="Test" asp-action="Index" class="btn btn-primary w-100 btn text-start">Questions</a>
-
-                    <a asp-controller="Test" asp-action="Create-Question" class="btn btn-primary w-100 btn text-start">Create question</a>
-
-                }
-                else
-                {
-                    <a asp-controller="Booking" asp-action="Bookings" class="btn btn-primary w-100 btn text-start">Bookings</a>
+                    <a asp-controller="Booking" asp-action="Bookings" class="btn btn-primary w-100 btn text-start">Bookings</a>                    
                 }
 
                 @if (SessionService.Check())

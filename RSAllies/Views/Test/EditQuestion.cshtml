@@ -1,0 +1,110 @@
+﻿@using RSAllies.Models
+@{
+    ViewData["Title"] = "Edit Question";
+    var i = 1;
+}
+
+@model Question
+
+<div id="TheContainer">
+
+    <div id="holder">
+
+        <form class="editForm" method="post" enctype="multipart/form-data" asp-action="EditQuestion" asp-controller="Test" asp-route-questionId="@Model.Id" asp-route-oldImage="@Model.ImageUrl">
+
+            <div id="myForm">
+
+                <div id="left">
+                    
+                    <div class="mb-3">
+                        <label>Scenario</label>
+                        <textarea rows="4" style="outline:none;scrollbar-width:none;" class="form-control" name="Scenario">@Model.Scenario</textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Question</label>
+                        <input type="text" name="QuestionText" value="@Model.QuestionText" class="form-control" id="QuestionText" />
+                        <span asp-validation-for="QuestionText" class="text-danger"></span>
+                    </div>
+
+                    <div class="w-100 d-flex flex-row justify-content-between mb-3">
+
+                        <div class="form-check">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" name="IsEnglish" class="form-check-input" />
+                                <label class="custom-control-label" asp-for="IsEnglish"></label>
+                            </div>
+                            <span asp-validation-for="IsEnglish" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    @foreach(var choice in Model.Choices!)
+                    {
+                        <div class="form-check mb-3">
+                            <input id="@($"isAnswer-{i}")" name="@($"isAnswer-{i}")" class="form-check-input" type="radio">
+                            <input name="@($"choice-{i}")" value="@choice.ChoiceText" class="form-control" />
+                        </div>
+                        i++;
+                    }
+
+                </div>
+
+                <div id="right">
+                    
+                    <span>Current Image</span>
+                    <img src="/Images/building.png" class="img-fluid rounded"/>
+
+                    <div class="input-group" style="margin-top:auto;">
+                        <input type="file" name="Image" class="form-control">
+                    </div>
+
+                </div>
+
+            </div>
+
+            <br/>
+
+            <button type="submit" class="w-100 btn" style="font-family:'Fira Code VF';background-color:#356dca;color:white;font-weight:5500">
+                <i class="bi bi-pen-fill"></i>
+                <span class="english">Edit</span>
+                <span class="swahili">Sasisha</span>
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <img src="/Images/wip.gif" width="70" height="70" />
+                <p style="font-family:'Fira Code VF'">
+                    <span class="english">Editing question...</span>
+                    <span class="swahili" style="display: none">Tafadhali subiri...</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+
+        $(document).ready(function () {
+
+            $(".editForm").submit(function (event) {
+
+                // Show the loading modal
+                $("#loadingModal").modal("show");
+
+                $('body').css('pointer-events', 'none')
+            });
+
+        });
+
+    </script>
+}
