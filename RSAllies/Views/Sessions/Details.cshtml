@@ -125,8 +125,8 @@
                     <span class="swahili">Ghairisha</span>
                 </button>
                 <button type="button" class="btn btn-danger" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">
-                    <span class="english">Cancel</span>
-                    <span class="swahili">Sitisha</span>
+                    <span class="english">Proceed</span>
+                    <span class="swahili">Endelea</span>
                 </button>
             </div>
         </div>
@@ -144,7 +144,7 @@
                 <span class="swahili">Je, una uhakika? Kitendo hiki hakiwezi kubadilishwa.</span>
             </div>
             <div class="modal-footer">
-                <button style="font-family:'Fira Code VF'" class="btn btn-danger" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
+                <button id="deleteBtn" style="font-family:'Fira Code VF'" class="btn btn-danger" data-sessionId="@ViewBag.SessionId">
                     <span class="english">Continue cancellation</span>
                     <span class="swahili">Endelea</span>
                 </button>
@@ -152,3 +152,15 @@
         </div>
     </div>
 </div>
+@section Scripts{
+        <script>
+        $(document).ready(function () {
+            $('#deleteBtn').click(function () {
+                var sessionId = $(this).data('sessionid');
+
+                var url = "/Sessions/DeleteSession?sessionId="+sessionId;
+                window.location.href = url;
+            });
+        });
+    </script>
+}

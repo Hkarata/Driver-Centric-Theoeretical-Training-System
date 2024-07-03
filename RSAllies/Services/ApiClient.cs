@@ -299,5 +299,10 @@ namespace RSAllies.Services
             var result = JsonConvert.DeserializeObject<Result<ScoreDto>>(content)!;
             return result;
         }
+
+        public async Task DeleteSession(Guid sessionId)
+        {
+            await httpClient.DeleteAsync($"/api/session/{sessionId}");
+        }
 	}
 }

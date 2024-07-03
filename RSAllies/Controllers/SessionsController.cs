@@ -93,5 +93,13 @@ namespace RSAllies.Controllers
                 return result.IsSuccess ? View("Index", result.Value) : View("Index", null);
             }
         }
+
+
+        public async Task<IActionResult> DeleteSession(string sessionId)
+        {
+            await apiClient.DeleteSession(Guid.Parse(sessionId));
+
+            return RedirectToAction("Index");
+        }
     }
 }
