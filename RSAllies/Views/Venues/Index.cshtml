@@ -15,17 +15,16 @@
 
         <img src="/Images/venue.jpg" alt="Image description">
         <div>
-            <span class="english" style="font-family: 'Fira Code VF';color: #f2c94c;;font-size:30px;font-weight:900">Get Ready for your exam.</span>
-            <span class="swahili" style="font-family: 'Fira Code VF';color: #f2c94c;;font-size:30px;font-weight:900;">Jiandae Kufanya mtihani</span>
-            <br />
-            <p style="font-family:'Fira Code VF'" class="english">Please choose a convenient location from the options below. You can browse through available venues, view their details, and select the one that best suits your needs</p>
-            <p style="font-family:'Fira Code VF'" class="swahili">Tafadhali chagua eneo linalofaa kutoka kwa chaguo zilizopo hapa chini. Unaweza kuvinjari maeneo yanayopatikana, kuona maelezo yao, na kuchagua linalokufaa zaidi.</p>
-            <br />
-            <p class="english" style="font-family: 'Fira Code Regular'">Reserve your spot, show up for the exam, and then follow the remaining steps to obtain your license.</p>
-            <p class="swahili" style="font-family: 'Fira Code Regular'">Hifadhi nafasi yako, tokea kujibu mtihani kisha endelea na taratibu nyengine za kupata leseni.</p>
-        
+            
             @if (SessionService.CheckAdmin())
             {
+                <span class="english" style="font-family: 'Fira Code VF';color: #f2c94c;;font-size:30px;font-weight:900">Examination Test Centres.</span>
+                <span class="swahili" style="font-family: 'Fira Code VF';color: #f2c94c;;font-size:30px;font-weight:900;">Vituo vya mtihani.</span>
+                <br />
+                <br />
+                <p style="font-family:'Fira Code VF'" class="english">Create a new venue, also add a session to an existing venue.</p>
+                <p style="font-family:'Fira Code VF'" class="swahili">Ongeza kituo kipya  au kipindi cha mtihani katika kituo chochote.</p>
+                <br />
                 <section id="Actions">
 
                     <a asp-controller="Venues" asp-action="Create" class="btn btn-primary" id="btn-english">
@@ -34,6 +33,18 @@
                     </a>
 
                 </section>
+            }
+            else
+            {
+                <span class="english" style="font-family: 'Fira Code VF';color: #f2c94c;;font-size:30px;font-weight:900">Get Ready for your exam.</span>
+                <span class="swahili" style="font-family: 'Fira Code VF';color: #f2c94c;;font-size:30px;font-weight:900;">Jiandae Kufanya mtihani</span>
+                <br />
+                <p style="font-family:'Fira Code VF'" class="english">Please choose a convenient location from the options below. You can browse through available venues, view their details, and select the one that best suits your needs</p>
+                <p style="font-family:'Fira Code VF'" class="swahili">Tafadhali chagua eneo linalofaa kutoka kwa chaguo zilizopo hapa chini. Unaweza kuvinjari maeneo yanayopatikana, kuona maelezo yao, na kuchagua linalokufaa zaidi.</p>
+                <br />
+                <p class="english" style="font-family: 'Fira Code Regular'">Reserve your spot, show up for the exam, and then follow the remaining steps to obtain your license.</p>
+                <p class="swahili" style="font-family: 'Fira Code Regular'">Hifadhi nafasi yako, tokea kujibu mtihani kisha endelea na taratibu nyengine za kupata leseni.</p>
+
             }
         
         </div>

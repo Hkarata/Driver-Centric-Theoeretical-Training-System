@@ -138,10 +138,12 @@
                                     series.dataLabelsGroup.animate({
                                         opacity: 1
                                     },
-                                        void 0,
-                                        function () {
-                                            points.forEach(point => {
-                                                point.opacity = 1;
+                                        void 0, function () {
+                                            // Set data labels opacity to 1 after animation
+                                            series.points.forEach(point => {
+                                                point.dataLabel.attr({
+                                                    opacity: 1
+                                                });
                                             });
                                             series.update({
                                                 enableMouseTracking: true
@@ -166,7 +168,10 @@
                         point.opacity = 1;
                     });
                 } else {
-                    fanAnimate(points[0], startAngleRad);
+                    if (!animationHasRun) {
+                        animationHasRun = true;
+                        fanAnimate(points[0], startAngleRad);
+                    }
                 }
             };
         }(Highcharts));

@@ -95,6 +95,7 @@
 
                 @if (SessionService.Check())
                 {
+                    <a asp-controller="Test" asp-action="Results" class="btn btn-primary w-100 btn text-start">Test Results</a>
                     <a asp-controller="Account" asp-action="Logout" style="margin-top:auto;background-color:#e90202;font-weight:550" class="btn text-white w-100 btn text-start">
                         <i style="font-size:16px" class="bi bi-power"></i>
                         Logout

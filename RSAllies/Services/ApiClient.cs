@@ -291,5 +291,13 @@ namespace RSAllies.Services
 			var response = await httpClient.PostAsJsonAsync<UserResponseDto>("/api/user-responses", userResponse);
 			return response;
 		}
+
+        public async Task<Result<ScoreDto>> GetUserScore(Guid userId)
+        {
+            var response = await httpClient.GetAsync($"/api/score/{userId}");
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Result<ScoreDto>>(content)!;
+            return result;
+        }
 	}
 }

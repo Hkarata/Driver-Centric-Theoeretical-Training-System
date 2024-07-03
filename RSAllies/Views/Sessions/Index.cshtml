@@ -89,10 +89,21 @@
                         <div class="progress-bar" style="@(() => (item.Capacity * 100)/item.VenueCapacity)%"></div>
                     </div>
 
-                    <button class="myButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-userId="@SessionService.GetUserId()" data-sessionId="@item.Id" data-sessionDate="@item.Date.ToString("dd/MM/yyyy")">
-                        <span class="english">Book</span>
-                        <span class="swahili">Hifadhi</span>
-                    </button>
+                    @if (SessionService.CheckAdmin())
+                    {
+                        <a asp-controller="Sessions" asp-action="Details" asp-route-id="@item.Id" asp-route-startTime="@item.StartTime" asp-route-endTime="@item.EndTime" asp-route-date="@item.Date.ToString("dd/MM/yyyy")" asp-route-capacity="@item.Capacity" asp-route-venueName="@item.VenueName"
+                           style="color:black;text-align:center;text-decoration:none;border: none;border-radius: 5px;font-family: 'Fira Code VF';font-size: 14px;background-color: #f2c94c;">
+                            Details
+                        </a>
+                    }
+                    else
+                    {
+                        <button class="myButton" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-userId="@SessionService.GetUserId()" data-sessionId="@item.Id" data-sessionDate="@item.Date.ToString("dd/MM/yyyy")">
+                            <span class="english">Book</span>
+                            <span class="swahili">Hifadhi</span>
+                        </button>
+                    }
+
 
                 </div>
             }

@@ -51,6 +51,13 @@
             </span>
         </div>
 
+        <a asp-controller="Test" asp-action="Create-Question" id="AddQ"
+             data-bs-toggle="tooltip" data-bs-placement="left"
+             data-bs-custom-class="custom-tooltip"
+             data-bs-title="Click here to add a question">
+            <i class="bi bi-plus-circle-fill"></i>
+        </a>
+
         <a id="TA" asp-controller="Test" asp-action="Analysis">
             <i style="font-weight:550;" class="bi bi-bezier2"></i>
             <span class="english">Test Analysis</span>
@@ -256,6 +263,27 @@
 </div>
 
 <style>
+    #AddQ {
+        background-color: #356dca;
+        height: 50px;
+        width: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        font-size: 22px;
+        margin-left: auto;
+        color: white;
+        cursor: pointer;
+    }
+
+        #AddQ:hover {
+            transform: scale(1.02);
+            color: #356dca;
+            background-color: white;
+            box-shadow: 0 0 10px 0 rgba(0,0,0,0.7);
+        }
+
     #TA {
         margin-top: auto;
         background-color: #f2c444;
@@ -335,6 +363,9 @@
 @section Scripts{
 
     <script>
+
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
         $(document).ready(function () {
 

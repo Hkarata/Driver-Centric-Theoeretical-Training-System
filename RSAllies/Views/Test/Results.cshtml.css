@@ -4,6 +4,8 @@
     display:flex;
     flex-direction:row;
     gap: 5px;
+    justify-content:center;
+    align-items:center;
 }
 
 #First{
@@ -23,6 +25,7 @@
 
 #ResultsCard {
     align-self: center;
+    justify-self:center;
     width: 400px;
     border: 1px solid #d0e33e;
     padding: 5px;

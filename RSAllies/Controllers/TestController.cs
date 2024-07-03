@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using RSAllies.Analytics;
 using RSAllies.AzureStorage;
 using RSAllies.Contracts.Requests;
+using RSAllies.Contracts.Responses;
 using RSAllies.Models;
 using RSAllies.Services;
 
@@ -145,6 +146,11 @@ namespace RSAllies.Controllers
         [ActionName("English-Questions")]
         public async Task<IActionResult> EnglishQuestion()
         {
+            if (!sessionService.Check())
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             var result = await apiClient.GetEnglishQuestions();
 
             if (result.IsSuccess)
@@ -159,6 +165,11 @@ namespace RSAllies.Controllers
 		[ActionName("Swahili-Questions")]
 		public async Task<IActionResult> SwahiliQuestions()
 		{
+            if (!sessionService.Check())
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             var result = await apiClient.GetSwahiliQuestions();
 
 			if (result.IsSuccess)
@@ -170,9 +181,23 @@ namespace RSAllies.Controllers
 			return View("SwahiliQuestions");
 		}
 
-		public IActionResult Results()
+		public async Task<IActionResult> Results()
         {
-            return View();
+            if (!sessionService.Check())
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            var userId = sessionService.GetUserId();
+
+            var result = await apiClient.GetUserScore(userId);
+
+            if (result.IsSuccess)
+            {
+                return View(result.Value);
+            }
+
+            return View(null);
         }
 
         [HttpPost]
