@@ -285,5 +285,11 @@ namespace RSAllies.Services
             var result = JsonConvert.DeserializeObject<Result<object>>(content)!;
             return result;
         }
-    }
+
+        public async Task<HttpResponseMessage> PostUserResponses(UserResponseDto userResponse)
+		{
+			var response = await httpClient.PostAsJsonAsync<UserResponseDto>("/api/user-responses", userResponse);
+			return response;
+		}
+	}
 }

@@ -17,6 +17,11 @@ namespace RSAllies.Controllers
 
         public async Task<IActionResult> Manage()
         {
+            if (!sessionService.CheckAdmin())
+            {
+                return RedirectToAction("Admin", "Account", new { accessKey = "admin" });
+            }
+
             var result = await apiClient.GetAllQuestions();
 
             if (result.IsSuccess)
@@ -151,7 +156,21 @@ namespace RSAllies.Controllers
             return View("EnglishQuestion");
         }
 
-        public IActionResult Results()
+		[ActionName("Swahili-Questions")]
+		public async Task<IActionResult> SwahiliQuestions()
+		{
+            var result = await apiClient.GetSwahiliQuestions();
+
+			if (result.IsSuccess)
+			{
+				var questions = result.Value;
+				return View("SwahiliQuestions", questions);
+			}
+
+			return View("SwahiliQuestions");
+		}
+
+		public IActionResult Results()
         {
             return View();
         }
